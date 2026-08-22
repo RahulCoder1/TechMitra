@@ -876,7 +876,7 @@ select.form-control-x { appearance: none; cursor: pointer;
 .footer__col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .7rem; }
 .footer__col a { color: #C4C1B4; font-size: .92rem; }
 .footer__col a:hover { color: #F1EEE4; }
-.footer__news p { color: #A9A597; font-size: .92rem; margin-bottom: 1rem; }
+.footer__news p { color: white; font-size: .92rem; margin-bottom: 1rem; }
 .news-form { display: flex; gap: .5rem; }
 .news-form input {
   flex: 1; min-width: 0;
