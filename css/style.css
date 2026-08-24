@@ -724,9 +724,6 @@ p:last-child { margin-bottom: 0; }
 .about__sign .name { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; }
 .about__sign .role { font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: var(--stone); }
 
-/* ==========================================================================
-   TESTIMONIALS  (dark slider)
-   ========================================================================== */
 .tst {
   position: relative;
   max-width: 900px;
@@ -772,9 +769,6 @@ p:last-child { margin-bottom: 0; }
 .tst__arrow:hover { background: var(--brass); color: #241C0E; border-color: var(--brass); }
 .tst__arrow svg { width: 20px; height: 20px; }
 
-/* ==========================================================================
-   CONTACT
-   ========================================================================== */
 .contact__grid {
   display: grid;
   grid-template-columns: 1fr 1.1fr;
@@ -851,9 +845,6 @@ select.form-control-x { appearance: none; cursor: pointer;
 }
 .form-success.show { display: block; }
 
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
 .site-footer {
   background: var(--loden-deep);
   color: #C4C1B4;
@@ -919,9 +910,6 @@ select.form-control-x { appearance: none; cursor: pointer;
 .footer__bar a { color: var(--brass-soft); }
 .footer__bar .credit { letter-spacing: .04em; }
 
-/* ==========================================================================
-   SCROLL REVEAL
-   ========================================================================== */
 [data-reveal] {
   opacity: 0;
   transform: translateY(22px);
@@ -934,9 +922,6 @@ select.form-control-x { appearance: none; cursor: pointer;
 [data-reveal][data-delay="3"] { transition-delay: .24s; }
 [data-reveal][data-delay="4"] { transition-delay: .32s; }
 
-/* ==========================================================================
-   RESPONSIVE
-   ========================================================================== */
 @media (max-width: 1080px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .process-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1002,9 +987,6 @@ select.form-control-x { appearance: none; cursor: pointer;
   .stats { grid-template-columns: 1fr; }
 }
 
-/* ==========================================================================
-   REDUCED MOTION
-   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
