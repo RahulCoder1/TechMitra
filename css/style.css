@@ -998,3 +998,12 @@ select.form-control-x { appearance: none; cursor: pointer;
   .project:hover .project__media img,
   .product:hover .product__media img { transform: none; }
 }
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socials i {
+  font-size: 20px;
+}
