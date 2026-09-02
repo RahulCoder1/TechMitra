@@ -1809,3 +1809,222 @@ select.form-control-x { appearance: none; cursor: pointer;
             rgba(0, 0, 0, 0.05) 100%
         );
 }
+
+/* =====================================================
+   TECHMITRA HEADER - MOBILE RESPONSIVE FIX
+   ADD THIS AT THE END OF YOUR EXISTING CSS
+===================================================== */
+
+/* Keep logo and text properly aligned */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    white-space: nowrap;
+}
+
+/* Logo */
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+/* TechMitra + Technologies */
+.brand-text {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    min-width: 0;
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .site-header .container-x {
+        gap: 12px;
+    }
+
+    .brand {
+        gap: 8px;
+    }
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .brand {
+        font-size: 1.45rem;
+    }
+
+    .brand .brand-sub {
+        font-size: 0.48rem;
+        letter-spacing: 0.18em;
+    }
+
+    .nav-toggle {
+        flex-shrink: 0;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 640px) {
+
+    :root {
+        --header-h: 68px;
+    }
+
+    .site-header {
+        height: var(--header-h);
+    }
+
+    .site-header .container-x {
+        padding-inline: 16px;
+        gap: 8px;
+    }
+
+    /* Main brand */
+    .brand {
+        gap: 7px;
+        font-size: 1.3rem;
+        max-width: calc(100vw - 75px);
+        overflow: hidden;
+    }
+
+    /* Logo size */
+    .brand-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    /* Text container */
+    .brand-text {
+        gap: 4px;
+        overflow: hidden;
+    }
+
+    /* TechMitra main text */
+    .brand-text > span:first-child,
+    .brand-name {
+        white-space: nowrap;
+    }
+
+    /* TECHNOLOGIES */
+    .brand .brand-sub {
+        font-size: 0.40rem;
+        letter-spacing: 0.14em;
+        white-space: nowrap;
+    }
+
+    /* Mobile menu button */
+    .nav-toggle {
+        width: 42px;
+        height: 42px;
+        padding: 9px;
+        flex-shrink: 0;
+    }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .site-header .container-x {
+        padding-inline: 12px;
+    }
+
+    .brand {
+        gap: 6px;
+        font-size: 1.18rem;
+    }
+
+    .brand-logo {
+        width: 35px;
+        height: 35px;
+    }
+
+    .brand-text {
+        gap: 3px;
+    }
+
+    .brand .brand-sub {
+        font-size: 0.34rem;
+        letter-spacing: 0.12em;
+    }
+
+    .nav-toggle {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .brand {
+        font-size: 1.05rem;
+        gap: 5px;
+    }
+
+    .brand-logo {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Hide only TECHNOLOGIES on extremely small screens */
+    .brand .brand-sub {
+        display: none;
+    }
+
+    .site-header .container-x {
+        padding-inline: 10px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE HEADER BACKGROUND IMPROVEMENT
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .site-header {
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+
+        border-bottom:
+            1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    /* Always dark logo text on mobile */
+    .site-header .brand {
+        color: #23211C;
+    }
+
+    .site-header .brand .brand-sub {
+        color: #57e050;
+    }
+
+    /* Hamburger dark */
+    .site-header .nav-toggle span {
+        background: #23211C;
+    }
+}
