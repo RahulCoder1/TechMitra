@@ -1,12 +1,5 @@
-/* ==========================================================================
-   HABITAT — Interior Design & Furniture Studio
-   Custom design layer. Bootstrap 5 (vendor) handles the grid/reset only.
-   Palette: putty + espresso ink + deep loden green + brushed brass + taupe.
-   Type: Cormorant Garamond (display serif) / Hanken Grotesk (body + labels).
-   ========================================================================== */
 
 :root {
-  /* Core palette */
   --putty:      #E9E3D8;  /* warm greige canvas — green-grey bias, not cream */
   --paper:      #F4F0E8;  /* lighter card / alternating surface */
   --ink:        #23211C;  /* warm espresso near-black */
@@ -232,7 +225,7 @@ p:last-child { margin-bottom: 0; }
 .brand {
   display: inline-flex;
   align-items: baseline;
-  gap: .55rem;
+  gap: 0px;
   font-family: var(--serif);
   font-size: 1.7rem;
   font-weight: 700;
@@ -1010,7 +1003,7 @@ select.form-control-x { appearance: none; cursor: pointer;
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 0px;
   text-decoration: none;
 }
 
