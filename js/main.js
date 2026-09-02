@@ -320,3 +320,228 @@
     boot();
   }
 })();
+document.addEventListener("DOMContentLoaded", function () {
+
+    const counters = document.querySelectorAll(".counter");
+
+    counters.forEach(function (counter, index) {
+
+        const target = parseInt(counter.dataset.target, 10);
+
+        // Always start from 0 when page reloads
+        counter.textContent = "0";
+
+
+        // Small delay between each counter
+        setTimeout(function () {
+
+            animateCounter(counter, target);
+
+        }, 300 + (index * 150));
+
+    });
+
+});
+
+
+function animateCounter(counter, target) {
+
+    const duration = 1800;
+
+    const startTime = performance.now();
+
+
+    function updateCounter(currentTime) {
+
+        const elapsed = currentTime - startTime;
+
+        const progress = Math.min(
+            elapsed / duration,
+            1
+        );
+
+
+        /*
+         Smooth loading effect
+        */
+
+        const easeOutProgress =
+            1 - Math.pow(1 - progress, 3);
+
+
+        const currentValue = Math.floor(
+            target * easeOutProgress
+        );
+
+
+        counter.textContent = currentValue;
+
+
+        if (progress < 1) {
+
+            requestAnimationFrame(updateCounter);
+
+        } else {
+
+            // Ensure exact final value
+            counter.textContent = target;
+
+        }
+
+    }
+
+
+    requestAnimationFrame(updateCounter);
+
+}
+/* =========================================================
+   GLOBAL PAGE LOADER
+   ========================================================= */
+
+(function () {
+
+    const pageLoader = document.getElementById("pageLoader");
+
+    if (!pageLoader) {
+        return;
+    }
+
+    function showLoader() {
+        pageLoader.classList.remove("is-hidden");
+    }
+
+    function hideLoader() {
+        pageLoader.classList.add("is-hidden");
+    }
+
+    /* -----------------------------------------
+       Hide loader when page is fully loaded
+    ----------------------------------------- */
+    window.addEventListener("load", function () {
+        hideLoader();
+    });
+
+    /* -----------------------------------------
+       Browser Back / Forward
+    ----------------------------------------- */
+    window.addEventListener("pageshow", function () {
+        hideLoader();
+    });
+
+    /* -----------------------------------------
+       Handle ALL clicks
+    ----------------------------------------- */
+    document.addEventListener("click", function (event) {
+
+        /*
+         * Find the actual anchor/button clicked.
+         * This also handles:
+         *
+         * <a><span>Text</span></a>
+         * <a><svg>...</svg></a>
+         * <li><a>...</a></li>
+         */
+        const link = event.target.closest("a");
+
+        if (!link) {
+            return;
+        }
+
+        const href = link.getAttribute("href");
+
+        /* No href */
+        if (!href) {
+            return;
+        }
+
+        /* Empty / javascript links */
+        if (
+            href === "#" ||
+            href.toLowerCase().startsWith("javascript:")
+        ) {
+            return;
+        }
+
+        /* Same-page section links */
+        if (href.startsWith("#")) {
+            return;
+        }
+
+        /* Download links */
+        if (link.hasAttribute("download")) {
+            return;
+        }
+
+        /* Open in new tab */
+        if (link.target === "_blank") {
+            return;
+        }
+
+        /* Ctrl + Click / Cmd + Click / Shift + Click */
+        if (
+            event.ctrlKey ||
+            event.metaKey ||
+            event.shiftKey ||
+            event.altKey
+        ) {
+            return;
+        }
+
+        /*
+         * If it is an external website, don't use
+         * the page loader because your website is
+         * not controlling the destination page.
+         */
+        if (
+            link.hostname &&
+            link.hostname !== window.location.hostname
+        ) {
+            return;
+        }
+
+        /*
+         * REAL PAGE NAVIGATION
+         * Show loader.
+         */
+        showLoader();
+
+    });
+
+
+    /* -----------------------------------------
+       FORM SUBMISSION
+       ----------------------------------------- */
+
+    document.addEventListener("submit", function (event) {
+
+        const form = event.target;
+
+        /*
+         * Don't automatically show the loader
+         * for forms handled by JavaScript/AJAX.
+         *
+         * Your contact form can show its own
+         * loading state.
+         */
+        if (
+            form.id === "contactForm" ||
+            form.id === "newsForm"
+        ) {
+            return;
+        }
+
+        showLoader();
+
+    });
+
+
+    /* -----------------------------------------
+       SAFETY FALLBACK
+       Prevent loader from getting stuck.
+       ----------------------------------------- */
+
+    window.addEventListener("beforeunload", function () {
+        showLoader();
+    });
+
+})();
