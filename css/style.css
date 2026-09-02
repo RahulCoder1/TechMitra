@@ -1007,8 +1007,25 @@ select.form-control-x { appearance: none; cursor: pointer;
 .socials i {
   font-size: 20px;
 }
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
 
+.brand-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
 
+.brand-text {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
 
 .brand-sub {
   font-size: 0.65em;
@@ -1793,230 +1810,3 @@ select.form-control-x { appearance: none; cursor: pointer;
         );
 }
 
-/* =====================================================
-   TECHMITRA HEADER - MOBILE RESPONSIVE FIX
-   ADD THIS AT THE END OF YOUR EXISTING CSS
-===================================================== */
-
-.brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-    white-space: nowrap;
-}
-
-.brand-logo {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-    object-fit: contain;
-}
-
-.brand-text {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    min-width: 0;
-    white-space: nowrap;
-}
-
-@media (max-width: 900px) {
-
-    .site-header {
-        background: rgba(255, 255, 255, 0.96);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
-    .site-header .container-x {
-        gap: 12px;
-    }
-
-    .brand {
-        gap: 8px;
-        font-size: 1.45rem;
-    }
-
-    .brand-logo {
-        width: 42px;
-        height: 42px;
-    }
-
-    .brand .brand-sub {
-        font-size: 0.48rem;
-        letter-spacing: 0.18em;
-        white-space: nowrap;
-        display: inline-block;
-    }
-
-    .site-header .brand {
-        color: #23211C;
-    }
-
-    .site-header .brand .brand-sub {
-        color: #57e050;
-    }
-
-    .nav-toggle {
-        flex-shrink: 0;
-        position: relative;
-        z-index: 1002;
-    }
-
-    .site-header .nav-toggle span {
-        background: #23211C;
-    }
-
-    .main-nav {
-        z-index: 1001;
-    }
-
-    .nav-backdrop {
-        z-index: 1000;
-    }
-}
-
-@media (max-width: 640px) {
-
-    :root {
-        --header-h: 68px;
-    }
-
-    .site-header {
-        height: var(--header-h);
-    }
-
-    .site-header .container-x {
-        padding-inline: 16px;
-        gap: 8px;
-        flex-wrap: nowrap;
-    }
-
-    .brand {
-        gap: 7px;
-        font-size: 1.3rem;
-        min-width: 0;
-        max-width: none;
-        overflow: visible;
-    }
-
-    .brand-logo {
-        width: 38px;
-        height: 38px;
-    }
-
-    .brand-text {
-        gap: 4px;
-        overflow: visible;
-        white-space: nowrap;
-    }
-
-    .brand-text > span:first-child,
-    .brand-name {
-        white-space: nowrap;
-    }
-
-    .brand .brand-sub {
-        font-size: 0.40rem;
-        letter-spacing: 0.12em;
-        white-space: nowrap;
-        display: inline-block;
-    }
-
-    .nav-toggle {
-        width: 42px;
-        height: 42px;
-        padding: 9px;
-        flex-shrink: 0;
-    }
-
-    .main-nav {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: auto;
-
-        width: min(340px, 84vw);
-        height: 100dvh;
-
-        padding: calc(var(--header-h) + 2rem) 2rem 2rem;
-
-        background: #29321F;
-
-        z-index: 1001;
-
-        overflow-y: auto;
-
-        transform: translateX(100%);
-
-        transition: transform 0.4s cubic-bezier(.22,.61,.36,1);
-
-        box-shadow: -20px 0 60px rgba(20, 22, 17, 0.4);
-    }
-
-    .main-nav.is-open {
-        transform: translateX(0);
-    }
-
-    .nav-backdrop {
-        z-index: 1000;
-    }
-}
-
-@media (max-width: 480px) {
-
-    .site-header .container-x {
-        padding-inline: 12px;
-    }
-
-    .brand {
-        gap: 6px;
-        font-size: 1.18rem;
-    }
-
-    .brand-logo {
-        width: 35px;
-        height: 35px;
-    }
-
-    .brand-text {
-        gap: 3px;
-    }
-
-    .brand .brand-sub {
-        font-size: 0.32rem;
-        letter-spacing: 0.10em;
-        display: inline-block;
-    }
-
-    .nav-toggle {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-@media (max-width: 380px) {
-
-    .brand {
-        font-size: 1.05rem;
-        gap: 5px;
-    }
-
-    .brand-logo {
-        width: 32px;
-        height: 32px;
-    }
-
-    .brand .brand-sub {
-        display: inline-block;
-        font-size: 0.28rem;
-        letter-spacing: 0.08em;
-    }
-
-    .site-header .container-x {
-        padding-inline: 10px;
-    }
-}
