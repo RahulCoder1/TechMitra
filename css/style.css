@@ -281,7 +281,7 @@ p:last-child { margin-bottom: 0; }
   box-shadow: 0 6px 30px rgb(17 15 12 / 92%);
 }
 .site-header.is-scrolled .brand { color: var(--ink); }
-.site-header.is-scrolled .brand .brand-mark { border-color: var(--brass); }
+.site-header.is-scrolled  .brand-mark { border-color: var(--brass); }
 .site-header.is-scrolled .brand .brand-sub { color: var(--brass); }
 .site-header.is-scrolled .main-nav a { color: var(--ink); }
 .site-header.is-scrolled .main-nav a:hover { color: var(--brass); }
