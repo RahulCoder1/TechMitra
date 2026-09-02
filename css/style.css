@@ -1008,24 +1008,29 @@ select.form-control-x { appearance: none; cursor: pointer;
   font-size: 20px;
 }
 .brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    white-space: nowrap;
 }
 
+/* Logo */
 .brand-logo {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  display: block;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    object-fit: contain;
 }
 
+/* TechMitra + Technologies */
 .brand-text {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    min-width: 0;
 }
+
 
 .brand-sub {
   font-size: 0.65em;
@@ -1816,29 +1821,6 @@ select.form-control-x { appearance: none; cursor: pointer;
 ===================================================== */
 
 /* Keep logo and text properly aligned */
-.brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-    white-space: nowrap;
-}
-
-/* Logo */
-.brand-logo {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-    object-fit: contain;
-}
-
-/* TechMitra + Technologies */
-.brand-text {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    min-width: 0;
-}
 
 /* =====================================================
    TABLET
