@@ -545,3 +545,213 @@ function animateCounter(counter, target) {
     });
 
 })();
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const projectsGrid =
+        document.getElementById("projectsGrid");
+
+
+    const filterButtons =
+        document.querySelectorAll(".filter-btn");
+
+
+    const projects =
+        document.querySelectorAll(".project");
+
+
+    const filterEmpty =
+        document.getElementById("filterEmpty");
+
+
+    let animationFrame;
+
+    let isPaused = false;
+
+    let scrollSpeed = 0.5;
+
+
+    /* =====================================================
+       AUTO SCROLL
+    ===================================================== */
+
+    function autoScroll() {
+
+
+        if (!isPaused) {
+
+            projectsGrid.scrollLeft += scrollSpeed;
+
+
+            /* Check end */
+
+            if (
+                projectsGrid.scrollLeft +
+                projectsGrid.clientWidth >=
+                projectsGrid.scrollWidth - 2
+            ) {
+
+                projectsGrid.scrollLeft = 0;
+
+            }
+
+        }
+
+
+        animationFrame =
+            requestAnimationFrame(autoScroll);
+
+    }
+
+
+    /* Start animation */
+
+    autoScroll();
+
+
+    /* =====================================================
+       PAUSE ON MOUSE HOVER
+    ===================================================== */
+
+    projectsGrid.addEventListener("mouseenter", function () {
+
+        isPaused = true;
+
+    });
+
+
+    projectsGrid.addEventListener("mouseleave", function () {
+
+        isPaused = false;
+
+    });
+
+
+    /* =====================================================
+       PAUSE ON TOUCH
+    ===================================================== */
+
+    projectsGrid.addEventListener("touchstart", function () {
+
+        isPaused = true;
+
+    }, { passive: true });
+
+
+    projectsGrid.addEventListener("touchend", function () {
+
+        setTimeout(function () {
+
+            isPaused = false;
+
+        }, 1000);
+
+    }, { passive: true });
+
+
+    /* =====================================================
+       FILTER PROJECTS
+    ===================================================== */
+
+    filterButtons.forEach(function (button) {
+
+
+        button.addEventListener("click", function () {
+
+
+            const selectedFilter =
+                this.getAttribute("data-filter");
+
+
+            /* Update active button */
+
+            filterButtons.forEach(function (btn) {
+
+                btn.classList.remove("is-active");
+
+                btn.setAttribute(
+                    "aria-pressed",
+                    "false"
+                );
+
+            });
+
+
+            this.classList.add("is-active");
+
+
+            this.setAttribute(
+                "aria-pressed",
+                "true"
+            );
+
+
+            /* Filter cards */
+
+            let visibleCount = 0;
+
+
+            projects.forEach(function (project) {
+
+
+                const category =
+                    project.getAttribute(
+                        "data-category"
+                    );
+
+
+                if (
+                    selectedFilter === "all" ||
+                    category === selectedFilter
+                ) {
+
+                    project.classList.remove(
+                        "is-hidden"
+                    );
+
+
+                    visibleCount++;
+
+                }
+
+                else {
+
+                    project.classList.add(
+                        "is-hidden"
+                    );
+
+                }
+
+            });
+
+
+            /* Reset slider position */
+
+            projectsGrid.scrollLeft = 0;
+
+
+            /* Empty message */
+
+            if (visibleCount === 0) {
+
+                filterEmpty.hidden = false;
+
+            }
+
+            else {
+
+                filterEmpty.hidden = true;
+
+            }
+
+
+        });
+
+
+    });
+
+
+});
+
