@@ -35,7 +35,7 @@ body {
   font-size: 1rem;
   line-height: 1.68;
   color: var(--ink);
-  background: var(--putty);
+  background: var(--bs-white);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -2460,6 +2460,473 @@ select.form-control-x { appearance: none; cursor: pointer;
 
     .process-card__content {
         padding: 22px;
+    }
+
+}
+/* =====================================================
+   TECHMITRA - TRUSTED CLIENT LOGO SECTION
+===================================================== */
+
+.tm-trusted-section {
+    position: relative;
+
+    min-height: auto !important;
+
+    padding: 90px 0 70px !important;
+
+    overflow: hidden;
+
+    background:linear-gradient(135deg, #08402d 0%, #c4d5ce 45%, #17d782a3 100%)
+        /* linear-gradient(
+            135deg,
+            #07100d 0%,
+            #0b1712 45%,
+            #10221a 100%
+        ); */
+}
+
+
+/* =====================================================
+   SUBTLE BACKGROUND EFFECT
+===================================================== */
+
+.tm-trusted-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    top: -350px;
+    right: -200px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(166, 138, 85, 0.12),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+.tm-trusted-section::after {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    bottom: -400px;
+    left: -200px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(68, 117, 91, 0.15),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   KEEP CONTENT ABOVE BACKGROUND
+===================================================== */
+
+.tm-trusted-section .container-x {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =====================================================
+   HEADING
+===================================================== */
+
+.tm-client-marquee__head {
+    max-width: 780px;
+
+    margin: 0 auto 55px;
+
+    text-align: center;
+}
+
+
+.tm-client-marquee__eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+
+    color: #b99a61;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+
+/* Small line before heading */
+
+.tm-client-marquee__eyebrow::before {
+    content: "";
+
+    width: 32px;
+    height: 1px;
+
+    background: #b99a61;
+}
+
+
+.tm-client-marquee__head h3 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(32px, 4vw, 56px);
+
+    line-height: 1.15;
+
+    font-weight: 500;
+
+    letter-spacing: -1px;
+}
+
+
+.tm-client-marquee__head h3 span {
+    color: #b99a61;
+}
+
+
+.tm-client-marquee__head p {
+    max-width: 620px;
+
+    margin: 20px auto 0;
+
+    color: rgba(255, 255, 255, 0.62);
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   MARQUEE VIEWPORT
+===================================================== */
+
+.tm-client-marquee__viewport {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    padding: 38px 0;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.1);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* =====================================================
+   FADE EDGES
+===================================================== */
+
+.tm-client-marquee__viewport::before,
+.tm-client-marquee__viewport::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    width: 140px;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+.tm-client-marquee__viewport::before {
+    left: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #08120e 0%,
+            rgba(8, 18, 14, 0.85) 25%,
+            transparent 100%
+        );
+}
+
+
+.tm-client-marquee__viewport::after {
+    right: 0;
+
+    background:
+        linear-gradient(
+            270deg,
+            #10221a 0%,
+            rgba(16, 34, 26, 0.85) 25%,
+            transparent 100%
+        );
+}
+
+
+/* =====================================================
+   MOVING TRACK
+===================================================== */
+
+.tm-client-marquee__track {
+    display: flex;
+
+    align-items: center;
+
+    width: max-content;
+
+    animation:
+        tmClientLogoScroll 32s linear infinite;
+
+    will-change: transform;
+        background: #fff;
+}
+
+
+@keyframes tmClientLogoScroll {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+
+/* =====================================================
+   LOGO ITEM
+===================================================== */
+
+.tm-client-marquee__item {
+    width: 230px;
+
+    height: 75px;
+
+    flex: 0 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 38px;
+}
+
+
+/* =====================================================
+   LOGO IMAGE
+===================================================== */
+
+.tm-client-marquee__item img {
+    display: block;
+
+    width: 100%;
+
+    max-width: 150px;
+
+    height: 60px;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    opacity: 0.75;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.tm-client-marquee__item:hover img {
+    opacity: 1;
+
+    transform: scale(1.08);
+
+    filter:
+        grayscale(0%)
+        brightness(1);
+}
+
+
+/* =====================================================
+   PAUSE ON HOVER
+===================================================== */
+
+.tm-client-marquee__viewport:hover
+.tm-client-marquee__track {
+    animation-play-state: paused;
+}
+
+
+/* =====================================================
+   BOTTOM INDUSTRY LINE
+===================================================== */
+
+.tm-client-trust-line {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    margin-top: 32px;
+}
+
+
+.tm-client-trust-line span {
+    width: 70px;
+
+    height: 1px;
+
+    background:
+        rgba(185, 154, 97, 0.45);
+}
+
+
+.tm-client-trust-line p {
+    margin: 0;
+
+    color:
+        rgba(255, 255, 255, 0.52);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+
+.tm-client-trust-line b {
+    margin: 0 8px;
+
+    color: #b99a61;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .tm-trusted-section {
+        padding: 65px 0 50px !important;
+    }
+
+
+    .tm-client-marquee__head {
+        margin-bottom: 38px;
+
+        text-align: left;
+    }
+
+
+    .tm-client-marquee__head p {
+        margin-left: 0;
+    }
+
+
+    .tm-client-marquee__viewport {
+        padding: 25px 0;
+    }
+
+
+    .tm-client-marquee__item {
+        width: 165px;
+
+        height: 60px;
+
+        padding: 0 25px;
+    }
+
+
+    .tm-client-marquee__item img {
+        max-width: 110px;
+
+        height: 45px;
+    }
+
+
+    .tm-client-marquee__track {
+        animation-duration: 22s;
+    }
+
+
+    .tm-client-marquee__viewport::before,
+    .tm-client-marquee__viewport::after {
+        width: 55px;
+    }
+
+
+    .tm-client-trust-line {
+        gap: 12px;
+
+        margin-top: 25px;
+    }
+
+
+    .tm-client-trust-line span {
+        width: 25px;
+    }
+
+
+    .tm-client-trust-line p {
+        font-size: 9px;
+
+        white-space: normal;
+
+        text-align: center;
+
+        line-height: 1.8;
     }
 
 }
