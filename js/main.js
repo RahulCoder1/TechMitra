@@ -755,3 +755,524 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+    const chatbot =
+        document.getElementById("tmChatbot");
+
+    const openButton =
+        document.getElementById("tmChatbotButton");
+
+    const closeButton =
+        document.getElementById("tmChatbotClose");
+
+    const chatWindow =
+        document.getElementById("tmChatbotWindow");
+
+    const form =
+        document.getElementById("tmChatbotForm");
+
+    const input =
+        document.getElementById("tmChatbotInput");
+
+    const messages =
+        document.getElementById("tmChatbotMessages");
+
+
+    /* =====================================================
+       OPEN
+    ===================================================== */
+
+    function openChat() {
+
+        chatbot.classList.add("is-open");
+
+        openButton.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+        chatWindow.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        setTimeout(function () {
+
+            input.focus();
+
+        }, 300);
+    }
+
+
+    /* =====================================================
+       CLOSE
+    ===================================================== */
+
+    function closeChat() {
+
+        chatbot.classList.remove("is-open");
+
+        openButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        chatWindow.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+    }
+
+
+    /* =====================================================
+       ROBOT BUTTON
+    ===================================================== */
+
+    openButton.addEventListener(
+        "click",
+        function () {
+
+            if (
+                chatbot.classList.contains("is-open")
+            ) {
+
+                closeChat();
+
+            } else {
+
+                openChat();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       CLOSE BUTTON
+    ===================================================== */
+
+    closeButton.addEventListener(
+        "click",
+        function () {
+
+            closeChat();
+
+        }
+    );
+
+
+    /* =====================================================
+       QUICK BUTTONS
+    ===================================================== */
+
+    document
+        .querySelectorAll(
+            ".tm-chatbot__quick button"
+        )
+        .forEach(function (button) {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const text =
+                        button.getAttribute(
+                            "data-chat"
+                        );
+
+                    sendMessage(text);
+
+                }
+            );
+
+        });
+
+
+    /* =====================================================
+       FORM
+    ===================================================== */
+
+    form.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+            const text =
+                input.value.trim();
+
+            if (!text) {
+
+                return;
+
+            }
+
+            sendMessage(text);
+
+        }
+    );
+
+
+    /* =====================================================
+       SEND MESSAGE
+    ===================================================== */
+
+    function sendMessage(text) {
+
+        addMessage(
+            text,
+            "user"
+        );
+
+        input.value = "";
+
+        showTyping();
+
+
+        setTimeout(function () {
+
+            removeTyping();
+
+            const response =
+                getBotResponse(text);
+
+            addMessage(
+                response,
+                "bot"
+            );
+
+        }, 800);
+
+    }
+
+
+    /* =====================================================
+       BOT RESPONSE
+    ===================================================== */
+
+    function getBotResponse(text) {
+
+        const message =
+            text.toLowerCase();
+
+
+        if (
+            message.includes("service")
+        ) {
+
+            return `
+                We provide custom software development,
+                web applications, enterprise solutions,
+                healthcare software, API integrations,
+                cloud solutions and automation.
+            `;
+
+        }
+
+
+        if (
+            message.includes("project")
+        ) {
+
+            return `
+                We'd be happy to discuss your project.
+                Tell us about your requirements and our
+                team can help you choose the right solution.
+            `;
+
+        }
+
+
+        if (
+            message.includes("healthcare") ||
+            message.includes("lims")
+        ) {
+
+            return `
+                TechMitra develops healthcare-focused
+                solutions including Laboratory Information
+                Management Systems and hospital workflows.
+            `;
+
+        }
+
+
+        if (
+            message.includes("contact")
+        ) {
+
+            return `
+                You can contact the TechMitra team through
+                the Contact section of our website.
+                We would be happy to discuss your requirements.
+            `;
+
+        }
+
+
+        return `
+            Thanks for contacting TechMitra! 👋
+            Our team can help with software development,
+            healthcare solutions, web applications,
+            integrations and business automation.
+        `;
+
+    }
+
+
+    /* =====================================================
+       ADD MESSAGE
+    ===================================================== */
+
+    function addMessage(text, type) {
+
+        const message =
+            document.createElement("div");
+
+
+        message.className =
+            "tm-chatbot__message " +
+            "tm-chatbot__message--" +
+            type;
+
+
+        if (type === "bot") {
+
+            message.innerHTML = `
+
+                <div class="tm-chatbot__message-icon">
+                    TM
+                </div>
+
+                <div class="tm-chatbot__bubble">
+
+                    <p>${text}</p>
+
+                </div>
+
+            `;
+
+        } else {
+
+            message.innerHTML = `
+
+                <div class="tm-chatbot__bubble">
+
+                    <p>
+                        ${escapeHtml(text)}
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+
+        messages.appendChild(message);
+
+        scrollToBottom();
+    }
+
+
+    /* =====================================================
+       TYPING
+    ===================================================== */
+
+    function showTyping() {
+
+        const typing =
+            document.createElement("div");
+
+
+        typing.id =
+            "tmChatbotTyping";
+
+
+        typing.className =
+            "tm-chatbot__message";
+
+
+        typing.innerHTML = `
+
+            <div class="tm-chatbot__message-icon">
+                TM
+            </div>
+
+            <div class="tm-chatbot__bubble">
+
+                <span style="
+                    display:flex;
+                    gap:4px;
+                    align-items:center;
+                    height:16px;
+                ">
+
+                    <i class="tm-typing-dot"></i>
+                    <i class="tm-typing-dot"></i>
+                    <i class="tm-typing-dot"></i>
+
+                </span>
+
+            </div>
+        `;
+
+
+        messages.appendChild(typing);
+
+        scrollToBottom();
+    }
+
+
+    /* =====================================================
+       REMOVE TYPING
+    ===================================================== */
+
+    function removeTyping() {
+
+        const typing =
+            document.getElementById(
+                "tmChatbotTyping"
+            );
+
+
+        if (typing) {
+
+            typing.remove();
+
+        }
+
+    }
+
+
+    /* =====================================================
+       SCROLL
+    ===================================================== */
+
+    function scrollToBottom() {
+
+        messages.scrollTo({
+
+            top:
+                messages.scrollHeight,
+
+            behavior:
+                "smooth"
+
+        });
+
+    }
+
+
+    /* =====================================================
+       ESCAPE HTML
+    ===================================================== */
+
+    function escapeHtml(text) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent =
+            text;
+
+        return div.innerHTML;
+    }
+
+
+    /* =====================================================
+       ESC KEY
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                chatbot.classList.contains("is-open")
+            ) {
+
+                closeChat();
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   TYPING DOT ANIMATION
+========================================================= */
+
+const tmTypingStyle =
+document.createElement("style");
+
+
+tmTypingStyle.textContent = `
+
+.tm-typing-dot {
+
+    width: 5px;
+    height: 5px;
+
+    display: block;
+
+    border-radius: 50%;
+
+    background: #9da6a0;
+
+    animation:
+        tmTyping 1s infinite;
+}
+
+
+.tm-typing-dot:nth-child(2) {
+
+    animation-delay: .15s;
+}
+
+
+.tm-typing-dot:nth-child(3) {
+
+    animation-delay: .30s;
+}
+
+
+@keyframes tmTyping {
+
+    0%,
+    100% {
+
+        opacity: .35;
+
+        transform:
+            translateY(0);
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform:
+            translateY(-3px);
+    }
+
+}
+
+`;
+
+
+document.head.appendChild(
+    tmTypingStyle
+);
+
+

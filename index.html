@@ -22,6 +22,277 @@
   <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
+<!-- =========================================================
+     TECHMITRA AI CHATBOT
+========================================================= -->
+
+<div class="tm-chatbot" id="tmChatbot">
+
+    <!-- Floating Robot -->
+    <button class="tm-chatbot__button"
+            id="tmChatbotButton"
+            type="button"
+            aria-label="Open TechMitra AI Assistant"
+            aria-expanded="false">
+
+        <span class="tm-chatbot__glow"></span>
+
+        <span class="tm-chatbot__robot">
+            <svg viewBox="0 0 64 64"
+                 xmlns="http://www.w3.org/2000/svg"
+                 aria-hidden="true">
+
+                <!-- Antenna -->
+                <line x1="32" y1="8"
+                      x2="32" y2="15"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"/>
+
+                <circle cx="32" cy="6"
+                        r="3.5"
+                        fill="currentColor"/>
+
+                <!-- Head -->
+                <rect x="11" y="15"
+                      width="42"
+                      height="34"
+                      rx="12"
+                      fill="currentColor"/>
+
+                <!-- Face -->
+                <rect x="17" y="21"
+                      width="30"
+                      height="21"
+                      rx="8"
+                      fill="#09130f"/>
+
+                <!-- Eyes -->
+                <circle cx="26" cy="31"
+                        r="3"
+                        fill="#d6b56d"/>
+
+                <circle cx="38" cy="31"
+                        r="3"
+                        fill="#d6b56d"/>
+
+                <!-- Smile -->
+                <path d="M25 37 Q32 42 39 37"
+                      fill="none"
+                      stroke="#d6b56d"
+                      stroke-width="2"
+                      stroke-linecap="round"/>
+
+                <!-- Ears -->
+                <rect x="6" y="27"
+                      width="6"
+                      height="12"
+                      rx="3"
+                      fill="currentColor"/>
+
+                <rect x="52" y="27"
+                      width="6"
+                      height="12"
+                      rx="3"
+                      fill="currentColor"/>
+
+            </svg>
+        </span>
+
+        <!-- Online -->
+        <span class="tm-chatbot__status"></span>
+
+    </button>
+
+
+    <!-- =====================================================
+         CHAT WINDOW
+    ===================================================== -->
+
+    <div class="tm-chatbot__window"
+         id="tmChatbotWindow"
+         aria-hidden="true">
+
+
+        <!-- Header -->
+        <div class="tm-chatbot__header">
+
+            <div class="tm-chatbot__profile">
+
+                <div class="tm-chatbot__avatar">
+
+                    <svg viewBox="0 0 64 64"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <rect x="10" y="16"
+                              width="44"
+                              height="34"
+                              rx="12"
+                              fill="currentColor"/>
+
+                        <circle cx="25" cy="31"
+                                r="3"
+                                fill="#09130f"/>
+
+                        <circle cx="39" cy="31"
+                                r="3"
+                                fill="#09130f"/>
+
+                        <path d="M25 38 Q32 43 39 38"
+                              fill="none"
+                              stroke="#09130f"
+                              stroke-width="2"
+                              stroke-linecap="round"/>
+
+                    </svg>
+
+                </div>
+
+
+                <div class="tm-chatbot__profile-text">
+
+                    <strong>
+                        TechMitra Assistant
+                    </strong>
+
+                    <span>
+                        <i></i>
+                        Online
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Close -->
+            <button class="tm-chatbot__close"
+                    id="tmChatbotClose"
+                    type="button"
+                    aria-label="Close chatbot">
+
+                <span></span>
+                <span></span>
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             MESSAGES
+        ================================================= -->
+
+        <div class="tm-chatbot__messages"
+             id="tmChatbotMessages">
+
+
+            <!-- Welcome -->
+
+            <div class="tm-chatbot__message tm-chatbot__message--bot">
+
+                <div class="tm-chatbot__message-icon">
+                    TM
+                </div>
+
+                <div class="tm-chatbot__bubble">
+
+                    <span class="tm-chatbot__time">
+                        TechMitra AI
+                    </span>
+
+                    <p>
+                        Hello! 👋
+                    </p>
+
+                    <p>
+                        Welcome to <strong>TechMitra</strong>.
+                        How can we help you today?
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Quick Actions -->
+
+            <div class="tm-chatbot__quick">
+
+                <button type="button"
+                        data-chat="I want to know about your services.">
+
+                    <span>✦</span>
+                    Our Services
+
+                </button>
+
+
+                <button type="button"
+                        data-chat="I want to discuss a software project.">
+
+                    <span>↗</span>
+                    Start a Project
+
+                </button>
+
+
+                <button type="button"
+                        data-chat="I want to know about your healthcare solutions.">
+
+                    <span>+</span>
+                    Healthcare Solutions
+
+                </button>
+
+
+                <button type="button"
+                        data-chat="I want to contact TechMitra.">
+
+                    <span>→</span>
+                    Contact Us
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Input -->
+
+        <form class="tm-chatbot__input"
+              id="tmChatbotForm" >
+
+            <input type="text"
+                   id="tmChatbotInput"
+                   placeholder="Type your message..."
+                   autocomplete="off"
+                   maxlength="500">
+
+            <button type="submit"
+                    aria-label="Send message">
+
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
+
+                    <path d="M22 2L11 13"></path>
+
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z"></path>
+
+                </svg>
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
 <body>
   <div id="pageLoader" class="page-loader"> <div class="loader"></div> </div>
  <a class="skip-link" href="#main">Skip to content</a>
@@ -36,6 +307,7 @@
       <a href="#services">Services</a>
       <a href="#Technology">Technology</a>
       <a href="#process">Process</a>
+      <a href="#Careers">Careers</a>
       <a href="#studio">About Us</a>
       <a href="#contact" class="btn-x btn-line-light nav-cta">Contact Us</a>
     </nav>
@@ -533,9 +805,6 @@
 
 </section>
     <section class="section section--paper services-premium" id="services" aria-label="Services">
-
-    <!-- Animated Background -->
-
     <div class="services-bg">
         <span class="services-orb services-orb--one"></span>
         <span class="services-orb services-orb--two"></span>
@@ -544,71 +813,38 @@
 
 
     <div class="container-x">
-
-        <!-- STICKY HEADING -->
-
         <div class="services-layout">
-
-
             <div class="services-heading-wrap">
-
                 <div class="section-head services-heading" data-reveal>
-
                     <span class="eyebrow">
                         <span class="eyebrow-dot"></span>
                         What We Do
                     </span>
-
                     <h2 class="section-title">
                         Technology solutions built around your business
                     </h2>
-
                     <p class="section-lead">
                         From custom software and web applications to enterprise
                         solutions, integrations, cloud, and automation, we build
                         reliable digital solutions that help businesses work
                         smarter and grow.
                     </p>
-
-
-                    <!-- SMALL TECHNOLOGY LABEL -->
-
                     <div class="services-heading-badge">
-
                         <span class="badge-pulse"></span>
-
                         <span>
                             DIGITAL SOLUTIONS FOR MODERN BUSINESSES
                         </span>
-
                     </div>
-
                 </div>
-
             </div>
-
-
-            <!-- SERVICES -->
-
             <div class="services-grid">
-
-
-                <!-- 01 -->
-
                 <article class="service service--premium" data-reveal>
-
                     <span class="service__no">01</span>
-
-                    <div class="service__icon">
-
+                   <div class="service__icon">
                         <i class="fa-solid fa-code"></i>
-
-                    </div>
-
+                  </div>
                     <div class="service__content">
-
                         <h3>Custom Software Development</h3>
-
                         <p>
                             Business-focused software solutions designed around
                             your workflows, requirements, and operational needs.
@@ -621,10 +857,6 @@
                     </span>
 
                 </article>
-
-
-                <!-- 02 -->
-
                 <article class="service service--premium" data-reveal data-delay="1">
 
                     <span class="service__no">02</span>
@@ -961,9 +1193,6 @@
         </div>
 
     </article>
-
-
-    <!-- STEP 02 -->
     <article class="process-card" data-reveal data-delay="1">
 
         <div class="process-card__image">
@@ -988,9 +1217,6 @@
         </div>
 
     </article>
-
-
-    <!-- STEP 03 -->
     <article class="process-card" data-reveal data-delay="2">
 
         <div class="process-card__image">
