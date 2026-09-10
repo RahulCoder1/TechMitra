@@ -1,14 +1,9 @@
-/* ==========================================================================
-   HABITAT — main.js
-   Vanilla JS only. Each feature is a guard-claused init function.
-   ========================================================================== */
+
 (function () {
   "use strict";
 
   var prefersReduced = window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* ---------- Header: solid background after scroll ---------- */
   function initHeader() {
     var header = document.getElementById("siteHeader");
     if (!header) return;
@@ -21,7 +16,6 @@
     window.addEventListener("scroll", toggle, { passive: true });
   }
 
-  /* ---------- Mobile navigation ---------- */
   function initMobileNav() {
     var toggle = document.getElementById("navToggle");
     var nav = document.getElementById("mainNav");
@@ -62,13 +56,11 @@
       }
     });
 
-    // Reset when resizing back to desktop
     window.addEventListener("resize", function () {
       if (window.innerWidth > 900 && nav.classList.contains("is-open")) close();
     });
   }
 
-  /* ---------- Smooth scroll for in-page anchors ---------- */
   function initSmoothScroll() {
     var links = document.querySelectorAll('a[href^="#"]');
     if (!links.length) return;
@@ -88,7 +80,6 @@
     });
   }
 
-  /* ---------- Portfolio filter ---------- */
   function initPortfolioFilter() {
     var group = document.getElementById("projectFilters");
     var grid = document.getElementById("projectsGrid");
@@ -126,7 +117,6 @@
     });
   }
 
-  /* ---------- Furniture row: arrow controls ---------- */
   function initProductSlider() {
     var track = document.getElementById("productsTrack");
     var prev = document.getElementById("prodPrev");
@@ -147,7 +137,6 @@
     });
   }
 
-  /* ---------- Testimonial slider ---------- */
   function initTestimonials() {
     var viewport = document.getElementById("tstViewport");
     var dotsWrap = document.getElementById("tstDots");
@@ -161,7 +150,6 @@
     var index = 0;
     var timer = null;
 
-    // Build dots
     var dots = [];
     if (dotsWrap) {
       slides.forEach(function (_, i) {
@@ -192,14 +180,13 @@
     if (prev) prev.addEventListener("click", function () { go(index - 1, true); });
     if (next) next.addEventListener("click", function () { go(index + 1, true); });
 
-    // Pause on hover
+ 
     viewport.addEventListener("mouseenter", function () { if (timer) window.clearInterval(timer); });
     viewport.addEventListener("mouseleave", restart);
 
     restart();
   }
 
-  /* ---------- Scroll reveal ---------- */
   function initReveal() {
     var els = document.querySelectorAll("[data-reveal]");
     if (!els.length) return;
@@ -221,7 +208,6 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- Contact form validation ---------- */
   function initContactForm() {
     var form = document.getElementById("contactForm");
     if (!form) return;
@@ -280,7 +266,6 @@
     });
   }
 
-  /* ---------- Newsletter (footer) ---------- */
   function initNewsletter() {
     var form = document.getElementById("newsForm");
     if (!form) return;
@@ -301,7 +286,6 @@
     });
   }
 
-  /* ---------- Boot ---------- */
   function boot() {
     initHeader();
     initMobileNav();
@@ -327,12 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
     counters.forEach(function (counter, index) {
 
         const target = parseInt(counter.dataset.target, 10);
-
-        // Always start from 0 when page reloads
         counter.textContent = "0";
-
-
-        // Small delay between each counter
         setTimeout(function () {
 
             animateCounter(counter, target);
@@ -360,11 +339,6 @@ function animateCounter(counter, target) {
             1
         );
 
-
-        /*
-         Smooth loading effect
-        */
-
         const easeOutProgress =
             1 - Math.pow(1 - progress, 3);
 
@@ -383,7 +357,6 @@ function animateCounter(counter, target) {
 
         } else {
 
-            // Ensure exact final value
             counter.textContent = target;
 
         }
@@ -394,10 +367,7 @@ function animateCounter(counter, target) {
     requestAnimationFrame(updateCounter);
 
 }
-/* =========================================================
-   GLOBAL PAGE LOADER
-   ========================================================= */
-
+   //GLOBAL PAGE LOADER
 (function () {
 
     const pageLoader = document.getElementById("pageLoader");
@@ -414,33 +384,16 @@ function animateCounter(counter, target) {
         pageLoader.classList.add("is-hidden");
     }
 
-    /* -----------------------------------------
-       Hide loader when page is fully loaded
-    ----------------------------------------- */
     window.addEventListener("load", function () {
         hideLoader();
     });
 
-    /* -----------------------------------------
-       Browser Back / Forward
-    ----------------------------------------- */
     window.addEventListener("pageshow", function () {
         hideLoader();
     });
 
-    /* -----------------------------------------
-       Handle ALL clicks
-    ----------------------------------------- */
     document.addEventListener("click", function (event) {
 
-        /*
-         * Find the actual anchor/button clicked.
-         * This also handles:
-         *
-         * <a><span>Text</span></a>
-         * <a><svg>...</svg></a>
-         * <li><a>...</a></li>
-         */
         const link = event.target.closest("a");
 
         if (!link) {
@@ -449,35 +402,24 @@ function animateCounter(counter, target) {
 
         const href = link.getAttribute("href");
 
-        /* No href */
         if (!href) {
             return;
         }
-
-        /* Empty / javascript links */
         if (
             href === "#" ||
             href.toLowerCase().startsWith("javascript:")
         ) {
             return;
         }
-
-        /* Same-page section links */
         if (href.startsWith("#")) {
             return;
         }
-
-        /* Download links */
         if (link.hasAttribute("download")) {
             return;
         }
-
-        /* Open in new tab */
         if (link.target === "_blank") {
             return;
         }
-
-        /* Ctrl + Click / Cmd + Click / Shift + Click */
         if (
             event.ctrlKey ||
             event.metaKey ||
@@ -487,11 +429,6 @@ function animateCounter(counter, target) {
             return;
         }
 
-        /*
-         * If it is an external website, don't use
-         * the page loader because your website is
-         * not controlling the destination page.
-         */
         if (
             link.hostname &&
             link.hostname !== window.location.hostname
@@ -499,33 +436,16 @@ function animateCounter(counter, target) {
             return;
         }
 
-        /*
-         * REAL PAGE NAVIGATION
-         * Show loader.
-         */
         showLoader();
 
     });
 
-
-    /* -----------------------------------------
-       FORM SUBMISSION
-       ----------------------------------------- */
-
     document.addEventListener("submit", function (event) {
-
         const form = event.target;
-
-        /*
-         * Don't automatically show the loader
-         * for forms handled by JavaScript/AJAX.
-         *
-         * Your contact form can show its own
-         * loading state.
-         */
         if (
             form.id === "contactForm" ||
-            form.id === "newsForm"
+            form.id === "newsForm" ||
+              form.id === "tmChatbotForm"
         ) {
             return;
         }
@@ -535,10 +455,6 @@ function animateCounter(counter, target) {
     });
 
 
-    /* -----------------------------------------
-       SAFETY FALLBACK
-       Prevent loader from getting stuck.
-       ----------------------------------------- */
 
     window.addEventListener("beforeunload", function () {
         showLoader();
@@ -572,20 +488,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let scrollSpeed = 0.5;
 
-
-    /* =====================================================
-       AUTO SCROLL
-    ===================================================== */
-
     function autoScroll() {
 
 
         if (!isPaused) {
 
             projectsGrid.scrollLeft += scrollSpeed;
-
-
-            /* Check end */
 
             if (
                 projectsGrid.scrollLeft +
@@ -605,15 +513,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
-    /* Start animation */
-
     autoScroll();
-
-
-    /* =====================================================
-       PAUSE ON MOUSE HOVER
-    ===================================================== */
 
     projectsGrid.addEventListener("mouseenter", function () {
 
@@ -627,11 +527,6 @@ document.addEventListener("DOMContentLoaded", function () {
         isPaused = false;
 
     });
-
-
-    /* =====================================================
-       PAUSE ON TOUCH
-    ===================================================== */
 
     projectsGrid.addEventListener("touchstart", function () {
 
@@ -650,52 +545,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }, { passive: true });
 
-
-    /* =====================================================
-       FILTER PROJECTS
-    ===================================================== */
-
     filterButtons.forEach(function (button) {
-
-
         button.addEventListener("click", function () {
-
-
             const selectedFilter =
                 this.getAttribute("data-filter");
-
-
-            /* Update active button */
-
             filterButtons.forEach(function (btn) {
-
                 btn.classList.remove("is-active");
-
                 btn.setAttribute(
                     "aria-pressed",
                     "false"
                 );
-
             });
-
-
             this.classList.add("is-active");
-
-
             this.setAttribute(
                 "aria-pressed",
                 "true"
             );
-
-
-            /* Filter cards */
-
             let visibleCount = 0;
-
-
             projects.forEach(function (project) {
-
-
                 const category =
                     project.getAttribute(
                         "data-category"
@@ -725,25 +592,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
             });
-
-
-            /* Reset slider position */
-
             projectsGrid.scrollLeft = 0;
-
-
-            /* Empty message */
-
             if (visibleCount === 0) {
-
                 filterEmpty.hidden = false;
-
             }
 
             else {
-
                 filterEmpty.hidden = true;
-
             }
 
 
@@ -756,11 +611,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
-
     const chatbot =
         document.getElementById("tmChatbot");
 
@@ -781,12 +631,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const messages =
         document.getElementById("tmChatbotMessages");
-
-
-    /* =====================================================
-       OPEN
-    ===================================================== */
-
     function openChat() {
 
         chatbot.classList.add("is-open");
@@ -807,12 +651,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }, 300);
     }
-
-
-    /* =====================================================
-       CLOSE
-    ===================================================== */
-
     function closeChat() {
 
         chatbot.classList.remove("is-open");
@@ -827,12 +665,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "true"
         );
     }
-
-
-    /* =====================================================
-       ROBOT BUTTON
-    ===================================================== */
-
     openButton.addEventListener(
         "click",
         function () {
@@ -851,12 +683,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     );
-
-
-    /* =====================================================
-       CLOSE BUTTON
-    ===================================================== */
-
     closeButton.addEventListener(
         "click",
         function () {
@@ -865,12 +691,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     );
-
-
-    /* =====================================================
-       QUICK BUTTONS
-    ===================================================== */
-
     document
         .querySelectorAll(
             ".tm-chatbot__quick button"
@@ -893,35 +713,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
+form.addEventListener(
+    "submit",
+    function (event) {
 
-    /* =====================================================
-       FORM
-    ===================================================== */
+        event.preventDefault();
+        event.stopPropagation();
 
-    form.addEventListener(
-        "submit",
-        function (event) {
+        const text = input.value.trim();
 
-            event.preventDefault();
-
-            const text =
-                input.value.trim();
-
-            if (!text) {
-
-                return;
-
-            }
-
-            sendMessage(text);
-
+        if (!text) {
+            return;
         }
-    );
 
+        sendMessage(text);
 
-    /* =====================================================
-       SEND MESSAGE
-    ===================================================== */
+    }
+);
 
     function sendMessage(text) {
 
@@ -951,10 +759,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
-    /* =====================================================
-       BOT RESPONSE
-    ===================================================== */
 
     function getBotResponse(text) {
 
@@ -1024,12 +828,6 @@ document.addEventListener("DOMContentLoaded", function () {
         `;
 
     }
-
-
-    /* =====================================================
-       ADD MESSAGE
-    ===================================================== */
-
     function addMessage(text, type) {
 
         const message =
@@ -1080,11 +878,6 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollToBottom();
     }
 
-
-    /* =====================================================
-       TYPING
-    ===================================================== */
-
     function showTyping() {
 
         const typing =
@@ -1129,11 +922,6 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollToBottom();
     }
 
-
-    /* =====================================================
-       REMOVE TYPING
-    ===================================================== */
-
     function removeTyping() {
 
         const typing =
@@ -1150,11 +938,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
-    /* =====================================================
-       SCROLL
-    ===================================================== */
-
     function scrollToBottom() {
 
         messages.scrollTo({
@@ -1169,11 +952,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
-    /* =====================================================
-       ESCAPE HTML
-    ===================================================== */
-
     function escapeHtml(text) {
 
         const div =
@@ -1184,12 +962,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return div.innerHTML;
     }
-
-
-    /* =====================================================
-       ESC KEY
-    ===================================================== */
-
     document.addEventListener(
         "keydown",
         function (event) {
@@ -1207,11 +979,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 });
-
-
-/* =========================================================
-   TYPING DOT ANIMATION
-========================================================= */
 
 const tmTypingStyle =
 document.createElement("style");
