@@ -1039,10 +1039,7 @@ tmTypingStyle.textContent = `
 document.head.appendChild(
     tmTypingStyle
 );
-
-/* =================================
-   SCROLL PROGRESS
-================================= */
+  // SCROLL PROGRESS
 (function () {
 
     const progress = document.createElement("div");
@@ -1073,3 +1070,289 @@ document.head.appendChild(
     updateScrollProgress();
 
 })();
+/* =========================================================
+   TECHMITRA CLIENT FEEDBACK
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const shareButton =
+        document.getElementById("tmClientShareBtn");
+
+    const overlay =
+        document.getElementById("tmFeedbackOverlay");
+
+    const closeButton =
+        document.getElementById("tmFeedbackClose");
+
+    const cancelButton =
+        document.getElementById("tmFeedbackCancel");
+
+    const form =
+        document.getElementById("tmFeedbackForm");
+
+    const ratingInput =
+        document.getElementById("tmFeedbackRating");
+
+    const stars =
+        document.querySelectorAll(
+            "#tmFeedbackStars button"
+        );
+
+
+    /* =========================
+       OPEN MODAL
+    ========================= */
+
+    function openFeedback() {
+
+        overlay.classList.add("is-open");
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+
+    /* =========================
+       CLOSE MODAL
+    ========================= */
+
+    function closeFeedback() {
+
+        overlay.classList.remove("is-open");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    /* =========================
+       OPEN BUTTON
+    ========================= */
+
+    if (shareButton) {
+
+        shareButton.addEventListener(
+            "click",
+            openFeedback
+        );
+
+    }
+
+
+    /* =========================
+       CLOSE BUTTON
+    ========================= */
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            closeFeedback
+        );
+
+    }
+
+
+    /* =========================
+       CANCEL BUTTON
+    ========================= */
+
+    if (cancelButton) {
+
+        cancelButton.addEventListener(
+            "click",
+            closeFeedback
+        );
+
+    }
+
+
+    /* =========================
+       CLICK OUTSIDE MODAL
+    ========================= */
+
+    if (overlay) {
+
+        overlay.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target === overlay
+                ) {
+
+                    closeFeedback();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================
+       ESC KEY
+    ========================= */
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                overlay.classList.contains("is-open")
+            ) {
+
+                closeFeedback();
+
+            }
+
+        }
+    );
+
+
+    /* =========================
+       STAR RATING
+    ========================= */
+
+    stars.forEach(function (star) {
+
+        star.addEventListener(
+            "click",
+            function () {
+
+                const rating =
+                    Number(
+                        this.getAttribute(
+                            "data-rating"
+                        )
+                    );
+
+                ratingInput.value = rating;
+
+
+                stars.forEach(
+                    function (item) {
+
+                        const itemRating =
+                            Number(
+                                item.getAttribute(
+                                    "data-rating"
+                                )
+                            );
+
+                        if (
+                            itemRating <= rating
+                        ) {
+
+                            item.classList.add(
+                                "is-selected"
+                            );
+
+                        } else {
+
+                            item.classList.remove(
+                                "is-selected"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    });
+
+
+    /* =========================
+       FORM SUBMIT
+    ========================= */
+
+    if (form) {
+
+        form.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+
+                const name =
+                    document
+                        .getElementById(
+                            "tmFeedbackName"
+                        )
+                        .value.trim();
+
+                const rating =
+                    ratingInput.value;
+
+                const feedback =
+                    document
+                        .getElementById(
+                            "tmFeedbackMessage"
+                        )
+                        .value.trim();
+
+
+                /* Validate rating */
+
+                if (!rating) {
+
+                    alert(
+                        "Please select a rating."
+                    );
+
+                    return;
+
+                }
+
+
+                if (!name || !feedback) {
+
+                    return;
+
+                }
+
+
+                /*
+                 * Temporary success message.
+                 *
+                 * Later you can connect this form
+                 * to email / database / API.
+                 */
+
+                alert(
+                    "Thank you for sharing your feedback!"
+                );
+
+
+                form.reset();
+
+                ratingInput.value = "";
+
+                stars.forEach(
+                    function (star) {
+
+                        star.classList.remove(
+                            "is-selected"
+                        );
+
+                    }
+                );
+
+
+                closeFeedback();
+
+            }
+        );
+
+    }
+
+});
