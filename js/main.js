@@ -1036,10 +1036,40 @@ tmTypingStyle.textContent = `
 }
 
 `;
-
-
 document.head.appendChild(
     tmTypingStyle
 );
 
+/* =================================
+   SCROLL PROGRESS
+================================= */
+(function () {
 
+    const progress = document.createElement("div");
+    progress.id = "tmScrollProgress";
+
+    document.body.appendChild(progress);
+
+    function updateScrollProgress() {
+
+        const scrollTop = window.scrollY;
+        const documentHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+
+        const percentage =
+            documentHeight > 0
+                ? (scrollTop / documentHeight) * 100
+                : 0;
+
+        progress.style.width = percentage + "%";
+    }
+
+    window.addEventListener("scroll", updateScrollProgress, {
+        passive: true
+    });
+
+    window.addEventListener("resize", updateScrollProgress);
+
+    updateScrollProgress();
+
+})();
