@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Careers Admin | TechMitra</title>
+
+    <link rel="stylesheet"
+          href="css/careers.css">
+
+</head>
+
+<body class="admin-page">
+
+
+    <!-- ==========================
+         LOGIN
+    =========================== -->
+
+    <section id="adminLogin"
+             class="admin-login">
+
+        <div class="admin-login-card">
+
+            <a href="index.html"
+               class="admin-logo">
+
+                <span>TM</span>
+
+                <div>
+                    <strong>TechMitra</strong>
+                    <small>Careers Admin</small>
+                </div>
+
+            </a>
+
+
+            <div class="admin-login-heading">
+
+                <span class="career-eyebrow">
+                    <span></span>
+                    ADMIN ACCESS
+                </span>
+
+                <h1>
+                    Careers Management
+                </h1>
+
+                <p>
+                    Sign in to manage TechMitra job openings.
+                </p>
+
+            </div>
+
+
+            <form id="adminLoginForm">
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="adminUsername"
+                    placeholder="Enter username"
+                    autocomplete="username"
+                    required
+                >
+
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Enter password"
+                    autocomplete="current-password"
+                    required
+                >
+
+
+                <div id="adminLoginError"
+                     class="admin-error">
+                </div>
+
+
+                <button type="submit"
+                        class="career-primary-btn admin-login-btn">
+
+                    Sign In
+
+                    <span>→</span>
+
+                </button>
+
+            </form>
+
+
+            <a href="careers.html"
+               class="admin-back">
+                ← Back to Careers
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================
+         DASHBOARD
+    =========================== -->
+
+    <section id="adminDashboard"
+             class="admin-dashboard"
+             style="display:none;">
+
+        <header class="admin-header">
+
+            <div class="career-container admin-header-inner">
+
+                <a href="careers.html"
+                   class="admin-logo">
+
+                    <span>TM</span>
+
+                    <div>
+                        <strong>TechMitra</strong>
+                        <small>Careers Admin</small>
+                    </div>
+
+                </a>
+
+
+                <div class="admin-header-actions">
+
+                    <a href="careers.html"
+                       target="_blank"
+                       class="admin-view-site">
+                        View Careers
+                    </a>
+
+                    <button id="adminLogout"
+                            class="admin-logout">
+                        Logout
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <main class="career-container admin-main">
+
+
+            <!-- DASHBOARD TOP -->
+
+            <div class="admin-title-row">
+
+                <div>
+
+                    <span class="career-eyebrow">
+                        <span></span>
+                        DASHBOARD
+                    </span>
+
+                    <h1>
+                        Careers Management
+                    </h1>
+
+                    <p>
+                        Manage your job openings from one place.
+                    </p>
+
+                </div>
+
+                <button id="newJobButton"
+                        class="career-primary-btn">
+
+                    + Add New Position
+
+                </button>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="admin-stats">
+
+                <div class="admin-stat-card">
+
+                    <span>
+                        Total Jobs
+                    </span>
+
+                    <strong id="totalJobs">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="admin-stat-card">
+
+                    <span>
+                        Published
+                    </span>
+
+                    <strong id="publishedJobs">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="admin-stat-card">
+
+                    <span>
+                        Expired
+                    </span>
+
+                    <strong id="expiredJobs">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="admin-stat-card">
+
+                    <span>
+                        Drafts
+                    </span>
+
+                    <strong id="draftJobs">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- JOB TABLE -->
+
+            <div class="admin-jobs-box">
+
+                <div class="admin-box-heading">
+
+                    <div>
+                        <h2>
+                            Job Positions
+                        </h2>
+
+                        <p>
+                            Manage your current openings.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="admin-table-wrapper">
+
+                    <table class="admin-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Position
+                                </th>
+
+                                <th>
+                                    Type
+                                </th>
+
+                                <th>
+                                    Location
+                                </th>
+
+                                <th>
+                                    Expiry
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="adminJobsTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+    <!-- ==========================
+         JOB FORM MODAL
+    =========================== -->
+
+    <div class="admin-modal"
+         id="jobFormModal">
+
+        <div class="admin-modal-overlay"
+             id="jobFormOverlay">
+        </div>
+
+        <div class="admin-form-box">
+
+            <button class="career-modal-close"
+                    id="jobFormClose">
+                ×
+            </button>
+
+
+            <div class="admin-form-heading">
+
+                <span class="career-eyebrow">
+                    <span></span>
+                    JOB POSITION
+                </span>
+
+                <h2 id="jobFormTitle">
+                    Add New Position
+                </h2>
+
+                <p>
+                    Add the job details below.
+                </p>
+
+            </div>
+
+
+            <form id="jobForm">
+
+                <input type="hidden"
+                       id="editJobId">
+
+
+                <div class="admin-form-grid">
+
+                    <div class="admin-field full">
+
+                        <label>
+                            Job Title *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="jobTitle"
+                            placeholder=".NET Developer"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label>
+                            Job Type *
+                        </label>
+
+                        <select id="jobType"
+                                required>
+
+                            <option value="Full Time">
+                                Full Time
+                            </option>
+
+                            <option value="Part Time">
+                                Part Time
+                            </option>
+
+                            <option value="Internship">
+                                Internship
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label>
+                            Location *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="jobLocation"
+                            placeholder="Hyderabad / Remote"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label>
+                            Experience *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="jobExperience"
+                            placeholder="2 - 4 Years"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label>
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            id="jobDepartment"
+                            placeholder="Engineering"
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label>
+                            Salary
+                        </label>
+
+                        <input
+                            type="text"
+                            id="jobSalary"
+                            placeholder="Competitive"
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label>
+                            Application Deadline *
+                        </label>
+
+                        <input
+                            type="date"
+                            id="jobExpiry"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field">
+
+                        <label>
+                            Application Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="jobEmail"
+                            placeholder="careers@techmitra.co.in"
+                        >
+
+                    </div>
+
+
+                    <div class="admin-field full">
+
+                        <label>
+                            Skills
+                        </label>
+
+                        <input
+                            type="text"
+                            id="jobSkills"
+                            placeholder="C#, ASP.NET Core, SQL Server, Angular"
+                        >
+
+                        <small>
+                            Separate skills using commas.
+                        </small>
+
+                    </div>
+
+
+                    <div class="admin-field full">
+
+                        <label>
+                            Short Description *
+                        </label>
+
+                        <textarea
+                            id="jobShortDescription"
+                            rows="3"
+                            placeholder="Short description shown on the job card..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="admin-field full">
+
+                        <label>
+                            Job Description *
+                        </label>
+
+                        <textarea
+                            id="jobDescription"
+                            rows="6"
+                            placeholder="Describe the role..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="admin-field full">
+
+                        <label>
+                            Responsibilities
+                        </label>
+
+                        <textarea
+                            id="jobResponsibilities"
+                            rows="5"
+                            placeholder="Develop and maintain applications...
+Work with APIs...
+Fix bugs...
+"
+                        ></textarea>
+
+                        <small>
+                            Write each responsibility on a new line.
+                        </small>
+
+                    </div>
+
+
+                    <div class="admin-field full">
+
+                        <label>
+                            Requirements
+                        </label>
+
+                        <textarea
+                            id="jobRequirements"
+                            rows="5"
+                            placeholder="Strong C# knowledge...
+ASP.NET Core experience...
+SQL Server knowledge...
+"
+                        ></textarea>
+
+                        <small>
+                            Write each requirement on a new line.
+                        </small>
+
+                    </div>
+
+
+                    <div class="admin-publish-field">
+
+                        <label class="admin-checkbox">
+
+                            <input
+                                type="checkbox"
+                                id="jobPublished"
+                                checked
+                            >
+
+                            <span>
+                                Publish this position
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="admin-form-actions">
+
+                    <button type="button"
+                            id="cancelJobForm"
+                            class="admin-cancel-btn">
+
+                        Cancel
+
+                    </button>
+
+                    <button type="submit"
+                            class="career-primary-btn">
+
+                        Save Position
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/careers.js"></script>
+
+</body>
+
+</html>
