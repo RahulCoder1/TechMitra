@@ -17,16 +17,14 @@
     const ADMIN_SESSION_KEY = "techmitra_careers_admin";
 
     /*
-       APPLICATION EMAIL
-       All job applications will go here.
+       ALL APPLICATIONS WILL GO TO THIS EMAIL
     */
     const APPLICATION_EMAIL = "info@techmitra.co.in";
 
 
     /*
        ADMIN LOGIN
-       IMPORTANT:
-       This is only for a static website.
+       Static website only.
     */
 
     const ADMIN_USERNAME = "admin";
@@ -145,6 +143,7 @@
             const stored =
                 localStorage.getItem(JOB_STORAGE_KEY);
 
+
             if (!stored) {
 
                 localStorage.setItem(
@@ -155,11 +154,15 @@
                 return DEFAULT_JOBS;
             }
 
-            const jobs = JSON.parse(stored);
+
+            const jobs =
+                JSON.parse(stored);
+
 
             return Array.isArray(jobs)
                 ? jobs
                 : DEFAULT_JOBS;
+
 
         } catch (error) {
 
@@ -170,6 +173,7 @@
 
             return DEFAULT_JOBS;
         }
+
     }
 
 
@@ -179,6 +183,7 @@
             JOB_STORAGE_KEY,
             JSON.stringify(jobs)
         );
+
     }
 
 
@@ -190,6 +195,7 @@
             Math.random()
                 .toString(36)
                 .substring(2, 8);
+
     }
 
 
@@ -199,8 +205,10 @@
             return false;
         }
 
+
         const today =
             new Date();
+
 
         today.setHours(
             0,
@@ -209,12 +217,15 @@
             0
         );
 
+
         const expiry =
             new Date(
                 job.expiry + "T23:59:59"
             );
 
+
         return expiry < today;
+
     }
 
 
@@ -224,8 +235,11 @@
             value === null ||
             value === undefined
         ) {
+
             return "";
+
         }
+
 
         return String(value)
             .replace(/&/g, "&amp;")
@@ -233,6 +247,7 @@
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+
     }
 
 
@@ -242,10 +257,12 @@
             return "";
         }
 
+
         const date =
             new Date(
                 dateString + "T00:00:00"
             );
+
 
         return date.toLocaleDateString(
             "en-IN",
@@ -255,41 +272,56 @@
                 year: "numeric"
             }
         );
+
     }
 
 
     function getSkills(job) {
 
         if (Array.isArray(job.skills)) {
+
             return job.skills;
+
         }
+
 
         if (typeof job.skills === "string") {
 
             return job.skills
                 .split(",")
                 .map(function (skill) {
+
                     return skill.trim();
+
                 })
                 .filter(Boolean);
+
         }
 
+
         return [];
+
     }
 
 
     function getListItems(text) {
 
         if (!text) {
+
             return [];
+
         }
+
 
         return text
             .split("\n")
             .map(function (item) {
+
                 return item.trim();
+
             })
             .filter(Boolean);
+
     }
 
 
@@ -317,10 +349,12 @@
                 "jobSearch"
             );
 
+
         const typeFilter =
             document.getElementById(
                 "jobTypeFilter"
             );
+
 
         const locationFilter =
             document.getElementById(
@@ -333,6 +367,7 @@
                 "careerYear"
             );
 
+
         if (careerYear) {
 
             careerYear.textContent =
@@ -342,6 +377,7 @@
 
 
         populateLocationFilter();
+
 
         renderPublicJobs();
 
@@ -390,14 +426,17 @@
 
 
         /*
-           If URL contains ?job=...
-           open that specific job.
+           Open job from URL
+           Example:
+
+           careers.html?job=tm-angular-developer-001
         */
 
         const params =
             new URLSearchParams(
                 window.location.search
             );
+
 
         const jobId =
             params.get("job");
@@ -421,6 +460,10 @@
     }
 
 
+    /* =====================================================
+       LOCATION FILTER
+    ===================================================== */
+
     function populateLocationFilter() {
 
         const filter =
@@ -430,7 +473,9 @@
 
 
         if (!filter) {
+
             return;
+
         }
 
 
@@ -447,7 +492,9 @@
         const locations = [
             ...new Set(
                 jobs.map(function (job) {
+
                     return job.location;
+
                 })
             )
         ];
@@ -468,11 +515,14 @@
                         "option"
                     );
 
+
                 option.value =
                     location;
 
+
                 option.textContent =
                     location;
+
 
                 filter.appendChild(
                     option
@@ -484,6 +534,10 @@
     }
 
 
+    /* =====================================================
+       RENDER PUBLIC JOBS
+    ===================================================== */
+
     function renderPublicJobs() {
 
         const searchInput =
@@ -491,10 +545,12 @@
                 "jobSearch"
             );
 
+
         const typeFilter =
             document.getElementById(
                 "jobTypeFilter"
             );
+
 
         const locationFilter =
             document.getElementById(
@@ -530,17 +586,24 @@
             jobs.filter(function (job) {
 
                 /*
-                   Only published + non-expired jobs
-                   are shown publicly.
+                   Only published jobs.
                 */
 
                 if (!job.published) {
+
                     return false;
+
                 }
 
 
+                /*
+                   Hide expired jobs.
+                */
+
                 if (isExpired(job)) {
+
                     return false;
+
                 }
 
 
@@ -565,7 +628,9 @@
 
 
                 if (!search) {
+
                     return true;
+
                 }
 
 
@@ -654,6 +719,10 @@
     }
 
 
+    /* =====================================================
+       CREATE JOB CARD
+    ===================================================== */
+
     function createJobCard(job) {
 
         const skills =
@@ -704,18 +773,26 @@
 
 
                 <p class="career-job-short">
-                    ${escapeHTML(job.shortDescription)}
+                    ${escapeHTML(
+                        job.shortDescription
+                    )}
                 </p>
 
 
                 <div class="career-job-meta">
 
                     <span>
-                        📍 ${escapeHTML(job.location)}
+                        📍
+                        ${escapeHTML(
+                            job.location
+                        )}
                     </span>
 
                     <span>
-                        ◷ ${escapeHTML(job.experience)}
+                        ◷
+                        ${escapeHTML(
+                            job.experience
+                        )}
                     </span>
 
                 </div>
@@ -759,7 +836,7 @@
 
 
     /* =====================================================
-       JOB MODAL
+       JOB MODAL SETUP
     ===================================================== */
 
     function setupJobModal() {
@@ -769,10 +846,12 @@
                 "jobModal"
             );
 
+
         const close =
             document.getElementById(
                 "jobModalClose"
             );
+
 
         const overlay =
             document.getElementById(
@@ -781,7 +860,9 @@
 
 
         if (!modal) {
+
             return;
+
         }
 
 
@@ -821,6 +902,10 @@
         );
 
 
+        /*
+           View Position click
+        */
+
         document.addEventListener(
             "click",
             function (event) {
@@ -832,7 +917,9 @@
 
 
                 if (!link) {
+
                     return;
+
                 }
 
 
@@ -843,7 +930,9 @@
 
 
                 if (!href) {
+
                     return;
+
                 }
 
 
@@ -874,7 +963,9 @@
                         {},
                         "",
                         "careers.html?job=" +
-                        encodeURIComponent(jobId)
+                        encodeURIComponent(
+                            jobId
+                        )
                     );
 
                 }
@@ -884,6 +975,10 @@
 
     }
 
+
+    /* =====================================================
+       OPEN JOB DETAILS
+    ===================================================== */
 
     function openJobDetails(jobId) {
 
@@ -900,12 +995,19 @@
 
 
         if (!job) {
+
+            console.warn(
+                "Job not found:",
+                jobId
+            );
+
             return;
+
         }
 
 
         /*
-           Don't open expired jobs publicly.
+           Do not show unpublished or expired jobs.
         */
 
         if (
@@ -923,6 +1025,7 @@
                 "jobModal"
             );
 
+
         const details =
             document.getElementById(
                 "jobDetails"
@@ -930,7 +1033,9 @@
 
 
         if (!modal || !details) {
+
             return;
+
         }
 
 
@@ -992,22 +1097,32 @@
                 .join("");
 
 
-        /*
-           =================================================
-           DYNAMIC APPLICATION EMAIL
-           =================================================
+        /* =================================================
+           APPLICATION EMAIL
+        =================================================
 
-           IMPORTANT:
-           Always send to:
+           Recipient:
            info@techmitra.co.in
 
-           Role comes dynamically from:
+           Job role:
            job.title
+
+           This is dynamic.
         */
 
         const email =
             APPLICATION_EMAIL;
 
+
+        /*
+           Dynamic subject.
+
+           Example:
+
+           Application for Angular Developer
+
+           Application for .NET Developer
+        */
 
         const subject =
             encodeURIComponent(
@@ -1015,6 +1130,54 @@
                 job.title
             );
 
+
+        /*
+           Dynamic email body.
+        */
+
+        const body =
+            encodeURIComponent(
+`Hello TechMitra Team,
+
+I would like to apply for the ${job.title} position.
+
+Job Position: ${job.title}
+Location: ${job.location}
+Experience: ${job.experience}
+
+Name:
+Phone:
+Email:
+Experience:
+
+Please find my resume attached.
+
+Regards,
+`
+            );
+
+
+        /*
+           Gmail Compose URL
+
+           This opens Gmail directly instead
+           of depending on the computer's
+           mailto/default-email setting.
+        */
+
+        const gmailComposeUrl =
+            "https://mail.google.com/mail/?view=cm&fs=1" +
+            "&to=" +
+            encodeURIComponent(email) +
+            "&su=" +
+            subject +
+            "&body=" +
+            body;
+
+
+        /* =================================================
+           JOB DETAILS HTML
+        ================================================= */
 
         details.innerHTML = `
 
@@ -1037,12 +1200,20 @@
                 <div class="job-details-meta">
 
                     <span>
-                        📍 ${escapeHTML(job.location)}
+                        📍
+                        ${escapeHTML(
+                            job.location
+                        )}
                     </span>
 
+
                     <span>
-                        ◷ ${escapeHTML(job.experience)}
+                        ◷
+                        ${escapeHTML(
+                            job.experience
+                        )}
                     </span>
+
 
                     <span>
                         Department:
@@ -1051,6 +1222,7 @@
                             "Technology"
                         )}
                     </span>
+
 
                     <span>
                         Salary:
@@ -1072,7 +1244,9 @@
                 </h3>
 
                 <p>
-                    ${escapeHTML(job.description)}
+                    ${escapeHTML(
+                        job.description
+                    )}
                 </p>
 
             </div>
@@ -1089,7 +1263,9 @@
                         </h3>
 
                         <ul>
+
                             ${responsibilitiesHTML}
+
                         </ul>
 
                     </div>
@@ -1110,7 +1286,9 @@
                         </h3>
 
                         <ul>
+
                             ${requirementsHTML}
+
                         </ul>
 
                     </div>
@@ -1146,17 +1324,35 @@
             <div class="job-apply-area">
 
                 <p>
+
                     Application deadline:
 
                     <strong>
-                        ${formatDate(job.expiry)}
+                        ${formatDate(
+                            job.expiry
+                        )}
                     </strong>
+
                 </p>
 
 
+                <!--
+                    APPLY BUTTON
+
+                    Gmail opens directly.
+
+                    Recipient:
+                    info@techmitra.co.in
+
+                    Role:
+                    dynamically from job.title
+                -->
+
                 <a
                     class="career-primary-btn"
-                    href="mailto:${email}?subject=${subject}"
+                    href="${gmailComposeUrl}"
+                    target="_blank"
+                    rel="noopener noreferrer"
                 >
 
                     Apply for this Position
@@ -1187,6 +1383,10 @@
     }
 
 
+    /* =====================================================
+       CLOSE JOB MODAL
+    ===================================================== */
+
     function closeJobModal() {
 
         const modal =
@@ -1196,7 +1396,9 @@
 
 
         if (!modal) {
+
             return;
+
         }
 
 
@@ -1302,6 +1504,7 @@
                         ADMIN_SESSION_KEY
                     );
 
+
                     location.reload();
 
                 }
@@ -1314,6 +1517,10 @@
 
     }
 
+
+    /* =====================================================
+       ADMIN LOGIN
+    ===================================================== */
 
     function handleAdminLogin(event) {
 
@@ -1359,12 +1566,16 @@
 
         } else {
 
-            error.textContent =
-                "Invalid username or password.";
+            if (error) {
 
-            error.classList.add(
-                "show"
-            );
+                error.textContent =
+                    "Invalid username or password.";
+
+                error.classList.add(
+                    "show"
+                );
+
+            }
 
         }
 
@@ -1373,28 +1584,64 @@
 
     function showAdminLogin() {
 
-        document.getElementById(
-            "adminLogin"
-        ).style.display = "grid";
+        const login =
+            document.getElementById(
+                "adminLogin"
+            );
 
 
-        document.getElementById(
-            "adminDashboard"
-        ).style.display = "none";
+        const dashboard =
+            document.getElementById(
+                "adminDashboard"
+            );
+
+
+        if (login) {
+
+            login.style.display =
+                "grid";
+
+        }
+
+
+        if (dashboard) {
+
+            dashboard.style.display =
+                "none";
+
+        }
 
     }
 
 
     function showAdminDashboard() {
 
-        document.getElementById(
-            "adminLogin"
-        ).style.display = "none";
+        const login =
+            document.getElementById(
+                "adminLogin"
+            );
 
 
-        document.getElementById(
-            "adminDashboard"
-        ).style.display = "block";
+        const dashboard =
+            document.getElementById(
+                "adminDashboard"
+            );
+
+
+        if (login) {
+
+            login.style.display =
+                "none";
+
+        }
+
+
+        if (dashboard) {
+
+            dashboard.style.display =
+                "block";
+
+        }
 
 
         renderAdminTable();
@@ -1415,7 +1662,9 @@
 
 
         if (!tbody) {
+
             return;
+
         }
 
 
@@ -1432,6 +1681,7 @@
                 let statusClass =
                     "draft";
 
+
                 let statusText =
                     "Draft";
 
@@ -1441,13 +1691,16 @@
                     statusClass =
                         "expired";
 
+
                     statusText =
                         "Expired";
+
 
                 } else if (job.published) {
 
                     statusClass =
                         "published";
+
 
                     statusText =
                         "Published";
@@ -1464,7 +1717,9 @@
                         <td>
 
                             <strong>
-                                ${escapeHTML(job.title)}
+                                ${escapeHTML(
+                                    job.title
+                                )}
                             </strong>
 
                             ${escapeHTML(
@@ -1476,17 +1731,23 @@
 
 
                         <td>
-                            ${escapeHTML(job.type)}
+                            ${escapeHTML(
+                                job.type
+                            )}
                         </td>
 
 
                         <td>
-                            ${escapeHTML(job.location)}
+                            ${escapeHTML(
+                                job.location
+                            )}
                         </td>
 
 
                         <td>
-                            ${formatDate(job.expiry)}
+                            ${formatDate(
+                                job.expiry
+                            )}
                         </td>
 
 
@@ -1510,7 +1771,9 @@
 
                                 <button
                                     class="admin-action"
-                                    data-edit-job="${escapeHTML(job.id)}"
+                                    data-edit-job="${escapeHTML(
+                                        job.id
+                                    )}"
                                 >
                                     Edit
                                 </button>
@@ -1518,7 +1781,9 @@
 
                                 <button
                                     class="admin-action"
-                                    data-toggle-job="${escapeHTML(job.id)}"
+                                    data-toggle-job="${escapeHTML(
+                                        job.id
+                                    )}"
                                 >
                                     ${
                                         job.published
@@ -1533,7 +1798,9 @@
                                         admin-action
                                         delete
                                     "
-                                    data-delete-job="${escapeHTML(job.id)}"
+                                    data-delete-job="${escapeHTML(
+                                        job.id
+                                    )}"
                                 >
                                     Delete
                                 </button>
@@ -1554,79 +1821,83 @@
         updateAdminStats();
 
 
-        /*
-           Bind edit buttons
-        */
+        /* EDIT */
 
         tbody
             .querySelectorAll(
                 "[data-edit-job]"
             )
-            .forEach(function (button) {
+            .forEach(
+                function (button) {
 
-                button.addEventListener(
-                    "click",
-                    function () {
+                    button.addEventListener(
+                        "click",
+                        function () {
 
-                        openEditJob(
-                            button.dataset.editJob
-                        );
+                            openEditJob(
+                                button.dataset.editJob
+                            );
 
-                    }
-                );
+                        }
+                    );
 
-            });
+                }
+            );
 
 
-        /*
-           Bind publish buttons
-        */
+        /* PUBLISH */
 
         tbody
             .querySelectorAll(
                 "[data-toggle-job]"
             )
-            .forEach(function (button) {
+            .forEach(
+                function (button) {
 
-                button.addEventListener(
-                    "click",
-                    function () {
+                    button.addEventListener(
+                        "click",
+                        function () {
 
-                        toggleJob(
-                            button.dataset.toggleJob
-                        );
+                            toggleJob(
+                                button.dataset.toggleJob
+                            );
 
-                    }
-                );
+                        }
+                    );
 
-            });
+                }
+            );
 
 
-        /*
-           Bind delete buttons
-        */
+        /* DELETE */
 
         tbody
             .querySelectorAll(
                 "[data-delete-job]"
             )
-            .forEach(function (button) {
+            .forEach(
+                function (button) {
 
-                button.addEventListener(
-                    "click",
-                    function () {
+                    button.addEventListener(
+                        "click",
+                        function () {
 
-                        deleteJob(
-                            button.dataset.deleteJob
-                        );
+                            deleteJob(
+                                button.dataset.deleteJob
+                            );
 
-                    }
-                );
+                        }
+                    );
 
-            });
+                }
+            );
 
     }
 
+
+    /* =====================================================
+       ADMIN STATS
+    ===================================================== */
 
     function updateAdminStats() {
 
@@ -1635,29 +1906,35 @@
 
 
         const published =
-            jobs.filter(function (job) {
+            jobs.filter(
+                function (job) {
 
-                return job.published &&
-                    !isExpired(job);
+                    return job.published &&
+                        !isExpired(job);
 
-            });
+                }
+            );
 
 
         const expired =
-            jobs.filter(function (job) {
+            jobs.filter(
+                function (job) {
 
-                return isExpired(job);
+                    return isExpired(job);
 
-            });
+                }
+            );
 
 
         const drafts =
-            jobs.filter(function (job) {
+            jobs.filter(
+                function (job) {
 
-                return !job.published &&
-                    !isExpired(job);
+                    return !job.published &&
+                        !isExpired(job);
 
-            });
+                }
+            );
 
 
         const totalJobs =
@@ -1665,15 +1942,18 @@
                 "totalJobs"
             );
 
+
         const publishedJobs =
             document.getElementById(
                 "publishedJobs"
             );
 
+
         const expiredJobs =
             document.getElementById(
                 "expiredJobs"
             );
+
 
         const draftJobs =
             document.getElementById(
@@ -1716,7 +1996,7 @@
 
 
     /* =====================================================
-       ADMIN FORM
+       ADMIN JOB FORM
     ===================================================== */
 
     function setupAdminJobForm() {
@@ -1726,20 +2006,24 @@
                 "newJobButton"
             );
 
+
         const form =
             document.getElementById(
                 "jobForm"
             );
+
 
         const close =
             document.getElementById(
                 "jobFormClose"
             );
 
+
         const cancel =
             document.getElementById(
                 "cancelJobForm"
             );
+
 
         const overlay =
             document.getElementById(
@@ -1799,6 +2083,10 @@
     }
 
 
+    /* =====================================================
+       NEW JOB
+    ===================================================== */
+
     function openNewJobForm() {
 
         const modal =
@@ -1807,9 +2095,17 @@
             );
 
 
-        document.getElementById(
-            "jobForm"
-        ).reset();
+        const form =
+            document.getElementById(
+                "jobForm"
+            );
+
+
+        if (form) {
+
+            form.reset();
+
+        }
 
 
         document.getElementById(
@@ -1829,9 +2125,31 @@
             true;
 
 
-        modal.classList.add(
-            "open"
-        );
+        /*
+           Application email is fixed.
+        */
+
+        const jobEmail =
+            document.getElementById(
+                "jobEmail"
+            );
+
+
+        if (jobEmail) {
+
+            jobEmail.value =
+                APPLICATION_EMAIL;
+
+        }
+
+
+        if (modal) {
+
+            modal.classList.add(
+                "open"
+            );
+
+        }
 
 
         document.body.style.overflow =
@@ -1840,6 +2158,10 @@
     }
 
 
+    /* =====================================================
+       EDIT JOB
+    ===================================================== */
+
     function openEditJob(jobId) {
 
         const jobs =
@@ -1847,15 +2169,19 @@
 
 
         const job =
-            jobs.find(function (item) {
+            jobs.find(
+                function (item) {
 
-                return item.id === jobId;
+                    return item.id === jobId;
 
-            });
+                }
+            );
 
 
         if (!job) {
+
             return;
+
         }
 
 
@@ -1908,14 +2234,14 @@
 
 
         /*
-           Keep application email as:
-           info@techmitra.co.in
+           Always use TechMitra application email.
         */
 
         const jobEmail =
             document.getElementById(
                 "jobEmail"
             );
+
 
         if (jobEmail) {
 
@@ -1928,7 +2254,8 @@
         document.getElementById(
             "jobSkills"
         ).value =
-            getSkills(job).join(", ");
+            getSkills(job)
+                .join(", ");
 
 
         document.getElementById(
@@ -1979,6 +2306,10 @@
 
     }
 
+
+    /* =====================================================
+       SAVE JOB
+    ===================================================== */
 
     function saveJob(event) {
 
@@ -2045,8 +2376,7 @@
 
 
             /*
-               IMPORTANT:
-               Every application goes to:
+               ALWAYS SEND APPLICATIONS TO:
                info@techmitra.co.in
             */
 
@@ -2059,9 +2389,13 @@
                     "jobSkills"
                 ).value
                     .split(",")
-                    .map(function (skill) {
-                        return skill.trim();
-                    })
+                    .map(
+                        function (skill) {
+
+                            return skill.trim();
+
+                        }
+                    )
                     .filter(Boolean),
 
 
@@ -2156,6 +2490,10 @@
     }
 
 
+    /* =====================================================
+       CLOSE ADMIN FORM
+    ===================================================== */
+
     function closeJobForm() {
 
         const modal =
@@ -2165,7 +2503,9 @@
 
 
         if (!modal) {
+
             return;
+
         }
 
 
@@ -2191,15 +2531,19 @@
 
 
         const job =
-            jobs.find(function (item) {
+            jobs.find(
+                function (item) {
 
-                return item.id === jobId;
+                    return item.id === jobId;
 
-            });
+                }
+            );
 
 
         if (!job) {
+
             return;
+
         }
 
 
@@ -2208,6 +2552,7 @@
             alert(
                 "This job has expired. Please update the expiry date before publishing it."
             );
+
 
             return;
 
@@ -2226,10 +2571,6 @@
     }
 
 
-    /* =====================================================
-       DELETE
-    ===================================================== */
-
     function deleteJob(jobId) {
 
         const jobs =
@@ -2237,15 +2578,19 @@
 
 
         const job =
-            jobs.find(function (item) {
+            jobs.find(
+                function (item) {
 
-                return item.id === jobId;
+                    return item.id === jobId;
 
-            });
+                }
+            );
 
 
         if (!job) {
+
             return;
+
         }
 
 
@@ -2258,7 +2603,9 @@
 
 
         if (!confirmed) {
+
             return;
+
         }
 
 
