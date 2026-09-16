@@ -9403,3 +9403,1836 @@ and
     }
 
 }
+/* =========================================================
+   TECHMITRA PREMIUM HERO
+   BUSINESS / TECHNOLOGY STYLE
+========================================================= */
+
+.tm-premium-hero {
+    position: relative;
+    min-height: 690px;
+    overflow: hidden;
+    background: #ffffff;
+    color: #101a35;
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.tm-hero-bg-glow {
+    position: absolute;
+    width: 620px;
+    height: 620px;
+    top: -260px;
+    left: -180px;
+    border-radius: 50%;
+    background: rgba(218, 176, 92, 0.055);
+    filter: blur(70px);
+    pointer-events: none;
+}
+
+.tm-hero-pattern {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 310px;
+    height: 230px;
+
+    background-image:
+        linear-gradient(
+            45deg,
+            rgba(184, 133, 39, 0.10) 1px,
+            transparent 1px
+        );
+
+    background-size: 14px 14px;
+
+    mask-image: linear-gradient(
+        to top right,
+        rgba(0,0,0,1),
+        transparent
+    );
+
+    -webkit-mask-image: linear-gradient(
+        to top right,
+        rgba(0,0,0,1),
+        transparent
+    );
+
+    opacity: .65;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.tm-premium-hero__container {
+    position: relative;
+    z-index: 2;
+
+    width: min(1180px, calc(100% - 50px));
+    min-height: 610px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 46% 54%;
+    align-items: center;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.tm-premium-hero__content {
+    position: relative;
+    z-index: 5;
+
+    padding: 72px 0 115px;
+}
+
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.tm-premium-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: 24px;
+
+    color: #8d641d;
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
+        height: 75px;
+}
+
+.tm-premium-eyebrow span {
+    width: 20px;
+    height: 1px;
+
+    background: #b98527;
+}
+
+
+/* =========================================================
+   HEADLINE
+========================================================= */
+
+.tm-premium-hero h1 {
+    margin: 0;
+
+    max-width: 610px;
+
+    color: #111111;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(52px, 5.2vw, 76px);
+
+    font-weight: 400;
+
+    line-height: .98;
+
+    letter-spacing: -3px;
+}
+
+.tm-premium-hero h1 em {
+    color: #b47a19;
+    font-style: italic;
+}
+
+.tm-premium-hero h1 strong {
+    color: #111111;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.tm-premium-hero__description {
+    max-width: 440px;
+
+    margin: 28px 0 25px;
+
+    color: #586273;
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.tm-premium-hero__actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.tm-premium-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+
+    min-height: 40px;
+
+    padding: 0 17px;
+
+    border-radius: 2px;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .35px;
+
+    text-decoration: none;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.tm-premium-btn span {
+    font-size: 14px;
+}
+
+.tm-premium-btn--primary {
+    color: #ffffff;
+    background: #a97820;
+    border: 1px solid #a97820;
+
+    box-shadow:
+        0 8px 22px rgba(169, 120, 32, .16);
+}
+
+.tm-premium-btn--primary:hover {
+    color: #ffffff;
+    background: #8d641d;
+    border-color: #8d641d;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 28px rgba(169, 120, 32, .22);
+}
+
+.tm-premium-btn--secondary {
+    color: #222222;
+    background: rgba(255,255,255,.85);
+    border: 1px solid #dfe3e8;
+}
+
+.tm-premium-btn--secondary:hover {
+    color: #8d641d;
+    border-color: #c9a35c;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   RIGHT VISUAL
+========================================================= */
+
+.tm-premium-hero__visual {
+    position: relative;
+
+    align-self: stretch;
+
+    min-height: 610px;
+
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.tm-hero-image-wrap {
+    position: absolute;
+
+    top: 0;
+    right: -90px;
+    bottom: 0;
+
+    width: 760px;
+
+    overflow: hidden;
+
+    background: #f2f2f2;
+}
+
+.tm-hero-image-wrap img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    display: block;
+
+    filter:
+        saturate(.88)
+        contrast(.98);
+
+    transform: scale(1.015);
+
+    transition: transform 1.2s ease;
+}
+
+.tm-premium-hero:hover .tm-hero-image-wrap img {
+    transform: scale(1.035);
+}
+
+
+/* =========================================================
+   IMAGE WHITE FADE
+========================================================= */
+
+.tm-hero-image-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff 0%,
+            rgba(255,255,255,.88) 8%,
+            rgba(255,255,255,.30) 25%,
+            transparent 48%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.05),
+            transparent 25%,
+            rgba(10,20,35,.08)
+        );
+}
+
+
+/* =========================================================
+   IMAGE LABEL
+========================================================= */
+
+.tm-hero-image-label {
+    position: absolute;
+
+    right: 30px;
+    bottom: 125px;
+
+    width: 225px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    padding: 12px 14px;
+
+    background: rgba(255,255,255,.91);
+
+    border: 1px solid rgba(255,255,255,.9);
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, .12);
+
+    backdrop-filter: blur(10px);
+
+    z-index: 5;
+}
+
+.tm-label-dot {
+    width: 6px;
+    height: 6px;
+
+    margin-top: 4px;
+
+    flex: 0 0 6px;
+
+    border-radius: 50%;
+
+    background: #b98527;
+
+    box-shadow:
+        0 0 0 4px rgba(185,133,39,.10);
+}
+
+.tm-hero-image-label small {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #a97820;
+
+    font-size: 6px;
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+.tm-hero-image-label strong {
+    display: block;
+
+    color: #1a2233;
+
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   STATS CARD
+========================================================= */
+
+.tm-premium-stats {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+
+    bottom: 36px;
+
+    transform: translateX(-50%);
+
+    width: min(540px, calc(100% - 40px));
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    background: rgba(255,255,255,.96);
+
+    border: 1px solid rgba(214,218,224,.9);
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 14px 35px rgba(15,23,42,.12);
+
+    backdrop-filter: blur(12px);
+}
+
+
+/* =========================================================
+   INDIVIDUAL STAT
+========================================================= */
+
+.tm-premium-stat {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    min-height: 62px;
+
+    padding: 9px 10px;
+}
+
+.tm-premium-stat:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    top: 13px;
+    bottom: 13px;
+
+    width: 1px;
+
+    background: #e3e5e8;
+}
+
+
+/* =========================================================
+   STAT ICON
+========================================================= */
+
+.tm-stat-icon {
+    width: 25px;
+    height: 25px;
+
+    flex: 0 0 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #a97820;
+
+    background: #f8f1e4;
+}
+
+.tm-stat-icon i {
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   STAT CONTENT
+========================================================= */
+
+.tm-stat-content {
+    min-width: 0;
+}
+
+.tm-stat-content strong {
+    display: block;
+
+    margin-bottom: 1px;
+
+    color: #222222;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.tm-stat-content span {
+    display: block;
+
+    color: #343b47;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.tm-stat-content small {
+    display: block;
+
+    margin-top: 2px;
+
+    color: #9299a3;
+
+    font-size: 5.5px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   FLOATING TECHNOLOGY TAGS
+========================================================= */
+
+.tm-floating-tech {
+    position: absolute;
+
+    z-index: 8;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 8px 11px;
+
+    color: #303949;
+
+    background: rgba(255,255,255,.91);
+
+    border: 1px solid rgba(220,224,230,.9);
+
+    border-radius: 3px;
+
+    box-shadow:
+        0 8px 22px rgba(15,23,42,.08);
+
+    font-size: 7px;
+    font-weight: 800;
+
+    backdrop-filter: blur(10px);
+
+    animation: tmPremiumFloat 5s ease-in-out infinite;
+}
+
+.tm-floating-tech i {
+    color: #a97820;
+    font-size: 9px;
+}
+
+.tm-floating-tech--one {
+    top: 145px;
+    right: 70px;
+}
+
+.tm-floating-tech--two {
+    top: 235px;
+    right: 22px;
+
+    animation-delay: -1.5s;
+}
+
+.tm-floating-tech--three {
+    top: 325px;
+    right: 55px;
+
+    animation-delay: -3s;
+}
+
+
+/* =========================================================
+   FLOAT ANIMATION
+========================================================= */
+
+@keyframes tmPremiumFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .tm-premium-hero {
+        min-height: 650px;
+    }
+
+    .tm-premium-hero__container {
+        width: min(940px, calc(100% - 35px));
+
+        grid-template-columns: 48% 52%;
+
+        min-height: 570px;
+    }
+
+    .tm-premium-hero__content {
+        padding-top: 60px;
+    }
+
+    .tm-premium-hero h1 {
+        font-size: clamp(45px, 5.5vw, 62px);
+    }
+
+    .tm-hero-image-wrap {
+        right: -110px;
+        width: 650px;
+    }
+
+    .tm-floating-tech--one {
+        right: 55px;
+    }
+
+    .tm-floating-tech--two {
+        right: 10px;
+    }
+
+    .tm-floating-tech--three {
+        right: 40px;
+    }
+
+    .tm-premium-stats {
+        width: 590px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .tm-premium-hero {
+        min-height: auto;
+
+        padding-bottom: 0;
+    }
+
+    .tm-premium-hero__container {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        min-height: auto;
+    }
+
+    .tm-premium-hero__content {
+        width: 100%;
+
+        padding:
+            55px
+            24px
+            45px;
+    }
+
+    .tm-premium-eyebrow {
+        font-size: 7px;
+        letter-spacing: 1.7px;
+
+        margin-bottom: 19px;
+    }
+
+    .tm-premium-hero h1 {
+        max-width: 100%;
+
+        font-size: clamp(43px, 12vw, 62px);
+
+        letter-spacing: -2px;
+
+        line-height: 1;
+    }
+
+    .tm-premium-hero__description {
+        max-width: 100%;
+
+        margin-top: 22px;
+
+        font-size: 12px;
+
+        line-height: 1.75;
+    }
+
+    .tm-premium-hero__actions {
+        flex-wrap: wrap;
+
+        margin-top: 24px;
+    }
+
+    .tm-premium-btn {
+        min-height: 42px;
+
+        padding: 0 14px;
+
+        font-size: 8px;
+    }
+
+
+    /* MOBILE IMAGE */
+
+    .tm-premium-hero__visual {
+        width: 100%;
+
+        min-height: 420px;
+
+        position: relative;
+    }
+
+    .tm-hero-image-wrap {
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+
+        right: auto;
+    }
+
+    .tm-hero-image-overlay {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255,255,255,.05),
+                transparent 30%,
+                rgba(255,255,255,.15)
+            );
+    }
+
+    .tm-hero-image-label {
+        right: 20px;
+        bottom: 100px;
+
+        width: 200px;
+    }
+
+
+    /* STATS */
+
+    .tm-premium-stats {
+        position: relative;
+
+        left: auto;
+        bottom: auto;
+
+        transform: none;
+
+        width: calc(100% - 32px);
+
+        margin:
+            -38px auto
+            30px;
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tm-premium-stat {
+        min-height: 65px;
+
+        padding: 10px;
+    }
+
+    .tm-premium-stat:nth-child(2)::after {
+        display: none;
+    }
+
+    .tm-premium-stat:nth-child(3)::before {
+        content: "";
+
+        position: absolute;
+
+        left: 10px;
+        right: 10px;
+        top: 0;
+
+        height: 1px;
+
+        background: #e3e5e8;
+    }
+
+    .tm-premium-stat:nth-child(4)::before {
+        content: "";
+
+        position: absolute;
+
+        left: 10px;
+        right: 10px;
+        top: 0;
+
+        height: 1px;
+
+        background: #e3e5e8;
+    }
+
+    .tm-stat-content small {
+        font-size: 5px;
+    }
+
+
+    /* FLOATING TAGS */
+
+    .tm-floating-tech {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+
+    .tm-premium-hero__content {
+        padding:
+            42px
+            19px
+            35px;
+    }
+
+    .tm-premium-eyebrow {
+        font-size: 6px;
+
+        letter-spacing: 1.3px;
+    }
+
+    .tm-premium-hero h1 {
+        font-size: 43px;
+
+        letter-spacing: -1.7px;
+    }
+
+    .tm-premium-hero__description {
+        font-size: 11.5px;
+    }
+
+    .tm-premium-hero__actions {
+        width: 100%;
+    }
+
+    .tm-premium-btn {
+        flex: 1;
+
+        padding: 0 9px;
+
+        font-size: 7px;
+    }
+
+    .tm-premium-hero__visual {
+        min-height: 350px;
+    }
+
+    .tm-hero-image-label {
+        right: 14px;
+        bottom: 82px;
+
+        width: 185px;
+
+        padding: 10px;
+    }
+
+    .tm-premium-stats {
+        width: calc(100% - 24px);
+
+        margin-top: -30px;
+    }
+
+    .tm-stat-icon {
+        width: 22px;
+        height: 22px;
+
+        flex-basis: 22px;
+    }
+
+    .tm-stat-icon i {
+        font-size: 8px;
+    }
+
+    .tm-stat-content strong {
+        font-size: 13px;
+    }
+
+    .tm-stat-content span {
+        font-size: 6.5px;
+    }
+
+    .tm-stat-content small {
+        display: none;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .tm-floating-tech,
+    .tm-hero-image-wrap img {
+        animation: none;
+        transition: none;
+    }
+
+}
+/* =========================================================
+   TECHMITRA — PREMIUM SIGNATURE FOOTER
+   NAVY + GOLD + TECHNOLOGY
+========================================================= */
+
+.tmx-footer {
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 8% 0%,
+            rgba(38, 91, 170, .18),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 92% 100%,
+            rgba(171, 123, 40, .10),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #071321 0%,
+            #0a1728 48%,
+            #091321 100%
+        );
+
+    border-top: 1px solid rgba(201, 157, 70, .28);
+}
+
+
+/* =========================================================
+   PREMIUM GRID
+========================================================= */
+
+.tmx-footer::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.018) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    opacity: .45;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   GOLD TOP LINE
+========================================================= */
+
+.tmx-footer::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 20%;
+    right: 20%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(193,148,61,.85),
+            rgba(255,255,255,.18),
+            rgba(193,148,61,.85),
+            transparent
+        );
+
+    box-shadow:
+        0 0 22px rgba(193,148,61,.18);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   GLOW
+========================================================= */
+
+.tmx-footer__glow {
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    border-radius: 50%;
+
+    filter: blur(110px);
+
+    pointer-events: none;
+}
+
+.tmx-footer__glow--left {
+    top: -230px;
+    left: -170px;
+
+    background: #1e5db8;
+
+    opacity: .11;
+}
+
+.tmx-footer__glow--right {
+    right: -180px;
+    bottom: -230px;
+
+    background: #b88932;
+
+    opacity: .07;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.tmx-footer__container {
+    position: relative;
+    z-index: 2;
+
+    width: min(
+        1160px,
+        calc(100% - 60px)
+    );
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.tmx-footer__main {
+    display: grid;
+
+    grid-template-columns:
+        1.65fr
+        .7fr
+        .95fr
+        1.2fr;
+
+    gap: 65px;
+
+    padding: 58px 0 48px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.tmx-footer__logo {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+/* PREMIUM LOGO BOX */
+
+.tmx-footer__logo-box {
+    position: relative;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.095),
+            rgba(255,255,255,.025)
+        );
+
+    border: 1px solid
+        rgba(255,255,255,.13);
+
+    box-shadow:
+        inset 0 1px 0
+            rgba(255,255,255,.08),
+        0 8px 25px
+            rgba(0,0,0,.14);
+
+    overflow: hidden;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.tmx-footer__logo-box::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 1px;
+
+    border-radius: 12px;
+
+    border: 1px solid
+        rgba(195,151,68,.16);
+
+    pointer-events: none;
+}
+
+.tmx-footer__logo:hover
+.tmx-footer__logo-box {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(195,151,68,.42);
+
+    box-shadow:
+        0 12px 30px
+            rgba(0,0,0,.18),
+        0 0 20px
+            rgba(195,151,68,.08);
+}
+
+
+/*
+   IMPORTANT:
+   Your favicon apparently has transparent
+   padding, so enlarge it visually.
+*/
+
+.tmx-footer__logo-box img {
+    width: 39px;
+    height: 39px;
+
+    object-fit: contain;
+
+    transform: scale(1.18);
+}
+
+
+/* =========================================================
+   BRAND NAME
+========================================================= */
+
+.tmx-footer__brand-name {
+    display: block;
+
+    color: #f8fafc;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: -.55px;
+}
+
+.tmx-footer__brand-name small {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #b99a61;
+
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 2.7px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   BRAND DESCRIPTION
+========================================================= */
+
+.tmx-footer__brand > p {
+    max-width: 335px;
+
+    margin:
+        20px 0 19px;
+
+    color: #8998aa;
+
+    font-size: 11px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   SOCIAL BUTTONS
+========================================================= */
+
+.tmx-footer__socials {
+    display: flex;
+    gap: 8px;
+}
+
+.tmx-footer__socials a {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #8b9aad;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    transition:
+        transform .22s ease,
+        color .22s ease,
+        background .22s ease,
+        border-color .22s ease,
+        box-shadow .22s ease;
+}
+
+.tmx-footer__socials a:hover {
+    transform: translateY(-3px);
+}
+
+
+/* WHATSAPP */
+
+.tmx-footer__socials
+a[aria-label="WhatsApp"]:hover {
+    color: #25D366;
+
+    background:
+        rgba(37,211,102,.09);
+
+    border-color:
+        rgba(37,211,102,.32);
+
+    box-shadow:
+        0 8px 22px
+        rgba(37,211,102,.12);
+}
+
+
+/* INSTAGRAM */
+
+.tmx-footer__socials
+a[aria-label="Instagram"]:hover {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #833AB4,
+            #E1306C,
+            #F77737
+        );
+
+    border-color: transparent;
+
+    box-shadow:
+        0 8px 22px
+        rgba(225,48,108,.15);
+}
+
+
+/* LINKEDIN */
+
+.tmx-footer__socials
+a[aria-label="LinkedIn"]:hover {
+    color: #ffffff;
+
+    background: #0A66C2;
+
+    border-color: #0A66C2;
+
+    box-shadow:
+        0 8px 22px
+        rgba(10,102,194,.16);
+}
+
+
+/* =========================================================
+   COLUMN HEADINGS
+========================================================= */
+
+.tmx-footer__column h4 {
+    position: relative;
+
+    margin:
+        3px 0 20px;
+
+    padding-bottom: 9px;
+
+    color: #eef2f7;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.7px;
+
+    text-transform: uppercase;
+}
+
+.tmx-footer__column h4::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 20px;
+    height: 1px;
+
+    background: #b78a3c;
+}
+
+
+/* =========================================================
+   COLUMN LINKS
+========================================================= */
+
+.tmx-footer__column a {
+    position: relative;
+
+    display: block;
+
+    width: fit-content;
+
+    margin-bottom: 12px;
+
+    color: #7f91a6;
+
+    font-size: 10.5px;
+
+    text-decoration: none;
+
+    transition:
+        color .2s ease,
+        transform .2s ease;
+}
+
+.tmx-footer__column a::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 0;
+
+    height: 1px;
+
+    margin-right: 0;
+
+    vertical-align: middle;
+
+    background: #bd9145;
+
+    transition:
+        width .2s ease,
+        margin-right .2s ease;
+}
+
+.tmx-footer__column a:hover {
+    color: #ffffff;
+
+    transform: translateX(2px);
+}
+
+.tmx-footer__column a:hover::before {
+    width: 8px;
+
+    margin-right: 6px;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.tmx-footer__eyebrow {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #c09a55;
+
+    font-size: 7px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.tmx-footer__contact h3 {
+    max-width: 280px;
+
+    margin:
+        0 0 21px;
+
+    color: #f1f4f8;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 25px;
+
+    font-weight: 400;
+
+    line-height: 1.18;
+
+    letter-spacing: -.7px;
+}
+
+.tmx-footer__contact h3 span {
+    display: block;
+
+    color: #c3974c;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   PREMIUM GOLD BUTTON
+========================================================= */
+
+.tmx-footer__button {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    min-height: 40px;
+
+    padding:
+        0 17px;
+
+    color: #111a27;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d4ad68,
+            #b98736
+        );
+
+    border:
+        1px solid
+        rgba(229,196,130,.55);
+
+    border-radius: 4px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 8px 25px
+        rgba(182,133,48,.13);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+}
+
+.tmx-footer__button:hover {
+    color: #111a27;
+
+    transform:
+        translateY(-2px);
+
+    filter:
+        brightness(1.07);
+
+    box-shadow:
+        0 12px 30px
+        rgba(182,133,48,.22);
+}
+
+.tmx-footer__button span {
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.tmx-footer__line {
+    position: relative;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.10) 12%,
+            rgba(255,255,255,.10) 88%,
+            transparent
+        );
+}
+
+
+/* =========================================================
+   BOTTOM BAR
+========================================================= */
+
+.tmx-footer__bottom {
+    min-height: 66px;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto
+        1fr;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* COPYRIGHT */
+
+.tmx-footer__copyright {
+    color: #66788f;
+
+    font-size: 9px;
+
+    line-height: 1.6;
+}
+
+.tmx-footer__copyright strong {
+    color: #91a1b5;
+
+    font-weight: 700;
+}
+
+
+/* CENTER */
+
+.tmx-footer__center {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #62748b;
+
+    font-size: 8px;
+
+    white-space: nowrap;
+}
+
+.tmx-footer__live-dot {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #c49a52;
+
+    box-shadow:
+        0 0 9px
+        rgba(196,154,82,.65);
+}
+
+
+/* CREDIT */
+
+.tmx-footer__credit {
+    color: #62748b;
+
+    font-size: 9px;
+
+    text-align: right;
+}
+
+.tmx-footer__credit strong {
+    color: #91a1b5;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .tmx-footer__main {
+        grid-template-columns:
+            1.35fr
+            1fr
+            1fr;
+
+        gap: 40px;
+    }
+
+    .tmx-footer__contact {
+        grid-column: 1 / -1;
+
+        padding-top: 5px;
+    }
+
+    .tmx-footer__bottom {
+        grid-template-columns:
+            1fr 1fr;
+
+        padding: 15px 0;
+    }
+
+    .tmx-footer__center {
+        justify-self: end;
+    }
+
+    .tmx-footer__credit {
+        grid-column: 1 / -1;
+
+        text-align: center;
+
+        padding-bottom: 4px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .tmx-footer__container {
+        width:
+            calc(100% - 36px);
+    }
+
+    .tmx-footer__main {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+        padding:
+            43px 0
+            32px;
+    }
+
+    .tmx-footer__brand > p {
+        max-width: 360px;
+    }
+
+    .tmx-footer__contact {
+        grid-column: auto;
+
+        padding-top: 3px;
+    }
+
+    .tmx-footer__contact h3 {
+        font-size: 22px;
+    }
+
+    .tmx-footer__button {
+        width: 100%;
+    }
+
+    .tmx-footer__bottom {
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 8px;
+
+        padding:
+            17px 0
+            20px;
+
+        text-align: center;
+    }
+
+    .tmx-footer__center {
+        order: 2;
+    }
+
+    .tmx-footer__credit {
+        order: 3;
+
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .tmx-footer__container {
+        width:
+            calc(100% - 28px);
+    }
+
+    .tmx-footer__main {
+        padding-top: 36px;
+
+        gap: 27px;
+    }
+
+    .tmx-footer__logo-box {
+        width: 45px;
+        height: 45px;
+    }
+
+    .tmx-footer__logo-box img {
+        width: 37px;
+        height: 37px;
+
+        transform: scale(1.18);
+    }
+
+    .tmx-footer__brand-name {
+        font-size: 18px;
+    }
+
+    .tmx-footer__brand > p {
+        font-size: 10.5px;
+    }
+
+    .tmx-footer__contact h3 {
+        font-size: 20px;
+    }
+
+}
