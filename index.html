@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TechMitra Technologies | Software Development & Digital Solutions</title>
-  <meta name="description" content="TechMitra Technologies builds modern software and digital solutions that help businesses grow, adapt, and lead. Your trusted technology partner for custom software, web applications, enterprise solutions, healthcare systems, cloud, AI, automation, and integrations.">
-  <meta name="keywords" content="TechMitra Technologies, software development, digital solutions, custom software, web application development, LIMS, hospital management system, enterprise solutions, cloud solutions, AI automation, software integration">
+  <title>TechMitra Technologies | AI Automation Agency & Software Development</title>
+  <meta name="description" content="TechMitra Technologies is an AI automation agency. We build AI agents, chatbots, WhatsApp assistants, automated workflows and custom software for businesses, hospitals and diagnostic labs.">
+  <meta name="keywords" content="AI automation agency, AI agents, AI chatbot, WhatsApp automation, workflow automation, document AI, LIMS, hospital management system, custom software development, TechMitra Technologies">
   <meta name="author" content="TechMitra Technologies">
-  <meta name="theme-color" content="#061230">
-  <meta property="og:title" content="TechMitra Technologies | Software Development & Digital Solutions">
-  <meta property="og:description" content="Building modern software and digital solutions that help businesses grow, adapt, and lead. Your Trusted Technology Partner.">
+  <meta name="theme-color" content="#eef1f8">
+  <meta property="og:title" content="TechMitra Technologies | AI Automation Agency">
+  <meta property="og:description" content="AI agents, chatbots, automated workflows and custom software that give your team hours back every week.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://techmitra.co.in/">
   <meta property="og:image" content="https://techmitra.co.in/img/favicon.png">
@@ -23,23 +23,17 @@
 </head>
 <body>
 
-  <!-- Page loader -->
   <div class="loader" id="pageLoader" aria-hidden="true">
-    <div class="loader__mark">
-      <img src="img/favicon.png" alt="">
-      <span class="loader__ring"></span>
-    </div>
+    <div class="loader__orb glass"><img src="img/3d/robot.webp" alt=""></div>
   </div>
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Ambient glass background -->
   <div class="aurora" aria-hidden="true">
     <span class="aurora__blob aurora__blob--a"></span>
     <span class="aurora__blob aurora__blob--b"></span>
     <span class="aurora__blob aurora__blob--c"></span>
-    <span class="aurora__grid"></span>
-    <span class="aurora__noise"></span>
+    <span class="aurora__blob aurora__blob--d"></span>
   </div>
 
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -49,18 +43,18 @@
     <div class="nav__bar glass">
       <a class="brand" href="#top" aria-label="TechMitra Technologies — home">
         <img src="img/favicon.png" alt="" class="brand__logo" width="40" height="40">
-        <span class="brand__text">TechMitra <small>Technologies</small></span>
+        <span class="brand__text">TechMitra <small>AI Automation Agency</small></span>
       </a>
 
       <nav class="nav__links" id="mainNav" aria-label="Primary">
         <span class="nav__indicator" id="navIndicator" aria-hidden="true"></span>
-        <a href="#Solutions">Solutions</a>
         <a href="#services">Services</a>
-        <a href="#Technology">Technology</a>
+        <a href="#Solutions">Solutions</a>
+        <a href="#healthcare">Healthcare</a>
         <a href="#process">Process</a>
         <a href="#studio">About</a>
         <a href="careers.html">Careers</a>
-        <a href="#contact" class="btn btn--primary btn--sm nav__cta">Contact us</a>
+        <a href="#contact" class="btn btn--primary btn--sm nav__cta">Book a call</a>
       </nav>
 
       <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
@@ -76,153 +70,100 @@
     <section class="hero" id="top">
       <div class="container hero__grid">
         <div class="hero__copy">
-          <p class="hero__kicker" data-intro>
-            <span class="live-dot"></span>
-            Software, AI and automation for growing businesses
+          <p class="pill-label glass" data-intro>
+            <img src="img/3d/sparkles.webp" alt="" width="22" height="22">
+            AI automation agency · Software · Integrations
           </p>
 
-          <h1 class="hero__title" data-split>Building technology that drives growth.</h1>
+          <h1 class="hero__title" data-split>We automate the work that slows your business down.</h1>
 
           <p class="hero__lead" data-intro>
-            Technology built around your business — powerful digital solutions, intelligent automation and connected systems designed to simplify operations and accelerate long-term growth.
+            TechMitra builds AI agents, chatbots, WhatsApp assistants and automated workflows — plus the custom software around them — so your team spends time on customers, not copy-paste.
           </p>
 
           <div class="hero__actions" data-intro>
-            <a href="#Solutions" class="btn btn--primary btn--lg magnetic">
-              Explore our solutions
-              <i class="bi bi-arrow-down-right"></i>
-            </a>
-            <a href="#contact" class="btn btn--glass btn--lg magnetic">Talk to us</a>
+            <a href="#contact" class="btn btn--primary btn--lg magnetic">Book a free automation call <i class="bi bi-arrow-up-right"></i></a>
+            <a href="#services" class="btn btn--glass btn--lg magnetic">See what we automate</a>
           </div>
+
+          <ul class="hero__proof" data-intro>
+            <li><i class="bi bi-check2-circle"></i> Works with your existing tools</li>
+            <li><i class="bi bi-check2-circle"></i> Secure by design</li>
+            <li><i class="bi bi-check2-circle"></i> 24/7 support</li>
+          </ul>
         </div>
 
-        <!-- Live glass dashboard -->
-        <div class="board" aria-hidden="true">
-          <svg class="board__traces" viewBox="0 0 560 520" preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="traceGrad" x1="0" x2="1">
-                <stop offset="0" stop-color="#46D2F7" stop-opacity="0"/>
-                <stop offset=".5" stop-color="#46D2F7"/>
-                <stop offset="1" stop-color="#2E6BFF" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path class="trace" d="M40 470 H150 L200 420 V330"/>
-            <path class="trace" d="M520 60 H430 L390 100 V150"/>
-            <path class="trace" d="M300 500 V440 L340 400 H420"/>
-            <path class="trace" d="M10 140 H90 L120 170 H170"/>
-            <path class="trace trace--pulse" d="M40 470 H150 L200 420 V330"/>
-            <path class="trace trace--pulse" d="M520 60 H430 L390 100 V150"/>
-            <path class="trace trace--pulse" d="M300 500 V440 L340 400 H420"/>
-            <path class="trace trace--pulse" d="M10 140 H90 L120 170 H170"/>
-            <circle class="node" cx="40" cy="470" r="5"/>
-            <circle class="node" cx="520" cy="60" r="5"/>
-            <circle class="node" cx="300" cy="500" r="5"/>
-            <circle class="node" cx="10" cy="140" r="5"/>
-          </svg>
-
-          <div class="panel panel--main glass glass--strong" data-board="main">
-            <div class="panel__head">
-              <div>
-                <strong>Lab operations</strong>
-                <span>Today · live</span>
-              </div>
-              <span class="chip chip--live"><span class="live-dot"></span> Synced</span>
+        <!-- Spatial glass scene -->
+        <div class="scene" id="scene" aria-hidden="true">
+          <div class="scene__window glass glass--hi" data-depth="10">
+            <div class="window__bar">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <strong>Automation · Invoice to CRM</strong>
+              <span class="chip chip--live"><span class="live-dot"></span> Running</span>
             </div>
 
-            <div class="panel__kpis">
-              <div>
-                <span>Samples processed</span>
-                <strong data-ticker="1284">1,284</strong>
+            <div class="flow">
+              <div class="flow__node">
+                <span class="flow__icon"><img src="img/3d/envelope.webp" alt=""></span>
+                <strong>Email arrives</strong>
+                <small>Invoice PDF</small>
               </div>
-              <div>
-                <span>Reports delivered</span>
-                <strong>96%</strong>
+              <span class="flow__link"><i></i></span>
+              <div class="flow__node flow__node--ai">
+                <span class="flow__icon"><img src="img/3d/robot.webp" alt=""></span>
+                <strong>AI agent reads</strong>
+                <small>Extracts 14 fields</small>
               </div>
-              <div>
-                <span>Avg. turnaround</span>
-                <strong>4.2h</strong>
+              <span class="flow__link"><i></i></span>
+              <div class="flow__node">
+                <span class="flow__icon"><img src="img/3d/chart.webp" alt=""></span>
+                <strong>CRM updated</strong>
+                <small>Team notified</small>
               </div>
             </div>
 
-            <div class="panel__chart">
-              <svg viewBox="0 0 320 110" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#46D2F7" stop-opacity=".45"/>
-                    <stop offset="1" stop-color="#2E6BFF" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <path class="chart__area" d="M0 90 C30 82 40 60 70 64 S120 40 150 46 S200 22 230 30 S290 8 320 14 V110 H0Z" fill="url(#areaGrad)"/>
-                <path class="chart__line" d="M0 90 C30 82 40 60 70 64 S120 40 150 46 S200 22 230 30 S290 8 320 14"/>
-              </svg>
-              <div class="panel__bars">
-                <span style="--h:42%"></span><span style="--h:58%"></span><span style="--h:36%"></span>
-                <span style="--h:72%"></span><span style="--h:64%"></span><span style="--h:88%"></span>
-                <span style="--h:76%"></span>
-              </div>
+            <div class="window__log">
+              <div class="log-row"><span class="log-dot log-dot--ok"></span><span id="logText">Invoice #INV-2041 processed</span><b id="logTime">0.8s</b></div>
+              <div class="log-progress"><span></span></div>
             </div>
           </div>
 
-          <div class="panel panel--toast glass" data-board="toast">
-            <span class="panel__icon panel__icon--ok"><i class="bi bi-check2"></i></span>
+          <div class="scene__toast glass glass--hi" data-depth="24">
+            <img src="img/3d/chat.webp" alt="">
             <div>
-              <strong>Report ready</strong>
-              <span id="toastId">Sample LAB-24817 · sent to patient</span>
+              <strong>WhatsApp reply sent</strong>
+              <span>Lead answered in 3 seconds</span>
             </div>
           </div>
 
-          <div class="panel panel--sync glass" data-board="sync">
-            <strong>Connected systems</strong>
-            <ul>
-              <li><i class="bi bi-credit-card-2-front"></i> Payment gateway <span class="ok"></span></li>
-              <li><i class="bi bi-hospital"></i> Hospital HMS <span class="ok"></span></li>
-              <li><i class="bi bi-whatsapp"></i> Patient alerts <span class="ok ok--busy"></span></li>
-            </ul>
+          <div class="scene__stat glass glass--hi" data-depth="18">
+            <span>Hours saved this week</span>
+            <strong><span data-ticker="126">126</span>h</strong>
+            <div class="mini-bars"><i style="--h:40%"></i><i style="--h:55%"></i><i style="--h:48%"></i><i style="--h:70%"></i><i style="--h:82%"></i><i style="--h:94%"></i></div>
           </div>
 
-          <p class="board__caption">Preview of a TechMitra lab system</p>
+          <img class="float3d float3d--brain" src="img/3d/brain.webp" alt="" data-depth="34">
+          <img class="float3d float3d--bolt" src="img/3d/bolt.webp" alt="" data-depth="40">
+          <img class="float3d float3d--gear" src="img/3d/gear.webp" alt="" data-depth="28">
+          <img class="float3d float3d--rocket" src="img/3d/rocket.webp" alt="" data-depth="46">
+
+          <p class="scene__caption">Example automation</p>
         </div>
       </div>
 
       <div class="container">
         <div class="stats glass" data-reveal>
-          <div class="stat">
-            <i class="bi bi-grid-1x2"></i>
-            <div>
-              <strong><span class="counter" data-target="50">0</span>+</strong>
-              <span>Tailored solutions</span>
-            </div>
-          </div>
-          <div class="stat">
-            <i class="bi bi-briefcase"></i>
-            <div>
-              <strong><span class="counter" data-target="10">0</span>+</strong>
-              <span>Projects delivered</span>
-            </div>
-          </div>
-          <div class="stat">
-            <i class="bi bi-cpu"></i>
-            <div>
-              <strong><span class="counter" data-target="2">0</span>+</strong>
-              <span>Years of experience</span>
-            </div>
-          </div>
-          <div class="stat">
-            <i class="bi bi-headset"></i>
-            <div>
-              <strong>24/7</strong>
-              <span>Support available</span>
-            </div>
-          </div>
+          <div class="stat"><img src="img/3d/puzzle.webp" alt="" width="52" height="52"><div><strong><span class="counter" data-target="50">0</span>+</strong><span>Tailored solutions</span></div></div>
+          <div class="stat"><img src="img/3d/trophy.webp" alt="" width="52" height="52"><div><strong><span class="counter" data-target="10">0</span>+</strong><span>Projects delivered</span></div></div>
+          <div class="stat"><img src="img/3d/gem.webp" alt="" width="52" height="52"><div><strong><span class="counter" data-target="2">0</span>+</strong><span>Years of experience</span></div></div>
+          <div class="stat"><img src="img/3d/clock.webp" alt="" width="52" height="52"><div><strong>24/7</strong><span>Support available</span></div></div>
         </div>
       </div>
     </section>
 
     <!-- ============ TRUSTED ============ -->
-    <section class="trusted" aria-label="Trusted technology partners">
-      <div class="container">
-        <p class="trusted__title" data-reveal>Supporting businesses across healthcare, enterprise software and digital automation</p>
-      </div>
+    <section class="trusted" aria-label="Trusted by">
+      <p class="trusted__title" data-reveal>Supporting businesses across healthcare, enterprise software and digital automation</p>
       <div class="marquee" data-reveal>
         <div class="marquee__track">
           <img src="img/medicore.png" alt="MediCore">
@@ -239,273 +180,203 @@
       </div>
     </section>
 
+    <!-- ============ SERVICES ============ -->
+    <section class="section" id="services" aria-label="What we automate">
+      <div class="container">
+        <div class="section__head section__head--center" data-reveal>
+          <p class="kicker">What we automate</p>
+          <h2 class="section__title">AI that does real work inside your business</h2>
+          <p class="section__lead">We find the repetitive tasks eating your team's time, then replace them with AI agents and automated workflows that connect to the tools you already use.</p>
+        </div>
+
+        <div class="services">
+          <article class="service glass tilt" data-reveal>
+            <span class="service__art service__art--violet"><img src="img/3d/robot.webp" alt="" loading="lazy"></span>
+            <h3>AI agents</h3>
+            <p>Agents that handle tasks end to end — answer questions, look up records, update systems and hand off to your team when needed.</p>
+            <ul class="tags"><li>Sales</li><li>Support</li><li>Operations</li></ul>
+          </article>
+          <article class="service glass tilt" data-reveal>
+            <span class="service__art service__art--teal"><img src="img/3d/chat.webp" alt="" loading="lazy"></span>
+            <h3>Chatbots &amp; WhatsApp assistants</h3>
+            <p>24/7 assistants on your website and WhatsApp that reply instantly, capture leads and book appointments.</p>
+            <ul class="tags"><li>Website</li><li>WhatsApp</li><li>Lead capture</li></ul>
+          </article>
+          <article class="service glass tilt" data-reveal>
+            <span class="service__art service__art--amber"><img src="img/3d/bolt.webp" alt="" loading="lazy"></span>
+            <h3>Workflow automation</h3>
+            <p>Connect your apps so data moves on its own — no more manual entry, spreadsheets passed around or missed follow-ups.</p>
+            <ul class="tags"><li>Approvals</li><li>Reminders</li><li>Reports</li></ul>
+          </article>
+          <article class="service glass tilt" data-reveal>
+            <span class="service__art service__art--pink"><img src="img/3d/receipt.webp" alt="" loading="lazy"></span>
+            <h3>Document AI</h3>
+            <p>Read invoices, lab reports, forms and receipts automatically and send clean data straight to your system.</p>
+            <ul class="tags"><li>Invoices</li><li>Forms</li><li>OCR</li></ul>
+          </article>
+          <article class="service glass tilt" data-reveal>
+            <span class="service__art service__art--sky"><img src="img/3d/growth.webp" alt="" loading="lazy"></span>
+            <h3>AI analytics &amp; dashboards</h3>
+            <p>Live dashboards and AI summaries that turn your business data into clear decisions.</p>
+            <ul class="tags"><li>KPIs</li><li>Forecasts</li><li>Insights</li></ul>
+          </article>
+          <article class="service glass tilt" data-reveal>
+            <span class="service__art service__art--lime"><img src="img/3d/link.webp" alt="" loading="lazy"></span>
+            <h3>CRM, ERP &amp; API integration</h3>
+            <p>Connect CRMs, ERPs, payment gateways and third-party platforms into one system that talks to itself.</p>
+            <ul class="tags"><li>APIs</li><li>Payments</li><li>CRM</li></ul>
+          </article>
+          <article class="service glass tilt" data-reveal>
+            <span class="service__art service__art--violet"><img src="img/3d/laptop.webp" alt="" loading="lazy"></span>
+            <h3>Custom software &amp; web apps</h3>
+            <p>Secure, scalable business applications built around your workflow — with AI built in from day one.</p>
+            <ul class="tags"><li>Web apps</li><li>Portals</li><li>Mobile</li></ul>
+          </article>
+          <article class="service glass tilt" data-reveal>
+            <span class="service__art service__art--teal"><img src="img/3d/shield.webp" alt="" loading="lazy"></span>
+            <h3>Cloud, security &amp; support</h3>
+            <p>Deployment, monitoring, security and ongoing support so your automations keep running reliably.</p>
+            <ul class="tags"><li>Cloud</li><li>Security</li><li>Maintenance</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESULTS ============ -->
+    <section class="results" aria-label="What changes for your business">
+      <div class="container">
+        <div class="results__panel glass glass--hi" data-reveal>
+          <div class="result"><img src="img/3d/hourglass.webp" alt="" loading="lazy"><strong>Hours back every week</strong><span>Repetitive tasks run on their own</span></div>
+          <div class="result"><img src="img/3d/bolt.webp" alt="" loading="lazy"><strong>Instant replies</strong><span>Customers answered day and night</span></div>
+          <div class="result"><img src="img/3d/target.webp" alt="" loading="lazy"><strong>Fewer errors</strong><span>No more copy-paste mistakes</span></div>
+          <div class="result"><img src="img/3d/rocket.webp" alt="" loading="lazy"><strong>Grow without hiring</strong><span>Systems that scale with you</span></div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ SOLUTIONS ============ -->
     <section class="section" id="Solutions" aria-label="Our solutions">
       <div class="container">
         <div class="section__head section__head--split">
           <div data-reveal>
             <p class="kicker">Our solutions</p>
-            <h2 class="section__title">Technology built for real-world needs</h2>
+            <h2 class="section__title">Ready-to-adapt systems with AI built in</h2>
           </div>
-
           <div class="filters glass" id="projectFilters" role="group" aria-label="Filter solutions by type" data-reveal>
             <span class="filters__pill" id="filterPill" aria-hidden="true"></span>
             <button class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+            <button class="filter-btn" data-filter="ai" aria-pressed="false">AI</button>
             <button class="filter-btn" data-filter="healthcare" aria-pressed="false">Healthcare</button>
-            <button class="filter-btn" data-filter="web" aria-pressed="false">Web apps</button>
-            <button class="filter-btn" data-filter="enterprise" aria-pressed="false">Enterprise</button>
             <button class="filter-btn" data-filter="business" aria-pressed="false">Business</button>
-            <button class="filter-btn" data-filter="ecommerce" aria-pressed="false">E-commerce</button>
+            <button class="filter-btn" data-filter="web" aria-pressed="false">Web &amp; e-commerce</button>
           </div>
         </div>
 
         <div class="projects" id="projectsGrid">
-          <article class="project" data-category="healthcare" data-reveal>
-            <div class="project__media"><img src="img/lab-management.jpg" alt="Laboratory Management System" loading="lazy"></div>
-            <div class="project__body glass">
-              <span class="tag">LIMS</span>
-              <h3>Laboratory Management System</h3>
-              <p>Sample tracking, reports and billing for diagnostic labs</p>
-            </div>
+          <article class="project glass tilt" data-category="ai" data-reveal>
+            <div class="project__art project__art--violet"><img src="img/3d/robot.webp" alt="" class="a1" loading="lazy"><img src="img/3d/chat.webp" alt="" class="a2" loading="lazy"><img src="img/3d/telephone.webp" alt="" class="a3" loading="lazy"></div>
+            <div class="project__body"><span class="tag">AI</span><h3>AI Customer Support Agent</h3><p>Answers customers on website and WhatsApp, books appointments and escalates to your team.</p></div>
           </article>
-          <article class="project" data-category="web" data-reveal>
-            <div class="project__media"><img src="img/webapplication_new.jpg" alt="Custom Web Application" loading="lazy"></div>
-            <div class="project__body glass">
-              <span class="tag">Web apps</span>
-              <h3>Custom Web Application</h3>
-              <p>Business applications shaped around your workflow</p>
-            </div>
+          <article class="project glass tilt" data-category="healthcare" data-reveal>
+            <div class="project__art project__art--teal"><img src="img/3d/testtube.webp" alt="" class="a1" loading="lazy"><img src="img/3d/microscope.webp" alt="" class="a2" loading="lazy"><img src="img/3d/dna.webp" alt="" class="a3" loading="lazy"></div>
+            <div class="project__body"><span class="tag">LIMS</span><h3>Laboratory Management System</h3><p>Sample tracking, automated reports and billing for diagnostic labs.</p></div>
           </article>
-          <article class="project" data-category="enterprise" data-reveal>
-            <div class="project__media"><img src="img/Inventory.jpg" alt="Inventory Management System" loading="lazy"></div>
-            <div class="project__body glass">
-              <span class="tag">Enterprise</span>
-              <h3>Inventory Management System</h3>
-              <p>Stock, purchase and warehouse control in one place</p>
-            </div>
+          <article class="project glass tilt" data-category="healthcare" data-reveal>
+            <div class="project__art project__art--pink"><img src="img/3d/stethoscope.webp" alt="" class="a1" loading="lazy"><img src="img/3d/hospital.webp" alt="" class="a2" loading="lazy"><img src="img/3d/heart.webp" alt="" class="a3" loading="lazy"></div>
+            <div class="project__body"><span class="tag">Healthcare</span><h3>Hospital Management System</h3><p>Hospital operations, patient records and appointments in one place.</p></div>
           </article>
-          <article class="project" data-category="healthcare" data-reveal>
-            <div class="project__media"><img src="img/Hospital_Management.jpg" alt="Hospital Management System" loading="lazy"></div>
-            <div class="project__body glass">
-              <span class="tag">Healthcare</span>
-              <h3>Hospital Management System</h3>
-              <p>Hospital operations and patient management</p>
-            </div>
+          <article class="project glass tilt" data-category="business" data-reveal>
+            <div class="project__art project__art--amber"><img src="img/3d/package.webp" alt="" class="a1" loading="lazy"><img src="img/3d/filebox.webp" alt="" class="a2" loading="lazy"><img src="img/3d/clipboard.webp" alt="" class="a3" loading="lazy"></div>
+            <div class="project__body"><span class="tag">Enterprise</span><h3>Inventory Management System</h3><p>Stock, purchase and warehouse control with low-stock alerts.</p></div>
           </article>
-          <article class="project" data-category="business" data-reveal>
-            <div class="project__media"><img src="img/Payroll.jpeg" alt="HR and Payroll Management System" loading="lazy"></div>
-            <div class="project__body glass">
-              <span class="tag">Business</span>
-              <h3>HR &amp; Payroll Management</h3>
-              <p>Employee records, attendance and payroll</p>
-            </div>
+          <article class="project glass tilt" data-category="business" data-reveal>
+            <div class="project__art project__art--sky"><img src="img/3d/money.webp" alt="" class="a1" loading="lazy"><img src="img/3d/calendar.webp" alt="" class="a2" loading="lazy"><img src="img/3d/briefcase.webp" alt="" class="a3" loading="lazy"></div>
+            <div class="project__body"><span class="tag">Business</span><h3>HR &amp; Payroll Management</h3><p>Employee records, attendance and automated payroll runs.</p></div>
           </article>
-          <article class="project" data-category="ecommerce" data-reveal>
-            <div class="project__media"><img src="img/E-Commerce.jpeg" alt="E-Commerce Platform" loading="lazy"></div>
-            <div class="project__body glass">
-              <span class="tag">E-commerce</span>
-              <h3>E-Commerce Platform</h3>
-              <p>Online store with order and payment management</p>
-            </div>
+          <article class="project glass tilt" data-category="web" data-reveal>
+            <div class="project__art project__art--lime"><img src="img/3d/cart.webp" alt="" class="a1" loading="lazy"><img src="img/3d/card.webp" alt="" class="a2" loading="lazy"><img src="img/3d/package.webp" alt="" class="a3" loading="lazy"></div>
+            <div class="project__body"><span class="tag">E-commerce</span><h3>E-Commerce Platform</h3><p>Online store with order, payment and delivery management.</p></div>
+          </article>
+          <article class="project glass tilt" data-category="web" data-reveal>
+            <div class="project__art project__art--violet"><img src="img/3d/laptop.webp" alt="" class="a1" loading="lazy"><img src="img/3d/globe.webp" alt="" class="a2" loading="lazy"><img src="img/3d/phone.webp" alt="" class="a3" loading="lazy"></div>
+            <div class="project__body"><span class="tag">Web apps</span><h3>Custom Web Application</h3><p>Business portals and applications shaped around your workflow.</p></div>
+          </article>
+          <article class="project glass tilt" data-category="ai" data-reveal>
+            <div class="project__art project__art--pink"><img src="img/3d/memo.webp" alt="" class="a1" loading="lazy"><img src="img/3d/search.webp" alt="" class="a2" loading="lazy"><img src="img/3d/receipt.webp" alt="" class="a3" loading="lazy"></div>
+            <div class="project__body"><span class="tag">AI</span><h3>Document Processing AI</h3><p>Reads invoices, forms and reports, then files the data where it belongs.</p></div>
           </article>
         </div>
-
         <p id="filterEmpty" class="empty" hidden>No solutions in this category yet. Choose another filter or <a href="#contact">tell us what you need</a>.</p>
       </div>
     </section>
 
-    <!-- ============ SERVICES ============ -->
-    <section class="section section--band" id="services" aria-label="Services">
-      <div class="container">
-        <div class="services__intro">
-          <div data-reveal>
-            <p class="kicker">What we do</p>
-            <h2 class="section__title">Intelligent technology built for modern business</h2>
-            <p class="section__lead">
-              TechMitra combines AI, software engineering, cybersecurity, cloud infrastructure and intelligent automation to help businesses build, protect and scale with confidence.
-            </p>
-          </div>
-          <div class="video-frame glass" data-reveal>
-            <video autoplay muted loop playsinline preload="metadata">
-              <source src="assets/videos/Development.mp4" type="video/mp4">
-            </video>
-          </div>
+    <!-- ============ HEALTHCARE ============ -->
+    <section class="section" id="healthcare" aria-label="AI for healthcare and labs">
+      <div class="container health">
+        <div class="health__art glass glass--hi" data-reveal aria-hidden="true">
+          <img src="img/3d/lungs.webp" alt="" style="--i:0">
+          <img src="img/3d/pill.webp" alt="" style="--i:1">
+          <img src="img/3d/heart.webp" alt="" style="--i:2">
+          <img src="img/3d/syringe.webp" alt="" style="--i:3">
+          <img src="img/3d/brain.webp" alt="" style="--i:4">
+          <img src="img/3d/stethoscope.webp" alt="" style="--i:5">
         </div>
-
-        <div class="hub">
-          <div class="hub__col">
-            <article class="service glass spot" data-reveal>
-              <span class="service__icon"><i class="bi bi-magic"></i></span>
-              <span class="service__label">AI automation</span>
-              <h3>Intelligent Automation</h3>
-              <p>Automate repetitive workflows, business operations and decision processes with AI-powered systems.</p>
-            </article>
-            <article class="service glass spot" data-reveal>
-              <span class="service__icon"><i class="bi bi-shield-lock"></i></span>
-              <span class="service__label">Cybersecurity</span>
-              <h3>Security &amp; Threat Protection</h3>
-              <p>Protect applications, data and business systems with secure architecture and monitoring.</p>
-            </article>
-            <article class="service glass spot" data-reveal>
-              <span class="service__icon"><i class="bi bi-cloud"></i></span>
-              <span class="service__label">Cloud infrastructure</span>
-              <h3>Cloud &amp; Server Solutions</h3>
-              <p>Deploy and manage reliable infrastructure, servers, cloud environments and secure connectivity.</p>
-            </article>
-            <article class="service glass spot" data-reveal>
-              <span class="service__icon"><i class="bi bi-database"></i></span>
-              <span class="service__label">Data &amp; integration</span>
-              <h3>Data &amp; System Integration</h3>
-              <p>Connect applications, APIs, databases and external platforms into one connected ecosystem.</p>
-            </article>
-          </div>
-
-          <div class="core" data-reveal aria-hidden="true">
-            <span class="core__orbit core__orbit--1"><i></i></span>
-            <span class="core__orbit core__orbit--2"><i></i></span>
-            <span class="core__orbit core__orbit--3"><i></i></span>
-            <div class="core__sphere glass glass--strong">
-              <i class="bi bi-cpu"></i>
-              <strong>AI technology hub</strong>
-              <span>Automate · Secure · Innovate</span>
-            </div>
-          </div>
-
-          <div class="hub__col">
-            <article class="service glass spot" data-reveal>
-              <span class="service__icon"><i class="bi bi-code-slash"></i></span>
-              <span class="service__label">AI software</span>
-              <h3>AI-Powered Software Engineering</h3>
-              <p>Build intelligent business applications using AI-assisted engineering and modern practices.</p>
-            </article>
-            <article class="service glass spot" data-reveal>
-              <span class="service__icon"><i class="bi bi-robot"></i></span>
-              <span class="service__label">AI assistants</span>
-              <h3>AI Chatbots &amp; Assistants</h3>
-              <p>Chatbots and assistants that help teams communicate, support customers and work faster.</p>
-            </article>
-            <article class="service glass spot" data-reveal>
-              <span class="service__icon"><i class="bi bi-tools"></i></span>
-              <span class="service__label">Technology support</span>
-              <h3>Software Maintenance &amp; Support</h3>
-              <p>Maintain, monitor and improve existing systems so your technology keeps performing.</p>
-            </article>
-            <article class="service glass spot" data-reveal>
-              <span class="service__icon"><i class="bi bi-graph-up-arrow"></i></span>
-              <span class="service__label">AI analytics</span>
-              <h3>AI Analytics &amp; Intelligence</h3>
-              <p>Turn business data into actionable insights with intelligent analytics and reporting.</p>
-            </article>
-          </div>
+        <div class="health__copy" data-reveal>
+          <p class="kicker">AI for healthcare &amp; labs</p>
+          <h2 class="section__title">Built for hospitals, clinics and diagnostic labs</h2>
+          <p class="section__lead">Healthcare is where we started. We combine lab and hospital software with AI automation so your staff spend less time on paperwork and more time on patients.</p>
+          <ul class="checks">
+            <li><i class="bi bi-check-lg"></i> Lab reports delivered to patients on WhatsApp automatically</li>
+            <li><i class="bi bi-check-lg"></i> Online appointment and home-collection booking</li>
+            <li><i class="bi bi-check-lg"></i> Sample tracking from collection to report (LIMS)</li>
+            <li><i class="bi bi-check-lg"></i> Billing, inventory and hospital operations in one system</li>
+          </ul>
+          <a href="#contact" class="btn btn--teal btn--lg magnetic">Talk about your lab or hospital <i class="bi bi-arrow-up-right"></i></a>
         </div>
-
-        <div class="benefits" data-reveal>
-          <div><i class="bi bi-shield-check"></i><strong>Secure</strong><span>Security built into every solution</span></div>
-          <div><i class="bi bi-lightning-charge"></i><strong>Fast</strong><span>Designed for performance</span></div>
-          <div><i class="bi bi-cloud-arrow-up"></i><strong>Scalable</strong><span>Grows with your business</span></div>
-          <div><i class="bi bi-stars"></i><strong>Innovative</strong><span>AI-powered for what's next</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ TECHNOLOGY ============ -->
-    <section class="section" id="Technology" aria-label="Technology capabilities">
-      <div class="container">
-        <div class="section__head section__head--split">
-          <div data-reveal>
-            <p class="kicker">Technology capabilities</p>
-            <h2 class="section__title">Solutions built to move your business forward</h2>
-            <p class="section__lead">Practical digital solutions that improve operations, connect systems and create better digital experiences.</p>
-          </div>
-          <div class="slider-ctrl" data-reveal>
-            <button class="round-btn glass" id="prodPrev" aria-label="Previous capability"><i class="bi bi-chevron-left"></i></button>
-            <button class="round-btn glass" id="prodNext" aria-label="Next capability"><i class="bi bi-chevron-right"></i></button>
-          </div>
-        </div>
-      </div>
-
-      <div class="track" id="productsTrack" tabindex="0" aria-label="Technology capabilities, scrollable">
-        <article class="capability glass spot" data-reveal>
-          <div class="capability__media"><img src="img/service-softwar.jfif" alt="Custom software development" loading="lazy"></div>
-          <div class="capability__body">
-            <span class="service__label">Software development</span>
-            <h3>Custom Software Solutions</h3>
-            <p>Business applications, custom workflows and digital platforms.</p>
-            <a href="#contact" class="link">Discuss your project <i class="bi bi-arrow-up-right"></i></a>
-          </div>
-        </article>
-        <article class="capability glass spot" data-reveal>
-          <div class="capability__media"><img src="img/Enterprise Solutions.jpg" alt="Enterprise software solutions" loading="lazy"></div>
-          <div class="capability__body">
-            <span class="service__label">Enterprise technology</span>
-            <h3>Enterprise Solutions</h3>
-            <p>Business systems, workflow management and data management.</p>
-            <a href="#contact" class="link">Discuss your project <i class="bi bi-arrow-up-right"></i></a>
-          </div>
-        </article>
-        <article class="capability glass spot" data-reveal>
-          <div class="capability__media"><img src="img/Digital Integrations.jfif" alt="API and system integration" loading="lazy"></div>
-          <div class="capability__body">
-            <span class="service__label">API &amp; integration</span>
-            <h3>Digital Integrations</h3>
-            <p>APIs, payment gateways and third-party systems working together.</p>
-            <a href="#contact" class="link">Discuss your project <i class="bi bi-arrow-up-right"></i></a>
-          </div>
-        </article>
-        <article class="capability glass spot" data-reveal>
-          <div class="capability__media"><img src="img/AI & Automation.png" alt="AI and automation" loading="lazy"></div>
-          <div class="capability__body">
-            <span class="service__label">AI &amp; automation</span>
-            <h3>Intelligent Automation</h3>
-            <p>Process automation and intelligent workflows that save hours every week.</p>
-            <a href="#contact" class="link">Discuss your project <i class="bi bi-arrow-up-right"></i></a>
-          </div>
-        </article>
       </div>
     </section>
 
     <!-- ============ PROCESS ============ -->
-    <section class="section section--band" id="process" aria-label="How we work">
+    <section class="section" id="process" aria-label="How we work">
       <div class="container">
-        <div class="section__head" data-reveal>
+        <div class="section__head section__head--center" data-reveal>
           <p class="kicker">How we work</p>
-          <h2 class="section__title">A clear process from idea to delivery</h2>
-          <p class="section__lead">We understand your requirements, build the right solution, test it carefully and support you after launch.</p>
+          <h2 class="section__title">From first call to working automation</h2>
+          <p class="section__lead">A clear, step-by-step process — you see progress at every stage.</p>
         </div>
 
         <div class="timeline" id="timeline">
           <div class="timeline__rail" aria-hidden="true"><span class="timeline__fill" id="timelineFill"></span></div>
-
           <article class="step" data-reveal>
             <span class="step__node">1</span>
-            <div class="step__card glass spot">
-              <div class="step__media"><img src="img/discovery-planning.jfif" alt="Team planning a software project" loading="lazy"></div>
-              <h3>Discovery &amp; planning</h3>
-              <p>We understand your goals, workflows, challenges and scope to create a clear development roadmap.</p>
+            <div class="step__card glass tilt">
+              <img src="img/3d/search.webp" alt="" loading="lazy">
+              <h3>Discover</h3>
+              <p>We map your workflows and find the tasks worth automating first.</p>
             </div>
           </article>
           <article class="step" data-reveal>
             <span class="step__node">2</span>
-            <div class="step__card glass spot">
-              <div class="step__media"><img src="img/design-architecture.jfif" alt="Software design and architecture" loading="lazy"></div>
-              <h3>Design &amp; architecture</h3>
-              <p>We design the user experience, structure, database, integrations and technical architecture.</p>
+            <div class="step__card glass tilt">
+              <img src="img/3d/puzzle.webp" alt="" loading="lazy">
+              <h3>Design</h3>
+              <p>We plan the AI agents, integrations, data flow and security before building.</p>
             </div>
           </article>
           <article class="step" data-reveal>
             <span class="step__node">3</span>
-            <div class="step__card glass spot">
-              <div class="step__media"><img src="img/development-testing.jfif" alt="Software development and testing" loading="lazy"></div>
-              <h3>Development &amp; testing</h3>
-              <p>We build in structured stages, then test and validate for quality, reliability and usability.</p>
+            <div class="step__card glass tilt">
+              <img src="img/3d/tools.webp" alt="" loading="lazy">
+              <h3>Build &amp; test</h3>
+              <p>We build in stages and test with your real data so it works on day one.</p>
             </div>
           </article>
           <article class="step" data-reveal>
             <span class="step__node">4</span>
-            <div class="step__card glass spot">
-              <div class="step__media"><img src="img/deployment-support.jfif" alt="Deployment and software support" loading="lazy"></div>
-              <h3>Deployment &amp; support</h3>
-              <p>We deploy your solution and provide ongoing support, maintenance and improvements.</p>
+            <div class="step__card glass tilt">
+              <img src="img/3d/rocket.webp" alt="" loading="lazy">
+              <h3>Launch &amp; improve</h3>
+              <p>We deploy, train your team, monitor results and keep improving.</p>
             </div>
           </article>
         </div>
@@ -515,23 +386,23 @@
     <!-- ============ ABOUT ============ -->
     <section class="section" id="studio" aria-label="About TechMitra">
       <div class="container about">
-        <div class="about__media" data-reveal>
-          <div class="about__frame glass">
-            <img src="img/TechMitra.png" alt="The TechMitra Technologies team at work" loading="lazy">
+        <div class="about__art" data-reveal aria-hidden="true">
+          <div class="about__orb glass glass--hi">
+            <img src="img/favicon.png" alt="" class="about__logo">
           </div>
-          <div class="about__badge glass glass--strong">
-            <strong>2026</strong>
-            <span>Founded in India</span>
-          </div>
+          <img src="img/3d/handshake.webp" alt="" class="about__f about__f--1">
+          <img src="img/3d/bulb.webp" alt="" class="about__f about__f--2">
+          <img src="img/3d/wand.webp" alt="" class="about__f about__f--3">
+          <img src="img/3d/star.webp" alt="" class="about__f about__f--4">
+          <div class="about__badge glass glass--hi"><strong>2026</strong><span>Founded in India</span></div>
         </div>
 
         <div class="about__body" data-reveal>
-          <p class="kicker">The technology team</p>
-          <h2 class="section__title">Driven by technology and innovation</h2>
-          <p>TechMitra builds reliable and scalable software designed around real business needs. From healthcare and laboratory management to business automation, e-commerce and enterprise applications, we combine modern technology with practical workflows to make everyday operations simpler and more efficient.</p>
+          <p class="kicker">About TechMitra</p>
+          <h2 class="section__title">Your technology partner, not just a vendor</h2>
+          <p>TechMitra is an AI automation and software company from India. From healthcare and laboratory systems to business automation, e-commerce and enterprise applications, we combine modern AI with practical workflows to make everyday operations simpler.</p>
           <blockquote class="quote glass">
-            <i class="bi bi-quote"></i>
-            <p>We don't just build software — we understand the problem, simplify the process, and create technology that works for people.</p>
+            <p>"We don't just build software — we understand the problem, simplify the process, and create technology that works for people."</p>
             <cite>TechMitra Technologies</cite>
           </blockquote>
         </div>
@@ -539,16 +410,12 @@
     </section>
 
     <!-- ============ TESTIMONIALS ============ -->
-    <section class="section section--band" aria-label="Client feedback">
+    <section class="section" aria-label="Client feedback">
       <div class="container voices">
         <div class="voices__intro" data-reveal>
           <p class="kicker">Client feedback</p>
           <h2 class="section__title">What our clients say</h2>
-          <p class="section__lead">We work closely with clients to understand their requirements, solve real business challenges and deliver reliable digital solutions.</p>
-          <ul class="voices__points">
-            <li><i class="bi bi-chat-square-heart"></i><div><strong>Real experiences</strong><span>Feedback from our project journey</span></div></li>
-            <li><i class="bi bi-people"></i><div><strong>Our commitment</strong><span>Support from start to finish</span></div></li>
-          </ul>
+          <p class="section__lead">We work closely with clients to understand their requirements and deliver reliable solutions.</p>
           <button type="button" class="btn btn--primary magnetic" id="tmClientShareBtn">Share your experience <i class="bi bi-pencil-square"></i></button>
         </div>
 
@@ -556,13 +423,13 @@
           <div class="voices__col">
             <div class="voices__track">
               <article class="voice glass"><div class="stars">★★★★★</div><p>"TechMitra understood our requirements clearly and delivered a solution that matched our business workflow. The communication throughout the project was smooth and professional."</p><footer><span class="avatar">TC</span><div><strong>Technology client</strong><span>Software development project</span></div></footer></article>
-              <article class="voice glass"><div class="stars">★★★★★</div><p>"The team was responsive, technically capable, and easy to work with. They took our requirements seriously and helped us turn the idea into a practical digital solution."</p><footer><span class="avatar">BC</span><div><strong>Business client</strong><span>Enterprise software project</span></div></footer></article>
-              <article class="voice glass"><div class="stars">★★★★★</div><p>"From planning and development to testing and support, TechMitra maintained a clear and professional approach. The team was flexible when our requirements evolved."</p><footer><span class="avatar">PC</span><div><strong>Project client</strong><span>Digital solutions project</span></div></footer></article>
+              <article class="voice glass"><div class="stars">★★★★★</div><p>"The team was responsive, technically capable, and easy to work with. They took our requirements seriously and helped us turn the idea into a practical digital solution."</p><footer><span class="avatar avatar--teal">BC</span><div><strong>Business client</strong><span>Enterprise software project</span></div></footer></article>
+              <article class="voice glass"><div class="stars">★★★★★</div><p>"From planning and development to testing and support, TechMitra maintained a clear and professional approach. The team was flexible when our requirements evolved."</p><footer><span class="avatar avatar--pink">PC</span><div><strong>Project client</strong><span>Digital solutions project</span></div></footer></article>
             </div>
           </div>
           <div class="voices__col voices__col--down">
             <div class="voices__track">
-              <article class="voice glass"><div class="stars">★★★★★</div><p>"The development process was organized and transparent. TechMitra kept us informed and delivered the required functionality with good attention to detail."</p><footer><span class="avatar">DC</span><div><strong>Digital client</strong><span>Web application project</span></div></footer></article>
+              <article class="voice glass"><div class="stars">★★★★★</div><p>"The development process was organized and transparent. TechMitra kept us informed and delivered the required functionality with good attention to detail."</p><footer><span class="avatar avatar--amber">DC</span><div><strong>Digital client</strong><span>Web application project</span></div></footer></article>
               <article class="voice glass"><div class="stars">★★★★★</div><p>"The team provided practical technical guidance throughout the project and helped us build a solution that was easy for our users to work with."</p><footer><span class="avatar">SC</span><div><strong>Software client</strong><span>Custom software project</span></div></footer></article>
             </div>
           </div>
@@ -574,18 +441,17 @@
     <section class="section" id="contact" aria-label="Contact TechMitra Technologies">
       <div class="container contact">
         <div class="contact__info" data-reveal>
-          <p class="kicker">Start a project</p>
-          <h2 class="section__title">Let's build something that works for your business</h2>
-          <p class="section__lead">Have an idea, a business requirement or an existing system that needs improvement? Tell us what you want to build and our team will get in touch.</p>
-
+          <p class="kicker">Book a free automation call</p>
+          <h2 class="section__title">Tell us what's slowing your team down</h2>
+          <p class="section__lead">Share your idea or the tasks you want automated. We'll reply with practical options and a clear plan.</p>
           <ul class="contact__list">
-            <li class="glass"><i class="bi bi-building"></i><div><span>Company</span><strong>TechMitra Technologies</strong></div></li>
-            <li class="glass"><i class="bi bi-envelope"></i><div><span>Email</span><strong><a href="mailto:support@techmitra.co.in">support@techmitra.co.in</a></strong></div></li>
-            <li class="glass"><i class="bi bi-clock"></i><div><span>Availability</span><strong>Mon–Fri, 9:00–18:00 · online and by appointment</strong></div></li>
+            <li class="glass"><img src="img/3d/office.webp" alt="" width="46" height="46"><div><span>Company</span><strong>TechMitra Technologies</strong></div></li>
+            <li class="glass"><img src="img/3d/envelope.webp" alt="" width="46" height="46"><div><span>Email</span><strong><a href="mailto:support@techmitra.co.in">support@techmitra.co.in</a></strong></div></li>
+            <li class="glass"><img src="img/3d/clock.webp" alt="" width="46" height="46"><div><span>Availability</span><strong>Mon–Fri, 9:00–18:00 · online and by appointment</strong></div></li>
           </ul>
         </div>
 
-        <div class="contact__form glass glass--strong" data-reveal>
+        <div class="contact__form glass glass--hi" data-reveal>
           <form id="contactForm" novalidate>
             <div class="form-grid">
               <div class="field">
@@ -602,14 +468,13 @@
                 <label for="cf-type">What do you need?</label>
                 <select id="cf-type" name="type" required>
                   <option value="">Select one…</option>
-                  <option>Custom Software Development</option>
-                  <option>Web Application Development</option>
-                  <option>Mobile App Development</option>
+                  <option>AI Agent / Chatbot</option>
+                  <option>WhatsApp Automation</option>
+                  <option>Workflow Automation</option>
+                  <option>Document AI</option>
                   <option>Healthcare / Lab Software</option>
-                  <option>Enterprise Solutions</option>
-                  <option>API &amp; System Integrations</option>
-                  <option>Cloud &amp; IT Solutions</option>
-                  <option>AI &amp; Automation</option>
+                  <option>Custom Software / Web App</option>
+                  <option>API &amp; System Integration</option>
                   <option>Other</option>
                 </select>
                 <span class="field__error">Choose a service.</span>
@@ -626,15 +491,12 @@
                 </select>
               </div>
               <div class="field field--full">
-                <label for="cf-message">Tell us about your project</label>
-                <textarea id="cf-message" name="message" rows="5" maxlength="2000" placeholder="Your idea, business requirements, existing system, or the solution you're looking for." required></textarea>
+                <label for="cf-message">What would you like to automate?</label>
+                <textarea id="cf-message" name="message" rows="5" maxlength="2000" placeholder="For example: we answer the same customer questions all day, or we type invoice data into our system by hand." required></textarea>
                 <span class="field__error">Add a few details (at least 10 characters).</span>
               </div>
             </div>
-
-            <button type="submit" class="btn btn--primary btn--lg btn--block magnetic">
-              Send enquiry <i class="bi bi-send"></i>
-            </button>
+            <button type="submit" class="btn btn--primary btn--lg btn--block magnetic">Send enquiry <i class="bi bi-send"></i></button>
             <p class="form-note">Sending opens your email app with your enquiry ready to send to our team.</p>
             <div class="form-success" id="formSuccess" role="status" aria-live="polite">
               <i class="bi bi-check2-circle"></i>
@@ -649,21 +511,22 @@
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__cta glass glass--strong" data-reveal>
+      <div class="footer__cta glass glass--hi" data-reveal>
+        <img src="img/3d/rocket.webp" alt="" class="footer__rocket" aria-hidden="true">
         <div>
-          <h2>Turn your ideas into digital impact.</h2>
-          <p>Tell us about your business and we'll suggest the right technology.</p>
+          <h2>Ready to put AI to work?</h2>
+          <p>Book a free call and we'll show you what you can automate first.</p>
         </div>
-        <a href="#contact" class="btn btn--primary btn--lg magnetic">Start a conversation <i class="bi bi-arrow-up-right"></i></a>
+        <a href="#contact" class="btn btn--primary btn--lg magnetic">Book a free call <i class="bi bi-arrow-up-right"></i></a>
       </div>
 
       <div class="footer__main">
         <div class="footer__brand">
           <a href="#top" class="brand" aria-label="TechMitra Technologies">
             <img src="img/favicon.png" alt="" class="brand__logo" width="40" height="40">
-            <span class="brand__text">TechMitra <small>Technologies</small></span>
+            <span class="brand__text">TechMitra <small>AI Automation Agency</small></span>
           </a>
-          <p>Intelligent technology and digital solutions built to simplify business and accelerate growth.</p>
+          <p>AI automation and software that simplifies business and accelerates growth.</p>
           <div class="socials">
             <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="glass"><i class="bi bi-whatsapp"></i></a>
             <a href="https://www.instagram.com/techmitratechnologies" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="glass"><i class="bi bi-instagram"></i></a>
@@ -671,20 +534,20 @@
           </div>
         </div>
         <div class="footer__col">
-          <h4>Company</h4>
-          <a href="#studio">About us</a>
-          <a href="#services">Services</a>
-          <a href="#process">Our process</a>
-          <a href="#Solutions">Solutions</a>
-          <a href="careers.html">Careers</a>
+          <h4>Services</h4>
+          <a href="#services">AI agents</a>
+          <a href="#services">Chatbots &amp; WhatsApp</a>
+          <a href="#services">Workflow automation</a>
+          <a href="#services">Document AI</a>
+          <a href="#services">Custom software</a>
         </div>
         <div class="footer__col">
-          <h4>Technology</h4>
-          <a href="#Solutions">Web applications</a>
-          <a href="#Solutions">Enterprise solutions</a>
-          <a href="#services">AI &amp; automation</a>
-          <a href="#services">Cloud &amp; integration</a>
-          <a href="#Technology">Custom platforms</a>
+          <h4>Company</h4>
+          <a href="#studio">About us</a>
+          <a href="#Solutions">Solutions</a>
+          <a href="#healthcare">Healthcare</a>
+          <a href="#process">Our process</a>
+          <a href="careers.html">Careers</a>
         </div>
         <div class="footer__col">
           <h4>Contact</h4>
@@ -701,7 +564,6 @@
     </div>
   </footer>
 
-  <!-- ============ SOCIAL DOCK ============ -->
   <div class="dock glass" aria-label="Social media links">
     <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
     <a href="https://www.instagram.com/techmitratechnologies" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
@@ -712,11 +574,11 @@
 
   <!-- ============ FEEDBACK MODAL ============ -->
   <div class="modal" id="tmFeedbackOverlay" aria-hidden="true">
-    <div class="modal__box glass glass--strong" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle">
+    <div class="modal__box glass glass--hi" role="dialog" aria-modal="true" aria-labelledby="feedbackTitle">
       <button type="button" class="modal__close" id="tmFeedbackClose" aria-label="Close feedback form"><i class="bi bi-x-lg"></i></button>
+      <img src="img/3d/star.webp" alt="" class="modal__art" width="64" height="64">
       <h3 id="feedbackTitle">Share your feedback</h3>
       <p>We'd love to hear about your experience working with us.</p>
-
       <form id="tmFeedbackForm" novalidate>
         <div class="field">
           <label for="tmFeedbackName">Your name</label>
@@ -737,10 +599,10 @@
           <label for="tmFeedbackType">Project type <small>(optional)</small></label>
           <select id="tmFeedbackType" name="projectType">
             <option value="">Select project type</option>
+            <option>AI Automation</option>
             <option>Web Development</option>
             <option>Software Development</option>
             <option>Healthcare Software</option>
-            <option>Enterprise Solution</option>
             <option>API Integration</option>
             <option>Other</option>
           </select>
@@ -761,33 +623,29 @@
   <!-- ============ CHATBOT ============ -->
   <div class="chat" id="tmChatbot">
     <button class="chat__launcher" id="tmChatbotButton" type="button" aria-label="Open TechMitra assistant" aria-expanded="false">
-      <i class="bi bi-robot chat__icon-open"></i>
+      <img src="img/3d/robot.webp" alt="" class="chat__icon-open">
       <i class="bi bi-x-lg chat__icon-close"></i>
       <span class="chat__ping"></span>
     </button>
 
-    <div class="chat__window glass glass--strong" id="tmChatbotWindow" aria-hidden="true">
+    <div class="chat__window glass glass--hi" id="tmChatbotWindow" aria-hidden="true">
       <div class="chat__head">
-        <span class="chat__avatar"><i class="bi bi-robot"></i></span>
+        <span class="chat__avatar"><img src="img/3d/robot.webp" alt=""></span>
         <div>
           <strong>TechMitra Assistant</strong>
           <span><span class="live-dot"></span> Online</span>
         </div>
         <button class="chat__close" id="tmChatbotClose" type="button" aria-label="Close assistant"><i class="bi bi-dash-lg"></i></button>
       </div>
-
       <div class="chat__messages" id="tmChatbotMessages">
-        <div class="msg msg--bot">
-          <div class="msg__bubble"><p>Hello! 👋 Welcome to <strong>TechMitra</strong>. How can we help you today?</p></div>
-        </div>
+        <div class="msg msg--bot"><div class="msg__bubble"><p>Hello! 👋 Welcome to <strong>TechMitra</strong>. What would you like to automate?</p></div></div>
         <div class="chat__quick">
-          <button type="button" data-chat="I want to know about your services.">Our services</button>
-          <button type="button" data-chat="I want to discuss a software project.">Start a project</button>
-          <button type="button" data-chat="I want to know about your healthcare solutions.">Healthcare solutions</button>
+          <button type="button" data-chat="I want to know about your AI automation services.">AI automation</button>
+          <button type="button" data-chat="I want a chatbot or WhatsApp assistant.">Chatbot / WhatsApp</button>
+          <button type="button" data-chat="I want to know about your healthcare solutions.">Healthcare</button>
           <button type="button" data-chat="I want to contact TechMitra.">Contact us</button>
         </div>
       </div>
-
       <form class="chat__input" id="tmChatbotForm">
         <input type="text" id="tmChatbotInput" placeholder="Type your message…" autocomplete="off" maxlength="500" aria-label="Message">
         <button type="submit" aria-label="Send message"><i class="bi bi-send-fill"></i></button>

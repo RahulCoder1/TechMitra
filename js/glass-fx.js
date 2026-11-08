@@ -45,14 +45,28 @@
     }).observe(rows, { childList: true });
   }
 
-  // Cursor light on glass cards
+  // 3D tilt + light on glass cards
   if (fine && !reduce) {
     document.addEventListener("pointermove", function (e) {
-      var card = e.target.closest && e.target.closest(".spot, .career-job-card");
+      var card = e.target.closest && e.target.closest(".tilt, .career-job-card");
       if (!card) return;
       var r = card.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
       card.style.setProperty("--mx", e.clientX - r.left + "px");
       card.style.setProperty("--my", e.clientY - r.top + "px");
+      if (card.classList.contains("tilt")) {
+        card.classList.add("is-tilting");
+        card.style.setProperty("--ry", ((px - 0.5) * 10).toFixed(2) + "deg");
+        card.style.setProperty("--rx", ((0.5 - py) * 10).toFixed(2) + "deg");
+      }
     }, { passive: true });
+    document.addEventListener("pointerout", function (e) {
+      var card = e.target.closest && e.target.closest(".tilt");
+      if (card && !card.contains(e.relatedTarget)) {
+        card.classList.remove("is-tilting");
+        card.style.setProperty("--rx", "0deg");
+        card.style.setProperty("--ry", "0deg");
+      }
+    });
   }
 })();

@@ -51,8 +51,8 @@
       document.body.classList.add("is-ready");
       if (title) title.classList.add("is-in");
       setTimeout(function () {
-        $$(".panel").forEach(function (p) { p.classList.add("is-floating"); });
-      }, 2400);
+        $$(".float3d").forEach(function (p) { p.classList.add("is-floating"); });
+      }, 2800);
       startBoard();
     }
 
@@ -61,29 +61,35 @@
     setTimeout(start, 2500); // never block on slow assets
   }
 
-  /* ---------- Hero board live data ---------- */
+  /* ---------- Hero scene live data ---------- */
   function startBoard() {
+    if (reduceMotion) return;
     var ticker = $("[data-ticker]");
-    var toastId = $("#toastId");
-    var toastPanel = $(".panel--toast");
-    if (!ticker || reduceMotion) return;
-
-    var value = Number(ticker.getAttribute("data-ticker"));
-    setInterval(function () {
-      value += Math.floor(Math.random() * 3) + 1;
-      ticker.textContent = value.toLocaleString("en-IN");
-    }, 2200);
-
-    var samples = ["LAB-24817", "LAB-24822", "LAB-24830", "LAB-24836", "LAB-24841"];
-    var actions = ["sent to patient", "shared on WhatsApp", "approved by pathologist", "sent to doctor"];
-    var n = 0;
-    setInterval(function () {
-      n++;
-      toastPanel.classList.remove("is-swap");
-      void toastPanel.offsetWidth;
-      toastId.textContent = "Sample " + samples[n % samples.length] + " · " + actions[n % actions.length];
-      toastPanel.classList.add("is-swap");
-    }, 3600);
+    var logText = $("#logText");
+    var logTime = $("#logTime");
+    var win = $(".scene__window");
+    if (ticker) {
+      var value = Number(ticker.getAttribute("data-ticker"));
+      setInterval(function () { value += 1; ticker.textContent = value; }, 4200);
+    }
+    if (logText && win) {
+      var events = [
+        ["Invoice #INV-2041 processed", "0.8s"],
+        ["Lead from website added to CRM", "1.2s"],
+        ["Lab report sent on WhatsApp", "0.6s"],
+        ["Purchase order approved", "0.9s"],
+        ["Customer query answered by AI", "2.1s"]
+      ];
+      var n = 0;
+      setInterval(function () {
+        n = (n + 1) % events.length;
+        win.classList.remove("is-swap");
+        void win.offsetWidth;
+        logText.textContent = events[n][0];
+        logTime.textContent = events[n][1];
+        win.classList.add("is-swap");
+      }, 3600);
+    }
   }
 
   /* ---------- Header ---------- */
@@ -214,8 +220,10 @@
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target);
+          var t = entry.target;
+          t.classList.add("is-visible");
+          io.unobserve(t);
+          setTimeout(function () { t.classList.add("done"); }, 1100 + (parseInt(t.style.getPropertyValue("--d"), 10) || 0));
         }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
@@ -369,14 +377,23 @@
   function initPointerFx() {
     if (!finePointer || reduceMotion) return;
 
-    document.addEventListener("pointermove", function (e) {
-      var card = e.target.closest && e.target.closest(".spot");
-      if (card) {
+    $$(".tilt").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
         var r = card.getBoundingClientRect();
-        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
-        card.style.setProperty("--my", (e.clientY - r.top) + "px");
-      }
-    }, { passive: true });
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
+        card.classList.add("is-tilting");
+        card.style.setProperty("--ry", ((px - 0.5) * 10).toFixed(2) + "deg");
+        card.style.setProperty("--rx", ((0.5 - py) * 10).toFixed(2) + "deg");
+        card.style.setProperty("--mx", e.clientX - r.left + "px");
+        card.style.setProperty("--my", e.clientY - r.top + "px");
+      });
+      card.addEventListener("pointerleave", function () {
+        card.classList.remove("is-tilting");
+        card.style.setProperty("--rx", "0deg");
+        card.style.setProperty("--ry", "0deg");
+      });
+    });
 
     $$(".magnetic").forEach(function (btn) {
       btn.addEventListener("pointermove", function (e) {
@@ -388,21 +405,20 @@
       btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
     });
 
-    var board = $(".board");
+    var scene = $("#scene");
     var hero = $(".hero");
-    if (board && hero) {
+    if (scene && hero) {
+      var layers = $$("[data-depth]", scene);
       hero.addEventListener("pointermove", function (e) {
         var r = hero.getBoundingClientRect();
         var x = (e.clientX - r.left) / r.width - 0.5;
         var y = (e.clientY - r.top) / r.height - 0.5;
-        $$(".panel", board).forEach(function (p, i) {
-          var depth = [14, 26, 20][i] || 16;
-          p.style.setProperty("translate", (x * depth) + "px " + (y * depth) + "px");
+        layers.forEach(function (l) {
+          var d = Number(l.getAttribute("data-depth")) || 10;
+          l.style.translate = (x * d).toFixed(1) + "px " + (y * d).toFixed(1) + "px";
         });
       });
-      hero.addEventListener("pointerleave", function () {
-        $$(".panel", board).forEach(function (p) { p.style.removeProperty("translate"); });
-      });
+      hero.addEventListener("pointerleave", function () { layers.forEach(function (l) { l.style.translate = ""; }); });
     }
   }
 
@@ -555,12 +571,15 @@
 
     function reply(text) {
       var m = text.toLowerCase();
-      if (m.indexOf("service") > -1) return "We provide custom software development, web applications, enterprise solutions, healthcare software, API integrations, cloud solutions and automation.";
-      if (m.indexOf("project") > -1) return "We'd be happy to discuss your project. Tell us about your requirements in the contact form and our team will help you choose the right solution.";
-      if (m.indexOf("healthcare") > -1 || m.indexOf("lims") > -1 || m.indexOf("lab") > -1 || m.indexOf("hospital") > -1) return "TechMitra builds healthcare solutions including Laboratory Information Management Systems and hospital management workflows.";
-      if (m.indexOf("contact") > -1 || m.indexOf("email") > -1) return "You can email us at " + CONTACT_EMAIL + " or use the contact form at the bottom of this page.";
-      if (m.indexOf("career") > -1 || m.indexOf("job") > -1) return "We're hiring! See open positions on our Careers page.";
-      return "Thanks for reaching out! 👋 Our team can help with software development, healthcare solutions, web applications, integrations and business automation.";
+      function has() { for (var i = 0; i < arguments.length; i++) if (m.indexOf(arguments[i]) > -1) return true; return false; }
+      if (has("whatsapp", "chatbot", "chat bot", "bot")) return "We build AI chatbots for your website and WhatsApp that reply instantly, capture leads and book appointments 24/7. Tell us about your business in the contact form and we'll suggest a setup.";
+      if (has("automation", "automate", "agent") || /\bai\b/.test(m)) return "We build AI agents and automated workflows — invoice and document processing, lead follow-ups, reports, approvals and system integrations. Book a free automation call and we'll show you what to automate first.";
+      if (has("healthcare", "lims", "lab", "hospital", "clinic")) return "We build lab (LIMS) and hospital management systems with automation built in — WhatsApp report delivery, online booking and sample tracking.";
+      if (has("price", "cost", "budget", "charge")) return "Pricing depends on what you want to automate. Share your requirement in the contact form and we'll send a clear estimate.";
+      if (has("contact", "email", "call", "meeting")) return "You can email us at " + CONTACT_EMAIL + " or use the 'Book a free automation call' form on this page.";
+      if (has("career", "job", "hiring")) return "We're hiring! See open positions on our Careers page.";
+      if (has("service", "software", "website", "app")) return "We offer AI agents, chatbots & WhatsApp assistants, workflow automation, document AI, analytics dashboards, integrations and custom software.";
+      return "Thanks for reaching out! 👋 Tell me what task takes your team the most time, and I'll suggest how we can automate it.";
     }
 
     function add(text, who) {
