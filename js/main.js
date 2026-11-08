@@ -552,6 +552,52 @@
     });
   }
 
+  /* ---------- Section rail (replaces the scrollbar) ---------- */
+  function initRail() {
+    var rail = $("#sectionRail");
+    if (!rail) return;
+    var fill = $("#railFill");
+    var links = $$("a", rail);
+    var ticking = false;
+    var flashTimer;
+    function update() {
+      var max = doc.scrollHeight - window.innerHeight;
+      if (fill) fill.style.transform = "scaleY(" + (max > 0 ? window.scrollY / max : 0) + ")";
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+
+    if (!("IntersectionObserver" in window)) return;
+    var current = null;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var id = "#" + entry.target.id;
+        if (id === current) return;
+        current = id;
+        links.forEach(function (l) {
+          var on = l.getAttribute("href") === id;
+          l.classList.toggle("is-active", on);
+          if (on) {
+            l.setAttribute("aria-current", "true");
+            l.classList.add("is-flash");
+            clearTimeout(flashTimer);
+            flashTimer = setTimeout(function () { l.classList.remove("is-flash"); }, 1400);
+          } else {
+            l.removeAttribute("aria-current");
+            l.classList.remove("is-flash");
+          }
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    links.forEach(function (l) {
+      var sec = document.querySelector(l.getAttribute("href"));
+      if (sec) io.observe(sec);
+    });
+  }
+
   /* ---------- Footer year ---------- */
   function initYear() {
     var y = $("#footerYear");
@@ -565,7 +611,9 @@
     initMobileNav();
     initSmoothScroll();
     initScrollSpy();
+    initVoices();
     initReveal();
+    initRail();
     initCounters();
     initFilter();
     initTrack();
