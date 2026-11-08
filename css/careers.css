@@ -4,15 +4,15 @@
 ========================================================= */
 
 /* ---------- Motion helpers ---------- */
-.c-rise { opacity: 0; transform: translateY(22px); filter: blur(8px); transition: opacity .9s var(--ease), transform .9s var(--ease), filter .9s var(--ease); }
-.is-ready .c-rise { opacity: 1; transform: none; filter: none; }
+.c-rise { opacity: 0; transform: translateY(12px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.is-ready .c-rise { opacity: 1; transform: none; }
 .is-ready .c-rise:nth-child(2) { transition-delay: .1s; }
 .is-ready .c-rise:nth-child(3) { transition-delay: .2s; }
 .is-ready .c-rise:nth-child(4) { transition-delay: .3s; }
 .is-ready .career-hero__card.c-rise { transition-delay: .35s; }
 
-.c-reveal { opacity: 0; transform: translateY(30px) scale(.98); filter: blur(10px); transition: opacity .9s var(--ease), transform .9s var(--ease), filter .9s var(--ease); transition-delay: var(--d, 0ms); }
-.c-reveal.is-visible { opacity: 1; transform: none; filter: none; }
+.c-reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s var(--ease), transform .7s var(--ease); transition-delay: var(--d, 0ms); }
+.c-reveal.is-visible { opacity: 1; transform: none; }
 .c-reveal.tilt.is-visible { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0)); transition-delay: 0ms; }
 
 /* ---------- Hero ---------- */
@@ -24,7 +24,7 @@
 .career-hero h1 span { display: block; color: var(--ink-soft); font-weight: 600; }
 .career-hero__copy > p:not(.hero__kicker) { margin-top: 22px; max-width: 54ch; font-size: 1.12rem; color: var(--ink-soft); }
 
-.career-hero__card { padding: 30px; border-radius: var(--r-xl); animation: float 7s ease-in-out 1.5s infinite; }
+.career-hero__card { padding: 30px; border-radius: var(--r-xl); }
 .career-hero__count { margin: 22px 0 24px; }
 .career-hero__count strong {
   display: block; font-family: var(--font-display); font-size: 5.5rem; font-weight: 800; line-height: .9;
@@ -75,7 +75,7 @@
 }
 .career-job-card:hover { transform: translateY(-6px); border-color: rgba(123,92,255,.35); }
 .career-job-card:hover::before { opacity: 1; }
-@keyframes job-in { from { opacity: 0; transform: translateY(26px); filter: blur(8px); } }
+@keyframes job-in { from { opacity: 0; transform: translateY(12px); } }
 
 .career-job-top { display: flex; flex-wrap: wrap; gap: 8px; }
 .career-job-type, .career-job-department { padding: 5px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600; }
@@ -113,7 +113,7 @@
 .career-benefit-card:hover { transform: translateY(-6px); }
 .career-benefit-icon { width: 80px; height: 80px; border-radius: 24px; display: grid; place-items: center; background: linear-gradient(150deg, #efe8ff, #d8cbff); border: 1px solid #fff; box-shadow: 0 16px 28px -14px rgba(70,60,150,.4); }
 .career-benefit-icon img { width: 56px; height: 56px; transition: transform .6s var(--ease-spring); }
-.career-benefit-card:hover .career-benefit-icon img { transform: scale(1.12) rotate(-6deg); }
+.career-benefit-card:hover .career-benefit-icon img { transform: translateY(-3px); }
 .career-benefit-card:nth-child(2) .career-benefit-icon { background: linear-gradient(150deg, #e0fbf6, #b5efe5); }
 .career-benefit-card:nth-child(3) .career-benefit-icon { background: linear-gradient(150deg, #ffeaf4, #ffcbe2); }
 .career-benefit-card:nth-child(4) .career-benefit-icon { background: linear-gradient(150deg, #fff4e0, #ffdca6); }

@@ -7,7 +7,7 @@
   <meta name="description" content="TechMitra Technologies is an AI automation agency. We build AI agents, chatbots, WhatsApp assistants, automated workflows and custom software for businesses, hospitals and diagnostic labs.">
   <meta name="keywords" content="AI automation agency, AI agents, AI chatbot, WhatsApp automation, workflow automation, document AI, LIMS, hospital management system, custom software development, TechMitra Technologies">
   <meta name="author" content="TechMitra Technologies">
-  <meta name="theme-color" content="#eef1f8">
+  <meta name="theme-color" content="#fbfcff">
   <meta property="og:title" content="TechMitra Technologies | AI Automation Agency">
   <meta property="og:description" content="AI agents, chatbots, automated workflows and custom software that give your team hours back every week.">
   <meta property="og:type" content="website">
@@ -23,10 +23,6 @@
 </head>
 <body>
 
-  <div class="loader" id="pageLoader" aria-hidden="true">
-    <div class="loader__orb glass"><img src="img/3d/robot.webp" alt=""></div>
-  </div>
-
   <a class="skip-link" href="#main">Skip to content</a>
 
   <div class="aurora" aria-hidden="true">
@@ -35,8 +31,6 @@
     <span class="aurora__blob aurora__blob--c"></span>
     <span class="aurora__blob aurora__blob--d"></span>
   </div>
-
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- ============ HEADER ============ -->
   <header class="nav" id="siteHeader">
@@ -75,15 +69,15 @@
             AI automation agency · Software · Integrations
           </p>
 
-          <h1 class="hero__title" data-split>We automate the work that slows your business down.</h1>
+          <h1 class="hero__title" data-intro>We automate the work that slows your business down.</h1>
 
           <p class="hero__lead" data-intro>
             TechMitra builds AI agents, chatbots, WhatsApp assistants and automated workflows — plus the custom software around them — so your team spends time on customers, not copy-paste.
           </p>
 
           <div class="hero__actions" data-intro>
-            <a href="#contact" class="btn btn--primary btn--lg magnetic">Book a free automation call <i class="bi bi-arrow-up-right"></i></a>
-            <a href="#services" class="btn btn--glass btn--lg magnetic">See what we automate</a>
+            <a href="#contact" class="btn btn--primary btn--lg">Book a free automation call <i class="bi bi-arrow-up-right"></i></a>
+            <a href="#services" class="btn btn--glass btn--lg">See what we automate</a>
           </div>
 
           <ul class="hero__proof" data-intro>
@@ -331,7 +325,7 @@
             <li><i class="bi bi-check-lg"></i> Sample tracking from collection to report (LIMS)</li>
             <li><i class="bi bi-check-lg"></i> Billing, inventory and hospital operations in one system</li>
           </ul>
-          <a href="#contact" class="btn btn--teal btn--lg magnetic">Talk about your lab or hospital <i class="bi bi-arrow-up-right"></i></a>
+          <a href="#contact" class="btn btn--teal btn--lg">Talk about your lab or hospital <i class="bi bi-arrow-up-right"></i></a>
         </div>
       </div>
     </section>
@@ -416,7 +410,7 @@
           <p class="kicker">Client feedback</p>
           <h2 class="section__title">What our clients say</h2>
           <p class="section__lead">We work closely with clients to understand their requirements and deliver reliable solutions.</p>
-          <button type="button" class="btn btn--primary magnetic" id="tmClientShareBtn">Share your experience <i class="bi bi-pencil-square"></i></button>
+          <button type="button" class="btn btn--primary" id="tmClientShareBtn">Share your experience <i class="bi bi-pencil-square"></i></button>
         </div>
 
         <div class="voices__wall" data-reveal>
@@ -496,7 +490,7 @@
                 <span class="field__error">Add a few details (at least 10 characters).</span>
               </div>
             </div>
-            <button type="submit" class="btn btn--primary btn--lg btn--block magnetic">Send enquiry <i class="bi bi-send"></i></button>
+            <button type="submit" class="btn btn--primary btn--lg btn--block">Send enquiry <i class="bi bi-send"></i></button>
             <p class="form-note">Sending opens your email app with your enquiry ready to send to our team.</p>
             <div class="form-success" id="formSuccess" role="status" aria-live="polite">
               <i class="bi bi-check2-circle"></i>
@@ -517,7 +511,7 @@
           <h2>Ready to put AI to work?</h2>
           <p>Book a free call and we'll show you what you can automate first.</p>
         </div>
-        <a href="#contact" class="btn btn--primary btn--lg magnetic">Book a free call <i class="bi bi-arrow-up-right"></i></a>
+        <a href="#contact" class="btn btn--primary btn--lg">Book a free call <i class="bi bi-arrow-up-right"></i></a>
       </div>
 
       <div class="footer__main">
@@ -564,11 +558,12 @@
     </div>
   </footer>
 
-  <div class="dock glass" aria-label="Social media links">
-    <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-    <a href="https://www.instagram.com/techmitratechnologies" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-    <a href="https://www.linkedin.com/company/techmitra-technologies" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-  </div>
+  <nav class="dock glass" aria-label="Contact and social links">
+    <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" data-label="Chat on WhatsApp" class="dock__wa"><i class="bi bi-whatsapp"></i></a>
+    <a href="https://www.instagram.com/techmitratechnologies" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-label="Follow on Instagram" class="dock__ig"><i class="bi bi-instagram"></i></a>
+    <a href="https://www.linkedin.com/company/techmitra-technologies" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-label="Connect on LinkedIn" class="dock__in"><i class="bi bi-linkedin"></i></a>
+    <a href="mailto:support@techmitra.co.in" aria-label="Email" data-label="support@techmitra.co.in" class="dock__mail"><i class="bi bi-envelope-fill"></i></a>
+  </nav>
 
   <button class="to-top glass" id="toTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
 

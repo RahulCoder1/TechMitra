@@ -30,66 +30,11 @@
     toastTimer = setTimeout(function () { el.classList.remove("show"); }, 4200);
   }
 
-  /* ---------- Loader + intro sequence ---------- */
+  /* ---------- Intro ---------- */
   function initIntro() {
-    var loader = $("#pageLoader");
-    var title = $("[data-split]");
-
-    if (title) {
-      var words = title.textContent.trim().split(/\s+/);
-      title.setAttribute("aria-label", title.textContent.trim());
-      title.innerHTML = words.map(function (w, i) {
-        return '<span class="word" aria-hidden="true"><span style="--i:' + i + '">' + w + "</span></span>";
-      }).join(" ");
-    }
-
-    var started = false;
-    function start() {
-      if (started) return;
-      started = true;
-      if (loader) loader.classList.add("is-done");
-      document.body.classList.add("is-ready");
-      if (title) title.classList.add("is-in");
-      setTimeout(function () {
-        $$(".float3d").forEach(function (p) { p.classList.add("is-floating"); });
-      }, 2800);
-      startBoard();
-    }
-
-    if (document.readyState === "complete") setTimeout(start, 300);
-    else window.addEventListener("load", function () { setTimeout(start, 250); });
-    setTimeout(start, 2500); // never block on slow assets
-  }
-
-  /* ---------- Hero scene live data ---------- */
-  function startBoard() {
-    if (reduceMotion) return;
-    var ticker = $("[data-ticker]");
-    var logText = $("#logText");
-    var logTime = $("#logTime");
-    var win = $(".scene__window");
-    if (ticker) {
-      var value = Number(ticker.getAttribute("data-ticker"));
-      setInterval(function () { value += 1; ticker.textContent = value; }, 4200);
-    }
-    if (logText && win) {
-      var events = [
-        ["Invoice #INV-2041 processed", "0.8s"],
-        ["Lead from website added to CRM", "1.2s"],
-        ["Lab report sent on WhatsApp", "0.6s"],
-        ["Purchase order approved", "0.9s"],
-        ["Customer query answered by AI", "2.1s"]
-      ];
-      var n = 0;
-      setInterval(function () {
-        n = (n + 1) % events.length;
-        win.classList.remove("is-swap");
-        void win.offsetWidth;
-        logText.textContent = events[n][0];
-        logTime.textContent = events[n][1];
-        win.classList.add("is-swap");
-      }, 3600);
-    }
+    requestAnimationFrame(function () {
+      setTimeout(function () { document.body.classList.add("is-ready"); }, 60);
+    });
   }
 
   /* ---------- Header ---------- */
@@ -383,8 +328,8 @@
         var px = (e.clientX - r.left) / r.width;
         var py = (e.clientY - r.top) / r.height;
         card.classList.add("is-tilting");
-        card.style.setProperty("--ry", ((px - 0.5) * 10).toFixed(2) + "deg");
-        card.style.setProperty("--rx", ((0.5 - py) * 10).toFixed(2) + "deg");
+        card.style.setProperty("--ry", ((px - 0.5) * 5).toFixed(2) + "deg");
+        card.style.setProperty("--rx", ((0.5 - py) * 5).toFixed(2) + "deg");
         card.style.setProperty("--mx", e.clientX - r.left + "px");
         card.style.setProperty("--my", e.clientY - r.top + "px");
       });
@@ -393,16 +338,6 @@
         card.style.setProperty("--rx", "0deg");
         card.style.setProperty("--ry", "0deg");
       });
-    });
-
-    $$(".magnetic").forEach(function (btn) {
-      btn.addEventListener("pointermove", function (e) {
-        var r = btn.getBoundingClientRect();
-        var x = (e.clientX - r.left - r.width / 2) * 0.18;
-        var y = (e.clientY - r.top - r.height / 2) * 0.3;
-        btn.style.transform = "translate(" + x + "px," + y + "px)";
-      });
-      btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
     });
 
     var scene = $("#scene");
@@ -630,7 +565,6 @@
     initMobileNav();
     initSmoothScroll();
     initScrollSpy();
-    initVoices();
     initReveal();
     initCounters();
     initFilter();

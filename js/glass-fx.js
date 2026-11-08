@@ -56,8 +56,8 @@
       card.style.setProperty("--my", e.clientY - r.top + "px");
       if (card.classList.contains("tilt")) {
         card.classList.add("is-tilting");
-        card.style.setProperty("--ry", ((px - 0.5) * 10).toFixed(2) + "deg");
-        card.style.setProperty("--rx", ((0.5 - py) * 10).toFixed(2) + "deg");
+        card.style.setProperty("--ry", ((px - 0.5) * 5).toFixed(2) + "deg");
+        card.style.setProperty("--rx", ((0.5 - py) * 5).toFixed(2) + "deg");
       }
     }, { passive: true });
     document.addEventListener("pointerout", function (e) {
