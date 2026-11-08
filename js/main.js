@@ -1,200 +1,215 @@
-
+/* =========================================================
+   TECHMITRA — GLASS UI INTERACTIONS
+========================================================= */
 (function () {
   "use strict";
 
-  var prefersReduced = window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function initHeader() {
-    var header = document.getElementById("siteHeader");
-    if (!header) return;
+  var doc = document.documentElement;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var finePointer = window.matchMedia("(pointer: fine)").matches;
+  var CONTACT_EMAIL = "support@techmitra.co.in";
 
-    var toggle = function () {
-      if (window.scrollY > 40) header.classList.add("is-scrolled");
-      else header.classList.remove("is-scrolled");
-    };
-    toggle();
-    window.addEventListener("scroll", toggle, { passive: true });
+  function $(sel, ctx) { return (ctx || document).querySelector(sel); }
+  function $$(sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); }
+
+  /* ---------- Toast ---------- */
+  var toastTimer;
+  function toast(message) {
+    var el = $("#tmToast");
+    if (!el) {
+      el = document.createElement("div");
+      el.id = "tmToast";
+      el.className = "toast glass glass--strong";
+      el.setAttribute("role", "status");
+      el.innerHTML = '<i class="bi bi-check2-circle"></i><span></span>';
+      document.body.appendChild(el);
+    }
+    el.querySelector("span").textContent = message;
+    requestAnimationFrame(function () { el.classList.add("show"); });
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.remove("show"); }, 4200);
   }
 
+  /* ---------- Loader + intro sequence ---------- */
+  function initIntro() {
+    var loader = $("#pageLoader");
+    var title = $("[data-split]");
+
+    if (title) {
+      var words = title.textContent.trim().split(/\s+/);
+      title.setAttribute("aria-label", title.textContent.trim());
+      title.innerHTML = words.map(function (w, i) {
+        return '<span class="word" aria-hidden="true"><span style="--i:' + i + '">' + w + "</span></span>";
+      }).join(" ");
+    }
+
+    var started = false;
+    function start() {
+      if (started) return;
+      started = true;
+      if (loader) loader.classList.add("is-done");
+      document.body.classList.add("is-ready");
+      if (title) title.classList.add("is-in");
+      setTimeout(function () {
+        $$(".panel").forEach(function (p) { p.classList.add("is-floating"); });
+      }, 2400);
+      startBoard();
+    }
+
+    if (document.readyState === "complete") setTimeout(start, 300);
+    else window.addEventListener("load", function () { setTimeout(start, 250); });
+    setTimeout(start, 2500); // never block on slow assets
+  }
+
+  /* ---------- Hero board live data ---------- */
+  function startBoard() {
+    var ticker = $("[data-ticker]");
+    var toastId = $("#toastId");
+    var toastPanel = $(".panel--toast");
+    if (!ticker || reduceMotion) return;
+
+    var value = Number(ticker.getAttribute("data-ticker"));
+    setInterval(function () {
+      value += Math.floor(Math.random() * 3) + 1;
+      ticker.textContent = value.toLocaleString("en-IN");
+    }, 2200);
+
+    var samples = ["LAB-24817", "LAB-24822", "LAB-24830", "LAB-24836", "LAB-24841"];
+    var actions = ["sent to patient", "shared on WhatsApp", "approved by pathologist", "sent to doctor"];
+    var n = 0;
+    setInterval(function () {
+      n++;
+      toastPanel.classList.remove("is-swap");
+      void toastPanel.offsetWidth;
+      toastId.textContent = "Sample " + samples[n % samples.length] + " · " + actions[n % actions.length];
+      toastPanel.classList.add("is-swap");
+    }, 3600);
+  }
+
+  /* ---------- Header ---------- */
+  function initHeader() {
+    var header = $("#siteHeader");
+    var progress = $("#scrollProgress");
+    var toTop = $("#toTop");
+    var ticking = false;
+
+    function update() {
+      var y = window.scrollY;
+      var max = doc.scrollHeight - window.innerHeight;
+      if (header) header.classList.toggle("is-scrolled", y > 30);
+      if (progress) progress.style.transform = "scaleX(" + (max > 0 ? y / max : 0) + ")";
+      if (toTop) toTop.classList.toggle("is-visible", y > 800);
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+
+    if (toTop) toTop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }); });
+  }
+
+  /* ---------- Mobile nav ---------- */
   function initMobileNav() {
-    var toggle = document.getElementById("navToggle");
-    var nav = document.getElementById("mainNav");
-    var backdrop = document.getElementById("navBackdrop");
+    var toggle = $("#navToggle");
+    var nav = $("#mainNav");
+    var backdrop = $("#navBackdrop");
     if (!toggle || !nav) return;
 
-    var open = function () {
+    function open() {
       nav.classList.add("is-open");
       toggle.setAttribute("aria-expanded", "true");
       toggle.setAttribute("aria-label", "Close menu");
       if (backdrop) { backdrop.hidden = false; requestAnimationFrame(function () { backdrop.classList.add("is-open"); }); }
-    };
-    var close = function () {
+    }
+    function close() {
       nav.classList.remove("is-open");
       toggle.setAttribute("aria-expanded", "false");
       toggle.setAttribute("aria-label", "Open menu");
       if (backdrop) {
         backdrop.classList.remove("is-open");
-        window.setTimeout(function () { backdrop.hidden = true; }, 380);
+        setTimeout(function () { backdrop.hidden = true; }, 350);
       }
-    };
-
-    toggle.addEventListener("click", function () {
-      if (nav.classList.contains("is-open")) close();
-      else open();
-    });
-
+    }
+    toggle.addEventListener("click", function () { nav.classList.contains("is-open") ? close() : open(); });
     if (backdrop) backdrop.addEventListener("click", close);
-
-    nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", close);
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && nav.classList.contains("is-open")) {
-        close();
-        toggle.focus();
-      }
-    });
-
-    window.addEventListener("resize", function () {
-      if (window.innerWidth > 900 && nav.classList.contains("is-open")) close();
-    });
+    $$("a", nav).forEach(function (a) { a.addEventListener("click", close); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    window.addEventListener("resize", function () { if (window.innerWidth > 980) close(); });
   }
 
+  /* ---------- Smooth anchor scroll ---------- */
   function initSmoothScroll() {
-    var links = document.querySelectorAll('a[href^="#"]');
-    if (!links.length) return;
-
-    links.forEach(function (link) {
+    $$('a[href^="#"]').forEach(function (link) {
       link.addEventListener("click", function (e) {
         var id = link.getAttribute("href");
-        if (!id || id === "#" || id.length < 2) return;
+        if (id.length < 2) return;
         var target = document.querySelector(id);
         if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({
-          behavior: prefersReduced ? "auto" : "smooth",
-          block: "start"
-        });
+        var top = target.getBoundingClientRect().top + window.scrollY - (id === "#top" ? 0 : 80);
+        window.scrollTo({ top: top, behavior: reduceMotion ? "auto" : "smooth" });
+        history.replaceState(null, "", id);
       });
     });
   }
 
-  function initPortfolioFilter() {
-    var group = document.getElementById("projectFilters");
-    var grid = document.getElementById("projectsGrid");
-    if (!group || !grid) return;
+  /* ---------- Active section indicator ---------- */
+  function initScrollSpy() {
+    var nav = $("#mainNav");
+    var indicator = $("#navIndicator");
+    if (!nav || !indicator || !("IntersectionObserver" in window)) return;
+    var links = $$('a[href^="#"]:not(.btn)', nav);
 
-    var buttons = group.querySelectorAll(".filter-btn");
-    var items = grid.querySelectorAll(".project");
-    var empty = document.getElementById("filterEmpty");
-
-    group.addEventListener("click", function (e) {
-      var btn = e.target.closest(".filter-btn");
-      if (!btn) return;
-
-      buttons.forEach(function (b) {
-        b.classList.remove("is-active");
-        b.setAttribute("aria-pressed", "false");
+    function moveTo(link) {
+      if (!link || window.innerWidth <= 980) { indicator.style.opacity = 0; return; }
+      indicator.style.left = link.offsetLeft + "px";
+      indicator.style.width = link.offsetWidth + "px";
+      indicator.style.opacity = 1;
+    }
+    function setActive(id) {
+      var active = null;
+      links.forEach(function (l) {
+        var on = l.getAttribute("href") === "#" + id;
+        l.classList.toggle("is-active", on);
+        if (on) active = l;
       });
-      btn.classList.add("is-active");
-      btn.setAttribute("aria-pressed", "true");
-
-      var filter = btn.getAttribute("data-filter");
-      var shown = 0;
-
-      items.forEach(function (item) {
-        var match = filter === "all" || item.getAttribute("data-category") === filter;
-        if (match) {
-          item.classList.remove("is-hidden");
-          shown++;
-        } else {
-          item.classList.add("is-hidden");
-        }
-      });
-
-      if (empty) empty.hidden = shown !== 0;
-    });
-  }
-
-  function initProductSlider() {
-    var track = document.getElementById("productsTrack");
-    var prev = document.getElementById("prodPrev");
-    var next = document.getElementById("prodNext");
-    if (!track || !prev || !next) return;
-
-    var step = function () {
-      var card = track.querySelector(".product");
-      var w = card ? card.getBoundingClientRect().width : 300;
-      return w + 22; // card width + gap
-    };
-
-    prev.addEventListener("click", function () {
-      track.scrollBy({ left: -step(), behavior: prefersReduced ? "auto" : "smooth" });
-    });
-    next.addEventListener("click", function () {
-      track.scrollBy({ left: step(), behavior: prefersReduced ? "auto" : "smooth" });
-    });
-  }
-
-  function initTestimonials() {
-    var viewport = document.getElementById("tstViewport");
-    var dotsWrap = document.getElementById("tstDots");
-    var prev = document.getElementById("tstPrev");
-    var next = document.getElementById("tstNext");
-    if (!viewport) return;
-
-    var slides = Array.prototype.slice.call(viewport.querySelectorAll(".tst__slide"));
-    if (slides.length < 2) return;
-
-    var index = 0;
-    var timer = null;
-
-    var dots = [];
-    if (dotsWrap) {
-      slides.forEach(function (_, i) {
-        var dot = document.createElement("button");
-        dot.className = "tst__dot" + (i === 0 ? " is-active" : "");
-        dot.setAttribute("aria-label", "Go to testimonial " + (i + 1));
-        dot.addEventListener("click", function () { go(i, true); });
-        dotsWrap.appendChild(dot);
-        dots.push(dot);
-      });
+      moveTo(active);
     }
 
-    function go(i, userAction) {
-      index = (i + slides.length) % slides.length;
-      slides.forEach(function (s, si) { s.classList.toggle("is-active", si === index); });
-      dots.forEach(function (d, di) { d.classList.toggle("is-active", di === index); });
-      if (userAction) restart();
-    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
 
-    function nextSlide() { go(index + 1); }
-
-    function restart() {
-      if (prefersReduced) return;
-      if (timer) window.clearInterval(timer);
-      timer = window.setInterval(nextSlide, 6500);
-    }
-
-    if (prev) prev.addEventListener("click", function () { go(index - 1, true); });
-    if (next) next.addEventListener("click", function () { go(index + 1, true); });
-
- 
-    viewport.addEventListener("mouseenter", function () { if (timer) window.clearInterval(timer); });
-    viewport.addEventListener("mouseleave", restart);
-
-    restart();
+    links.forEach(function (l) {
+      var sec = document.querySelector(l.getAttribute("href"));
+      if (sec) io.observe(sec);
+    });
+    var hero = $("#top");
+    if (hero) io.observe(hero);
+    window.addEventListener("resize", function () { moveTo($(".is-active", nav)); });
   }
 
+  /* ---------- Scroll reveal with stagger ---------- */
   function initReveal() {
-    var els = document.querySelectorAll("[data-reveal]");
-    if (!els.length) return;
-
-    if (prefersReduced || !("IntersectionObserver" in window)) {
+    var els = $$("[data-reveal]");
+    if (!("IntersectionObserver" in window) || reduceMotion) {
       els.forEach(function (el) { el.classList.add("is-visible"); });
       return;
     }
+    // stagger siblings that share a parent
+    var groups = new Map();
+    els.forEach(function (el) {
+      var p = el.parentElement;
+      var list = groups.get(p) || [];
+      list.push(el);
+      groups.set(p, list);
+    });
+    groups.forEach(function (list) {
+      list.forEach(function (el, i) { el.style.setProperty("--d", Math.min(i, 6) * 90 + "ms"); });
+    });
 
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -203,1165 +218,412 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
     els.forEach(function (el) { io.observe(el); });
   }
 
-  function initContactForm() {
-    var form = document.getElementById("contactForm");
-    if (!form) return;
+  /* ---------- Counters ---------- */
+  function initCounters() {
+    var counters = $$(".counter");
+    if (!counters.length) return;
+    function run(el) {
+      var target = Number(el.getAttribute("data-target")) || 0;
+      if (reduceMotion) { el.textContent = target; return; }
+      var startTime = null;
+      var duration = 1600;
+      function step(t) {
+        if (!startTime) startTime = t;
+        var p = Math.min((t - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    if (!("IntersectionObserver" in window)) { counters.forEach(run); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(function (c) { io.observe(c); });
+  }
 
-    var success = document.getElementById("formSuccess");
-    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  /* ---------- Solutions filter ---------- */
+  function initFilter() {
+    var group = $("#projectFilters");
+    var grid = $("#projectsGrid");
+    var pill = $("#filterPill");
+    if (!group || !grid) return;
+    var buttons = $$(".filter-btn", group);
+    var items = $$(".project", grid);
+    var empty = $("#filterEmpty");
 
-    function setError(field, on) {
-      var row = field.closest(".form-row") || field.parentElement;
-      if (!row) return;
-      row.classList.toggle("has-error", on);
+    function movePill(btn) {
+      if (!pill || !btn) return;
+      pill.style.left = btn.offsetLeft + "px";
+      pill.style.top = btn.offsetTop + "px";
+      pill.style.width = btn.offsetWidth + "px";
+      pill.style.height = btn.offsetHeight + "px";
     }
 
-    function validateField(field) {
+    group.addEventListener("click", function (e) {
+      var btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+      var filter = btn.getAttribute("data-filter");
+      buttons.forEach(function (b) {
+        var on = b === btn;
+        b.classList.toggle("is-active", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      movePill(btn);
+
+      var shown = 0;
+      items.forEach(function (item) {
+        var match = filter === "all" || item.getAttribute("data-category") === filter;
+        if (match) {
+          shown++;
+          item.classList.remove("is-hidden");
+          requestAnimationFrame(function () { item.classList.remove("is-hiding"); });
+        } else {
+          item.classList.add("is-hiding");
+          setTimeout(function () { if (item.classList.contains("is-hiding")) item.classList.add("is-hidden"); }, reduceMotion ? 0 : 450);
+        }
+      });
+      if (empty) empty.hidden = shown !== 0;
+    });
+
+    var initial = $(".filter-btn.is-active", group);
+    movePill(initial);
+    window.addEventListener("resize", function () { movePill($(".filter-btn.is-active", group)); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { movePill($(".filter-btn.is-active", group)); });
+  }
+
+  /* ---------- Technology slider ---------- */
+  function initTrack() {
+    var track = $("#productsTrack");
+    var prev = $("#prodPrev");
+    var next = $("#prodNext");
+    if (!track) return;
+    function step() {
+      var card = $(".capability", track);
+      return card ? card.getBoundingClientRect().width + 24 : 320;
+    }
+    if (prev) prev.addEventListener("click", function () { track.scrollBy({ left: -step(), behavior: "smooth" }); });
+    if (next) next.addEventListener("click", function () { track.scrollBy({ left: step(), behavior: "smooth" }); });
+
+    // drag to scroll on desktop
+    var down = false, startX = 0, startLeft = 0;
+    track.addEventListener("pointerdown", function (e) {
+      if (e.pointerType !== "mouse") return;
+      down = true; startX = e.clientX; startLeft = track.scrollLeft;
+      track.style.scrollSnapType = "none";
+    });
+    window.addEventListener("pointermove", function (e) {
+      if (!down) return;
+      track.scrollLeft = startLeft - (e.clientX - startX);
+    });
+    window.addEventListener("pointerup", function () {
+      if (!down) return;
+      down = false; track.style.scrollSnapType = "";
+    });
+  }
+
+  /* ---------- Process timeline progress ---------- */
+  function initTimeline() {
+    var timeline = $("#timeline");
+    var fill = $("#timelineFill");
+    if (!timeline) return;
+    var steps = $$(".step", timeline);
+    var ticking = false;
+    function update() {
+      var rect = timeline.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var p = (vh * 0.8 - rect.top) / (rect.height * 0.6);
+      p = Math.max(0, Math.min(1, p));
+      if (fill) fill.style.transform = "scaleX(" + p + ")";
+      steps.forEach(function (s, i) {
+        var threshold = steps.length > 1 ? i / (steps.length - 1) : 0;
+        var lit = window.innerWidth <= 980 ? s.getBoundingClientRect().top < vh * 0.75 : p >= threshold - 0.02 && p > 0;
+        s.classList.toggle("is-lit", lit);
+      });
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
+
+  /* ---------- Testimonial wall: duplicate for seamless loop ---------- */
+  function initVoices() {
+    $$(".voices__track").forEach(function (track) {
+      $$(".voice", track).forEach(function (card) {
+        var clone = card.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        track.appendChild(clone);
+      });
+    });
+  }
+
+  /* ---------- Cursor light + magnetic buttons + parallax ---------- */
+  function initPointerFx() {
+    if (!finePointer || reduceMotion) return;
+
+    document.addEventListener("pointermove", function (e) {
+      var card = e.target.closest && e.target.closest(".spot");
+      if (card) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top) + "px");
+      }
+    }, { passive: true });
+
+    $$(".magnetic").forEach(function (btn) {
+      btn.addEventListener("pointermove", function (e) {
+        var r = btn.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) * 0.18;
+        var y = (e.clientY - r.top - r.height / 2) * 0.3;
+        btn.style.transform = "translate(" + x + "px," + y + "px)";
+      });
+      btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
+    });
+
+    var board = $(".board");
+    var hero = $(".hero");
+    if (board && hero) {
+      hero.addEventListener("pointermove", function (e) {
+        var r = hero.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5;
+        var y = (e.clientY - r.top) / r.height - 0.5;
+        $$(".panel", board).forEach(function (p, i) {
+          var depth = [14, 26, 20][i] || 16;
+          p.style.setProperty("translate", (x * depth) + "px " + (y * depth) + "px");
+        });
+      });
+      hero.addEventListener("pointerleave", function () {
+        $$(".panel", board).forEach(function (p) { p.style.removeProperty("translate"); });
+      });
+    }
+  }
+
+  /* ---------- Contact form ---------- */
+  function initContactForm() {
+    var form = $("#contactForm");
+    if (!form) return;
+    var success = $("#formSuccess");
+    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var fields = $$("[required]", form);
+
+    function validate(field) {
       var val = (field.value || "").trim();
-      var ok = true;
-      if (field.hasAttribute("required") && !val) ok = false;
-      else if (field.type === "email" && !emailRe.test(val)) ok = false;
-      else if (field.id === "cf-message" && val.length < 10) ok = false;
-      setError(field, !ok);
+      var ok = !!val;
+      if (ok && field.type === "email") ok = emailRe.test(val);
+      if (ok && field.id === "cf-message") ok = val.length >= 10;
+      var wrap = field.closest(".field");
+      if (wrap) {
+        wrap.classList.remove("has-error");
+        if (!ok) { void wrap.offsetWidth; wrap.classList.add("has-error"); }
+      }
+      field.setAttribute("aria-invalid", ok ? "false" : "true");
       return ok;
     }
 
-    var fields = form.querySelectorAll("[required]");
-
-    fields.forEach(function (field) {
-      field.addEventListener("blur", function () { validateField(field); });
-      field.addEventListener("input", function () {
-        var row = field.closest(".form-row");
-        if (row && row.classList.contains("has-error")) validateField(field);
+    fields.forEach(function (f) {
+      f.addEventListener("blur", function () { if (f.value) validate(f); });
+      f.addEventListener("input", function () {
+        var wrap = f.closest(".field");
+        if (wrap && wrap.classList.contains("has-error")) validate(f);
       });
     });
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      var valid = true;
       var firstBad = null;
-      fields.forEach(function (field) {
-        if (!validateField(field)) {
-          valid = false;
-          if (!firstBad) firstBad = field;
-        }
-      });
+      fields.forEach(function (f) { if (!validate(f) && !firstBad) firstBad = f; });
+      if (firstBad) { firstBad.focus(); return; }
 
-      if (!valid) {
-        if (firstBad) firstBad.focus();
-        if (success) success.classList.remove("show");
-        return;
+      var data = new FormData(form);
+      var subject = "Project enquiry: " + data.get("type") + " — " + data.get("name");
+      var body =
+        "Name: " + data.get("name") + "\n" +
+        "Email: " + data.get("email") + "\n" +
+        "Service: " + data.get("type") + "\n" +
+        "Budget: " + (data.get("budget") || "Not specified") + "\n\n" +
+        data.get("message");
+      window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+      if (success) {
+        success.classList.add("show");
+        setTimeout(function () { success.classList.remove("show"); }, 9000);
       }
-
-      if (success) success.classList.add("show");
       form.reset();
-      window.setTimeout(function () {
-        if (success) success.classList.remove("show");
-      }, 6000);
     });
   }
 
-  function initNewsletter() {
-    var form = document.getElementById("newsForm");
-    if (!form) return;
-    var input = form.querySelector("input[type='email']");
-    var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  /* ---------- Feedback modal ---------- */
+  function initFeedback() {
+    var openBtn = $("#tmClientShareBtn");
+    var overlay = $("#tmFeedbackOverlay");
+    if (!overlay) return;
+    var form = $("#tmFeedbackForm");
+    var ratingInput = $("#tmFeedbackRating");
+    var stars = $$("#tmFeedbackStars button");
+    var error = $("#feedbackError");
+    var lastFocus = null;
+
+    function open() {
+      lastFocus = document.activeElement;
+      overlay.classList.add("is-open");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      setTimeout(function () { $("#tmFeedbackName").focus(); }, 300);
+    }
+    function close() {
+      overlay.classList.remove("is-open");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lastFocus) lastFocus.focus();
+    }
+    function paint(n, cls) {
+      stars.forEach(function (s) { s.classList.toggle(cls, Number(s.getAttribute("data-rating")) <= n); });
+    }
+
+    if (openBtn) openBtn.addEventListener("click", open);
+    $("#tmFeedbackClose").addEventListener("click", close);
+    $("#tmFeedbackCancel").addEventListener("click", close);
+    overlay.addEventListener("click", function (e) { if (e.target === overlay) close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && overlay.classList.contains("is-open")) close(); });
+
+    stars.forEach(function (star) {
+      var n = Number(star.getAttribute("data-rating"));
+      star.addEventListener("mouseenter", function () { paint(n, "is-hover"); });
+      star.addEventListener("mouseleave", function () { paint(0, "is-hover"); });
+      star.addEventListener("click", function () {
+        ratingInput.value = n;
+        paint(n, "is-selected");
+        stars.forEach(function (s) { s.setAttribute("aria-checked", Number(s.getAttribute("data-rating")) === n ? "true" : "false"); });
+        if (error) error.textContent = "";
+      });
+    });
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      if (!input) return;
-      var val = (input.value || "").trim();
-      if (!emailRe.test(val)) {
-        input.focus();
-        input.style.borderColor = "#C6A56A";
-        return;
-      }
-      input.value = "";
-      input.placeholder = "Thank you — you're on the list";
+      var name = $("#tmFeedbackName").value.trim();
+      var message = $("#tmFeedbackMessage").value.trim();
+      var type = $("#tmFeedbackType").value;
+      if (!name) { error.textContent = "Enter your name."; $("#tmFeedbackName").focus(); return; }
+      if (!ratingInput.value) { error.textContent = "Choose a rating from 1 to 5 stars."; return; }
+      if (!message) { error.textContent = "Write a few words about your experience."; $("#tmFeedbackMessage").focus(); return; }
+
+      var body = "Name: " + name + "\nRating: " + ratingInput.value + "/5\nProject type: " + (type || "Not specified") + "\n\n" + message;
+      window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Client feedback from " + name) + "&body=" + encodeURIComponent(body);
+
+      form.reset();
+      ratingInput.value = "";
+      paint(0, "is-selected");
+      close();
+      toast("Thank you! Your email app is opening with your feedback.");
     });
+  }
+
+  /* ---------- Chatbot ---------- */
+  function initChat() {
+    var chat = $("#tmChatbot");
+    if (!chat) return;
+    var launcher = $("#tmChatbotButton");
+    var win = $("#tmChatbotWindow");
+    var form = $("#tmChatbotForm");
+    var input = $("#tmChatbotInput");
+    var messages = $("#tmChatbotMessages");
+
+    function open() {
+      chat.classList.add("is-open");
+      launcher.setAttribute("aria-expanded", "true");
+      launcher.setAttribute("aria-label", "Close TechMitra assistant");
+      win.setAttribute("aria-hidden", "false");
+      setTimeout(function () { input.focus(); }, 300);
+    }
+    function close() {
+      chat.classList.remove("is-open");
+      launcher.setAttribute("aria-expanded", "false");
+      launcher.setAttribute("aria-label", "Open TechMitra assistant");
+      win.setAttribute("aria-hidden", "true");
+    }
+    launcher.addEventListener("click", function () { chat.classList.contains("is-open") ? close() : open(); });
+    $("#tmChatbotClose").addEventListener("click", close);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && chat.classList.contains("is-open")) close(); });
+
+    function reply(text) {
+      var m = text.toLowerCase();
+      if (m.indexOf("service") > -1) return "We provide custom software development, web applications, enterprise solutions, healthcare software, API integrations, cloud solutions and automation.";
+      if (m.indexOf("project") > -1) return "We'd be happy to discuss your project. Tell us about your requirements in the contact form and our team will help you choose the right solution.";
+      if (m.indexOf("healthcare") > -1 || m.indexOf("lims") > -1 || m.indexOf("lab") > -1 || m.indexOf("hospital") > -1) return "TechMitra builds healthcare solutions including Laboratory Information Management Systems and hospital management workflows.";
+      if (m.indexOf("contact") > -1 || m.indexOf("email") > -1) return "You can email us at " + CONTACT_EMAIL + " or use the contact form at the bottom of this page.";
+      if (m.indexOf("career") > -1 || m.indexOf("job") > -1) return "We're hiring! See open positions on our Careers page.";
+      return "Thanks for reaching out! 👋 Our team can help with software development, healthcare solutions, web applications, integrations and business automation.";
+    }
+
+    function add(text, who) {
+      var row = document.createElement("div");
+      row.className = "msg msg--" + who;
+      var bubble = document.createElement("div");
+      bubble.className = "msg__bubble";
+      var p = document.createElement("p");
+      p.textContent = text;
+      bubble.appendChild(p);
+      row.appendChild(bubble);
+      messages.appendChild(row);
+      messages.scrollTo({ top: messages.scrollHeight, behavior: "smooth" });
+      return row;
+    }
+
+    function send(text) {
+      add(text, "user");
+      input.value = "";
+      var typing = document.createElement("div");
+      typing.className = "msg msg--bot";
+      typing.innerHTML = '<div class="msg__bubble"><span class="typing"><i></i><i></i><i></i></span></div>';
+      messages.appendChild(typing);
+      messages.scrollTo({ top: messages.scrollHeight, behavior: "smooth" });
+      setTimeout(function () { typing.remove(); add(reply(text), "bot"); }, 850);
+    }
+
+    $$(".chat__quick button", chat).forEach(function (b) {
+      b.addEventListener("click", function () { send(b.getAttribute("data-chat")); });
+    });
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var t = input.value.trim();
+      if (t) send(t);
+    });
+  }
+
+  /* ---------- Footer year ---------- */
+  function initYear() {
+    var y = $("#footerYear");
+    if (y) y.textContent = new Date().getFullYear();
   }
 
   function boot() {
+    doc.classList.remove("no-js");
+    initIntro();
     initHeader();
     initMobileNav();
     initSmoothScroll();
-    initPortfolioFilter();
-    initProductSlider();
-    initTestimonials();
+    initScrollSpy();
+    initVoices();
     initReveal();
+    initCounters();
+    initFilter();
+    initTrack();
+    initTimeline();
+    initPointerFx();
     initContactForm();
-    initNewsletter();
+    initFeedback();
+    initChat();
+    initYear();
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", boot);
-  } else {
-    boot();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
 })();
-document.addEventListener("DOMContentLoaded", function () {
-
-    const counters = document.querySelectorAll(".counter");
-
-    counters.forEach(function (counter, index) {
-
-        const target = parseInt(counter.dataset.target, 10);
-        counter.textContent = "0";
-        setTimeout(function () {
-
-            animateCounter(counter, target);
-
-        }, 300 + (index * 150));
-
-    });
-
-});
-
-
-function animateCounter(counter, target) {
-
-    const duration = 1800;
-
-    const startTime = performance.now();
-
-
-    function updateCounter(currentTime) {
-
-        const elapsed = currentTime - startTime;
-
-        const progress = Math.min(
-            elapsed / duration,
-            1
-        );
-
-        const easeOutProgress =
-            1 - Math.pow(1 - progress, 3);
-
-
-        const currentValue = Math.floor(
-            target * easeOutProgress
-        );
-
-
-        counter.textContent = currentValue;
-
-
-        if (progress < 1) {
-
-            requestAnimationFrame(updateCounter);
-
-        } else {
-
-            counter.textContent = target;
-
-        }
-
-    }
-
-
-    requestAnimationFrame(updateCounter);
-
-}
-   //GLOBAL PAGE LOADER
-(function () {
-
-    const pageLoader = document.getElementById("pageLoader");
-
-    if (!pageLoader) {
-        return;
-    }
-
-    function showLoader() {
-        pageLoader.classList.remove("is-hidden");
-    }
-
-    function hideLoader() {
-        pageLoader.classList.add("is-hidden");
-    }
-
-    window.addEventListener("load", function () {
-        hideLoader();
-    });
-
-    window.addEventListener("pageshow", function () {
-        hideLoader();
-    });
-
-    document.addEventListener("click", function (event) {
-
-        const link = event.target.closest("a");
-
-        if (!link) {
-            return;
-        }
-
-        const href = link.getAttribute("href");
-
-        if (!href) {
-            return;
-        }
-        if (
-            href === "#" ||
-            href.toLowerCase().startsWith("javascript:")
-        ) {
-            return;
-        }
-        if (href.startsWith("#")) {
-            return;
-        }
-        if (link.hasAttribute("download")) {
-            return;
-        }
-        if (link.target === "_blank") {
-            return;
-        }
-        if (
-            event.ctrlKey ||
-            event.metaKey ||
-            event.shiftKey ||
-            event.altKey
-        ) {
-            return;
-        }
-
-        if (
-            link.hostname &&
-            link.hostname !== window.location.hostname
-        ) {
-            return;
-        }
-
-        showLoader();
-
-    });
-
-    document.addEventListener("submit", function (event) {
-        const form = event.target;
-        if (
-            form.id === "contactForm" ||
-            form.id === "newsForm" ||
-              form.id === "tmChatbotForm"
-        ) {
-            return;
-        }
-
-        showLoader();
-
-    });
-
-
-
-    window.addEventListener("beforeunload", function () {
-        showLoader();
-    });
-
-})();
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const projectsGrid =
-        document.getElementById("projectsGrid");
-
-
-    const filterButtons =
-        document.querySelectorAll(".filter-btn");
-
-
-    const projects =
-        document.querySelectorAll(".project");
-
-
-    const filterEmpty =
-        document.getElementById("filterEmpty");
-
-
-    let animationFrame;
-
-    let isPaused = false;
-
-    let scrollSpeed = 0.5;
-
-    function autoScroll() {
-
-
-        if (!isPaused) {
-
-            projectsGrid.scrollLeft += scrollSpeed;
-
-            if (
-                projectsGrid.scrollLeft +
-                projectsGrid.clientWidth >=
-                projectsGrid.scrollWidth - 2
-            ) {
-
-                projectsGrid.scrollLeft = 0;
-
-            }
-
-        }
-
-
-        animationFrame =
-            requestAnimationFrame(autoScroll);
-
-    }
-
-    autoScroll();
-
-    projectsGrid.addEventListener("mouseenter", function () {
-
-        isPaused = true;
-
-    });
-
-
-    projectsGrid.addEventListener("mouseleave", function () {
-
-        isPaused = false;
-
-    });
-
-    projectsGrid.addEventListener("touchstart", function () {
-
-        isPaused = true;
-
-    }, { passive: true });
-
-
-    projectsGrid.addEventListener("touchend", function () {
-
-        setTimeout(function () {
-
-            isPaused = false;
-
-        }, 1000);
-
-    }, { passive: true });
-
-    filterButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            const selectedFilter =
-                this.getAttribute("data-filter");
-            filterButtons.forEach(function (btn) {
-                btn.classList.remove("is-active");
-                btn.setAttribute(
-                    "aria-pressed",
-                    "false"
-                );
-            });
-            this.classList.add("is-active");
-            this.setAttribute(
-                "aria-pressed",
-                "true"
-            );
-            let visibleCount = 0;
-            projects.forEach(function (project) {
-                const category =
-                    project.getAttribute(
-                        "data-category"
-                    );
-
-
-                if (
-                    selectedFilter === "all" ||
-                    category === selectedFilter
-                ) {
-
-                    project.classList.remove(
-                        "is-hidden"
-                    );
-
-
-                    visibleCount++;
-
-                }
-
-                else {
-
-                    project.classList.add(
-                        "is-hidden"
-                    );
-
-                }
-
-            });
-            projectsGrid.scrollLeft = 0;
-            if (visibleCount === 0) {
-                filterEmpty.hidden = false;
-            }
-
-            else {
-                filterEmpty.hidden = true;
-            }
-
-
-        });
-
-
-    });
-
-
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const chatbot =
-        document.getElementById("tmChatbot");
-
-    const openButton =
-        document.getElementById("tmChatbotButton");
-
-    const closeButton =
-        document.getElementById("tmChatbotClose");
-
-    const chatWindow =
-        document.getElementById("tmChatbotWindow");
-
-    const form =
-        document.getElementById("tmChatbotForm");
-
-    const input =
-        document.getElementById("tmChatbotInput");
-
-    const messages =
-        document.getElementById("tmChatbotMessages");
-    function openChat() {
-
-        chatbot.classList.add("is-open");
-
-        openButton.setAttribute(
-            "aria-expanded",
-            "true"
-        );
-
-        chatWindow.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-        setTimeout(function () {
-
-            input.focus();
-
-        }, 300);
-    }
-    function closeChat() {
-
-        chatbot.classList.remove("is-open");
-
-        openButton.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-        chatWindow.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-    }
-    openButton.addEventListener(
-        "click",
-        function () {
-
-            if (
-                chatbot.classList.contains("is-open")
-            ) {
-
-                closeChat();
-
-            } else {
-
-                openChat();
-
-            }
-
-        }
-    );
-    closeButton.addEventListener(
-        "click",
-        function () {
-
-            closeChat();
-
-        }
-    );
-    document
-        .querySelectorAll(
-            ".tm-chatbot__quick button"
-        )
-        .forEach(function (button) {
-
-            button.addEventListener(
-                "click",
-                function () {
-
-                    const text =
-                        button.getAttribute(
-                            "data-chat"
-                        );
-
-                    sendMessage(text);
-
-                }
-            );
-
-        });
-
-form.addEventListener(
-    "submit",
-    function (event) {
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        const text = input.value.trim();
-
-        if (!text) {
-            return;
-        }
-
-        sendMessage(text);
-
-    }
-);
-
-    function sendMessage(text) {
-
-        addMessage(
-            text,
-            "user"
-        );
-
-        input.value = "";
-
-        showTyping();
-
-
-        setTimeout(function () {
-
-            removeTyping();
-
-            const response =
-                getBotResponse(text);
-
-            addMessage(
-                response,
-                "bot"
-            );
-
-        }, 800);
-
-    }
-
-
-    function getBotResponse(text) {
-
-        const message =
-            text.toLowerCase();
-
-
-        if (
-            message.includes("service")
-        ) {
-
-            return `
-                We provide custom software development,
-                web applications, enterprise solutions,
-                healthcare software, API integrations,
-                cloud solutions and automation.
-            `;
-
-        }
-
-
-        if (
-            message.includes("project")
-        ) {
-
-            return `
-                We'd be happy to discuss your project.
-                Tell us about your requirements and our
-                team can help you choose the right solution.
-            `;
-
-        }
-
-
-        if (
-            message.includes("healthcare") ||
-            message.includes("lims")
-        ) {
-
-            return `
-                TechMitra develops healthcare-focused
-                solutions including Laboratory Information
-                Management Systems and hospital workflows.
-            `;
-
-        }
-
-
-        if (
-            message.includes("contact")
-        ) {
-
-            return `
-                You can contact the TechMitra team through
-                the Contact section of our website.
-                We would be happy to discuss your requirements.
-            `;
-
-        }
-
-
-        return `
-            Thanks for contacting TechMitra! 👋
-            Our team can help with software development,
-            healthcare solutions, web applications,
-            integrations and business automation.
-        `;
-
-    }
-    function addMessage(text, type) {
-
-        const message =
-            document.createElement("div");
-
-
-        message.className =
-            "tm-chatbot__message " +
-            "tm-chatbot__message--" +
-            type;
-
-
-        if (type === "bot") {
-
-            message.innerHTML = `
-
-                <div class="tm-chatbot__message-icon">
-                    TM
-                </div>
-
-                <div class="tm-chatbot__bubble">
-
-                    <p>${text}</p>
-
-                </div>
-
-            `;
-
-        } else {
-
-            message.innerHTML = `
-
-                <div class="tm-chatbot__bubble">
-
-                    <p>
-                        ${escapeHtml(text)}
-                    </p>
-
-                </div>
-
-            `;
-
-        }
-
-
-        messages.appendChild(message);
-
-        scrollToBottom();
-    }
-
-    function showTyping() {
-
-        const typing =
-            document.createElement("div");
-
-
-        typing.id =
-            "tmChatbotTyping";
-
-
-        typing.className =
-            "tm-chatbot__message";
-
-
-        typing.innerHTML = `
-
-            <div class="tm-chatbot__message-icon">
-                TM
-            </div>
-
-            <div class="tm-chatbot__bubble">
-
-                <span style="
-                    display:flex;
-                    gap:4px;
-                    align-items:center;
-                    height:16px;
-                ">
-
-                    <i class="tm-typing-dot"></i>
-                    <i class="tm-typing-dot"></i>
-                    <i class="tm-typing-dot"></i>
-
-                </span>
-
-            </div>
-        `;
-
-
-        messages.appendChild(typing);
-
-        scrollToBottom();
-    }
-
-    function removeTyping() {
-
-        const typing =
-            document.getElementById(
-                "tmChatbotTyping"
-            );
-
-
-        if (typing) {
-
-            typing.remove();
-
-        }
-
-    }
-
-    function scrollToBottom() {
-
-        messages.scrollTo({
-
-            top:
-                messages.scrollHeight,
-
-            behavior:
-                "smooth"
-
-        });
-
-    }
-
-    function escapeHtml(text) {
-
-        const div =
-            document.createElement("div");
-
-        div.textContent =
-            text;
-
-        return div.innerHTML;
-    }
-    document.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (
-                event.key === "Escape" &&
-                chatbot.classList.contains("is-open")
-            ) {
-
-                closeChat();
-
-            }
-
-        }
-    );
-
-});
-
-const tmTypingStyle =
-document.createElement("style");
-
-
-tmTypingStyle.textContent = `
-
-.tm-typing-dot {
-
-    width: 5px;
-    height: 5px;
-
-    display: block;
-
-    border-radius: 50%;
-
-    background: #9da6a0;
-
-    animation:
-        tmTyping 1s infinite;
-}
-
-
-.tm-typing-dot:nth-child(2) {
-
-    animation-delay: .15s;
-}
-
-
-.tm-typing-dot:nth-child(3) {
-
-    animation-delay: .30s;
-}
-
-
-@keyframes tmTyping {
-
-    0%,
-    100% {
-
-        opacity: .35;
-
-        transform:
-            translateY(0);
-    }
-
-    50% {
-
-        opacity: 1;
-
-        transform:
-            translateY(-3px);
-    }
-
-}
-
-`;
-document.head.appendChild(
-    tmTypingStyle
-);
-  // SCROLL PROGRESS
-(function () {
-
-    const progress = document.createElement("div");
-    progress.id = "tmScrollProgress";
-
-    document.body.appendChild(progress);
-
-    function updateScrollProgress() {
-
-        const scrollTop = window.scrollY;
-        const documentHeight =
-            document.documentElement.scrollHeight - window.innerHeight;
-
-        const percentage =
-            documentHeight > 0
-                ? (scrollTop / documentHeight) * 100
-                : 0;
-
-        progress.style.width = percentage + "%";
-    }
-
-    window.addEventListener("scroll", updateScrollProgress, {
-        passive: true
-    });
-
-    window.addEventListener("resize", updateScrollProgress);
-
-    updateScrollProgress();
-
-})();
-/* =========================================================
-   TECHMITRA CLIENT FEEDBACK
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const shareButton =
-        document.getElementById("tmClientShareBtn");
-
-    const overlay =
-        document.getElementById("tmFeedbackOverlay");
-
-    const closeButton =
-        document.getElementById("tmFeedbackClose");
-
-    const cancelButton =
-        document.getElementById("tmFeedbackCancel");
-
-    const form =
-        document.getElementById("tmFeedbackForm");
-
-    const ratingInput =
-        document.getElementById("tmFeedbackRating");
-
-    const stars =
-        document.querySelectorAll(
-            "#tmFeedbackStars button"
-        );
-
-
-    /* =========================
-       OPEN MODAL
-    ========================= */
-
-    function openFeedback() {
-
-        overlay.classList.add("is-open");
-
-        document.body.style.overflow = "hidden";
-
-    }
-
-
-    /* =========================
-       CLOSE MODAL
-    ========================= */
-
-    function closeFeedback() {
-
-        overlay.classList.remove("is-open");
-
-        document.body.style.overflow = "";
-
-    }
-
-
-    /* =========================
-       OPEN BUTTON
-    ========================= */
-
-    if (shareButton) {
-
-        shareButton.addEventListener(
-            "click",
-            openFeedback
-        );
-
-    }
-
-
-    /* =========================
-       CLOSE BUTTON
-    ========================= */
-
-    if (closeButton) {
-
-        closeButton.addEventListener(
-            "click",
-            closeFeedback
-        );
-
-    }
-
-
-    /* =========================
-       CANCEL BUTTON
-    ========================= */
-
-    if (cancelButton) {
-
-        cancelButton.addEventListener(
-            "click",
-            closeFeedback
-        );
-
-    }
-
-
-    /* =========================
-       CLICK OUTSIDE MODAL
-    ========================= */
-
-    if (overlay) {
-
-        overlay.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    event.target === overlay
-                ) {
-
-                    closeFeedback();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =========================
-       ESC KEY
-    ========================= */
-
-    document.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (
-                event.key === "Escape" &&
-                overlay.classList.contains("is-open")
-            ) {
-
-                closeFeedback();
-
-            }
-
-        }
-    );
-
-
-    /* =========================
-       STAR RATING
-    ========================= */
-
-    stars.forEach(function (star) {
-
-        star.addEventListener(
-            "click",
-            function () {
-
-                const rating =
-                    Number(
-                        this.getAttribute(
-                            "data-rating"
-                        )
-                    );
-
-                ratingInput.value = rating;
-
-
-                stars.forEach(
-                    function (item) {
-
-                        const itemRating =
-                            Number(
-                                item.getAttribute(
-                                    "data-rating"
-                                )
-                            );
-
-                        if (
-                            itemRating <= rating
-                        ) {
-
-                            item.classList.add(
-                                "is-selected"
-                            );
-
-                        } else {
-
-                            item.classList.remove(
-                                "is-selected"
-                            );
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-    });
-
-
-    /* =========================
-       FORM SUBMIT
-    ========================= */
-
-    if (form) {
-
-        form.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-                event.stopPropagation();
-
-
-                const name =
-                    document
-                        .getElementById(
-                            "tmFeedbackName"
-                        )
-                        .value.trim();
-
-                const rating =
-                    ratingInput.value;
-
-                const feedback =
-                    document
-                        .getElementById(
-                            "tmFeedbackMessage"
-                        )
-                        .value.trim();
-
-
-                /* Validate rating */
-
-                if (!rating) {
-
-                    alert(
-                        "Please select a rating."
-                    );
-
-                    return;
-
-                }
-
-
-                if (!name || !feedback) {
-
-                    return;
-
-                }
-
-
-                /*
-                 * Temporary success message.
-                 *
-                 * Later you can connect this form
-                 * to email / database / API.
-                 */
-
-                alert(
-                    "Thank you for sharing your feedback!"
-                );
-
-
-                form.reset();
-
-                ratingInput.value = "";
-
-                stars.forEach(
-                    function (star) {
-
-                        star.classList.remove(
-                            "is-selected"
-                        );
-
-                    }
-                );
-
-
-                closeFeedback();
-
-            }
-        );
-
-    }
-
-});
-document.addEventListener("DOMContentLoaded", function () {
-
-    const footerYear = document.getElementById("footerYear");
-
-    if (footerYear) {
-        footerYear.textContent = new Date().getFullYear();
-    }
-
-});

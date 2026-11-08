@@ -1,471 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-          content="Explore career opportunities at TechMitra Technologies.">
-
-    <title>Careers | TechMitra Technologies</title>
-
-    <!-- Existing website CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Careers CSS -->
-    <link rel="stylesheet" href="css/careers.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers | TechMitra Technologies</title>
+  <meta name="description" content="Explore career opportunities at TechMitra Technologies — build modern software, healthcare technology and enterprise solutions with us.">
+  <meta name="theme-color" content="#061230">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/careers.css">
 </head>
+<body class="career-page">
+  <a class="skip-link" href="#openPositions">Skip to open positions</a>
 
-<body>
+  <div class="aurora" aria-hidden="true">
+    <span class="aurora__blob aurora__blob--a"></span>
+    <span class="aurora__blob aurora__blob--b"></span>
+    <span class="aurora__blob aurora__blob--c"></span>
+    <span class="aurora__grid"></span>
+    <span class="aurora__noise"></span>
+  </div>
 
-    <!-- ================================
-         CAREERS HEADER
-    ================================= -->
+  <header class="nav is-scrolled">
+    <div class="nav__bar glass">
+      <a class="brand" href="index.html" aria-label="TechMitra Technologies — home">
+        <img src="img/favicon.png" alt="" class="brand__logo" width="40" height="40">
+        <span class="brand__text">TechMitra <small>Careers</small></span>
+      </a>
+      <a href="index.html" class="btn btn--glass btn--sm"><i class="bi bi-arrow-left"></i> Back to website</a>
+    </div>
+  </header>
 
-    <header class="career-header">
+  <section class="career-hero">
+    <div class="container career-hero__grid">
+      <div class="career-hero__copy">
+        <p class="hero__kicker c-rise"><span class="live-dot"></span> We're hiring in Hyderabad and remote</p>
+        <h1 class="c-rise">Build technology. <span>Build your career.</span></h1>
+        <p class="c-rise">Join TechMitra and work on modern software, healthcare technology, enterprise applications, integrations and digital solutions.</p>
+        <div class="hero__actions c-rise">
+          <a href="#openPositions" class="btn btn--primary btn--lg">See open positions <i class="bi bi-arrow-down"></i></a>
+          <a href="#whyTechmitra" class="btn btn--glass btn--lg">Why TechMitra?</a>
+        </div>
+      </div>
 
-        <div class="career-container career-nav">
+      <div class="career-hero__card glass glass--strong c-rise">
+        <span class="chip chip--live"><span class="live-dot"></span> Currently hiring</span>
+        <div class="career-hero__count">
+          <strong id="heroJobCount">0</strong>
+          <span>open positions</span>
+        </div>
+        <ul class="career-hero__teams">
+          <li><i class="bi bi-code-slash"></i> Engineering</li>
+          <li><i class="bi bi-cpu"></i> Technology</li>
+          <li><i class="bi bi-stars"></i> Innovation</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-            <a href="index.html" class="career-logo">
-                <span class="career-logo-mark">TM</span>
-
-                <span>
-                    <strong>TechMitra</strong>
-                    <small>Technologies</small>
-                </span>
-            </a>
-
-            <a href="index.html" class="career-back">
-                ← Back to Website
-            </a>
-
+  <main>
+    <section class="career-jobs-section" id="openPositions">
+      <div class="container">
+        <div class="career-section-heading">
+          <p class="kicker">Opportunities</p>
+          <h2 class="section__title">Open positions</h2>
+          <p class="section__lead">Find a role where your skills can make a real impact.</p>
         </div>
 
-    </header>
-
-
-    <!-- ================================
-         HERO
-    ================================= -->
-
-    <section class="career-hero">
-
-        <div class="career-hero-glow"></div>
-
-        <div class="career-container career-hero-inner">
-
-            <div class="career-hero-content">
-
-                <span class="career-eyebrow">
-                    <span></span>
-                    CAREERS AT TECHMITRA
-                </span>
-
-                <h1>
-                    Build technology.
-                    <br>
-                    <span>Build your career.</span>
-                </h1>
-
-                <p>
-                    Join TechMitra and work on modern software,
-                    healthcare technology, enterprise applications,
-                    integrations and digital solutions.
-                </p>
-
-                <div class="career-hero-actions">
-
-                    <a href="#openPositions"
-                       class="career-primary-btn">
-                        Explore Open Positions
-                        <span>→</span>
-                    </a>
-
-                    <a href="#whyTechmitra"
-                       class="career-secondary-btn">
-                        Why TechMitra?
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="career-hero-card">
-
-                <div class="career-hero-card-top">
-                    <span class="career-status-dot"></span>
-                    Currently Hiring
-                </div>
-
-                <div class="career-hero-stat">
-
-                    <strong id="heroJobCount">0</strong>
-
-                    <span>
-                        Open Positions
-                    </span>
-
-                </div>
-
-                <div class="career-hero-lines">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-                <div class="career-hero-mini">
-
-                    <div>
-                        <span>01</span>
-                        Engineering
-                    </div>
-
-                    <div>
-                        <span>02</span>
-                        Technology
-                    </div>
-
-                    <div>
-                        <span>03</span>
-                        Innovation
-                    </div>
-
-                </div>
-
-            </div>
-
+        <div class="career-filters glass">
+          <label class="career-search">
+            <i class="bi bi-search"></i>
+            <input type="text" id="jobSearch" placeholder="Search jobs, skills or technology…" aria-label="Search jobs">
+          </label>
+          <select id="jobTypeFilter" aria-label="Filter by job type">
+            <option value="all">All job types</option>
+            <option value="Full Time">Full Time</option>
+            <option value="Part Time">Part Time</option>
+            <option value="Internship">Internship</option>
+          </select>
+          <select id="jobLocationFilter" aria-label="Filter by location">
+            <option value="all">All locations</option>
+          </select>
         </div>
 
+        <div id="jobsContainer" class="career-jobs-grid"></div>
+
+        <div id="noJobs" class="career-no-jobs glass">
+          <div class="career-no-jobs-icon"><i class="bi bi-search"></i></div>
+          <h3>No matching positions</h3>
+          <p>Try a different search or filter, or send us your profile below.</p>
+        </div>
+      </div>
     </section>
 
-
-    <!-- ================================
-         OPEN POSITIONS
-    ================================= -->
-
-    <main>
-
-        <section class="career-jobs-section"
-                 id="openPositions">
-
-            <div class="career-container">
-
-                <div class="career-section-heading">
-
-                    <div>
-
-                        <span class="career-eyebrow">
-                            <span></span>
-                            OPPORTUNITIES
-                        </span>
-
-                        <h2>
-                            Open Positions
-                        </h2>
-
-                        <p>
-                            Find a role where your skills can make
-                            a real impact.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <!-- SEARCH / FILTER -->
-
-                <div class="career-filters">
-
-                    <div class="career-search">
-
-                        <span>⌕</span>
-
-                        <input
-                            type="text"
-                            id="jobSearch"
-                            placeholder="Search jobs, skills or technology..."
-                        >
-
-                    </div>
-
-
-                    <select id="jobTypeFilter">
-
-                        <option value="all">
-                            All Job Types
-                        </option>
-
-                        <option value="Full Time">
-                            Full Time
-                        </option>
-
-                        <option value="Part Time">
-                            Part Time
-                        </option>
-
-                        <option value="Internship">
-                            Internship
-                        </option>
-
-                    </select>
-
-
-                    <select id="jobLocationFilter">
-
-                        <option value="all">
-                            All Locations
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- JOB LIST -->
-
-                <div id="jobsContainer"
-                     class="career-jobs-grid">
-                </div>
-
-
-                <!-- NO JOBS -->
-
-                <div id="noJobs"
-                     class="career-no-jobs">
-
-                    <div class="career-no-jobs-icon">
-                        ⌕
-                    </div>
-
-                    <h3>
-                        No matching positions
-                    </h3>
-
-                    <p>
-                        Try another search or check back later
-                        for new opportunities.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================
-             WHY TECHMITRA
-        ================================= -->
-
-        <section class="career-why"
-                 id="whyTechmitra">
-
-            <div class="career-container">
-
-                <div class="career-section-heading center">
-
-                    <span class="career-eyebrow">
-                        <span></span>
-                        LIFE AT TECHMITRA
-                    </span>
-
-                    <h2>
-                        Why build your career with us?
-                    </h2>
-
-                    <p>
-                        A place to learn, contribute and grow.
-                    </p>
-
-                </div>
-
-
-                <div class="career-benefits">
-
-                    <div class="career-benefit-card">
-
-                        <div class="career-benefit-icon">
-                            &lt;/&gt;
-                        </div>
-
-                        <h3>
-                            Modern Technology
-                        </h3>
-
-                        <p>
-                            Work with modern frameworks,
-                            APIs, databases and cloud-ready
-                            technologies.
-                        </p>
-
-                    </div>
-
-
-                    <div class="career-benefit-card">
-
-                        <div class="career-benefit-icon">
-                            ↗
-                        </div>
-
-                        <h3>
-                            Growth
-                        </h3>
-
-                        <p>
-                            Learn through real projects and
-                            take ownership of meaningful work.
-                        </p>
-
-                    </div>
-
-
-                    <div class="career-benefit-card">
-
-                        <div class="career-benefit-icon">
-                            ◎
-                        </div>
-
-                        <h3>
-                            Real Impact
-                        </h3>
-
-                        <p>
-                            Build solutions that solve practical
-                            business and technology problems.
-                        </p>
-
-                    </div>
-
-
-                    <div class="career-benefit-card">
-
-                        <div class="career-benefit-icon">
-                            ✦
-                        </div>
-
-                        <h3>
-                            Collaborative Team
-                        </h3>
-
-                        <p>
-                            Work with people who value quality,
-                            communication and continuous improvement.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================
-             GENERAL APPLICATION
-        ================================= -->
-
-        <section class="career-general">
-
-            <div class="career-container">
-
-                <div class="career-general-box">
-
-                    <div>
-
-                        <span class="career-eyebrow">
-                            <span></span>
-                            DON'T SEE YOUR ROLE?
-                        </span>
-
-                        <h2>
-                            Send us your profile
-                        </h2>
-
-                        <p>
-                            We are always interested in meeting
-                            talented people. Send your resume and
-                            we'll keep your profile in consideration.
-                        </p>
-
-                    </div>
-
-                    <a href="mailto:careers@techmitra.co.in"
-                       class="career-primary-btn">
-
-                        Send Resume
-
-                        <span>→</span>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- ================================
-         JOB DETAILS MODAL
-    ================================= -->
-
-    <div class="career-modal"
-         id="jobModal"
-         aria-hidden="true">
-
-        <div class="career-modal-overlay"
-             id="jobModalOverlay">
+    <section class="career-why" id="whyTechmitra">
+      <div class="container">
+        <div class="career-section-heading center">
+          <p class="kicker">Life at TechMitra</p>
+          <h2 class="section__title">Why build your career with us?</h2>
+          <p class="section__lead">A place to learn, contribute and grow.</p>
         </div>
-
-        <div class="career-modal-box">
-
-            <button class="career-modal-close"
-                    id="jobModalClose"
-                    aria-label="Close">
-                ×
-            </button>
-
-            <div id="jobDetails">
-                <!-- JavaScript inserts job details -->
-            </div>
-
+        <div class="career-benefits">
+          <div class="career-benefit-card glass spot c-reveal"><div class="career-benefit-icon"><i class="bi bi-code-square"></i></div><h3>Modern technology</h3><p>Work with modern frameworks, APIs, databases and cloud-ready technologies.</p></div>
+          <div class="career-benefit-card glass spot c-reveal"><div class="career-benefit-icon"><i class="bi bi-graph-up-arrow"></i></div><h3>Growth</h3><p>Learn through real projects and take ownership of meaningful work.</p></div>
+          <div class="career-benefit-card glass spot c-reveal"><div class="career-benefit-icon"><i class="bi bi-bullseye"></i></div><h3>Real impact</h3><p>Build solutions that solve practical business and technology problems.</p></div>
+          <div class="career-benefit-card glass spot c-reveal"><div class="career-benefit-icon"><i class="bi bi-people"></i></div><h3>Collaborative team</h3><p>Work with people who value quality, communication and continuous improvement.</p></div>
         </div>
+      </div>
+    </section>
 
+    <section class="career-general">
+      <div class="container">
+        <div class="career-general-box glass glass--strong c-reveal">
+          <div>
+            <p class="kicker">Don't see your role?</p>
+            <h2>Send us your profile</h2>
+            <p>We're always interested in meeting talented people. Send your resume and we'll keep your profile in consideration.</p>
+          </div>
+          <a href="mailto:careers@techmitra.co.in" class="btn btn--primary btn--lg">Send resume <i class="bi bi-envelope"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="career-modal" id="jobModal" aria-hidden="true">
+    <div class="career-modal-overlay" id="jobModalOverlay"></div>
+    <div class="career-modal-box glass glass--strong" role="dialog" aria-modal="true">
+      <button class="career-modal-close" id="jobModalClose" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+      <div id="jobDetails"></div>
     </div>
+  </div>
 
+  <footer class="career-footer">
+    <div class="container">
+      <span>© <span id="careerYear"></span> TechMitra Technologies. All rights reserved.</span>
+      <a href="index.html">techmitra.co.in</a>
+    </div>
+  </footer>
 
-    <!-- ================================
-         FOOTER
-    ================================= -->
-
-    <footer class="career-footer">
-
-        <div class="career-container">
-
-            <div>
-                © <span id="careerYear"></span>
-                TechMitra Technologies.
-                All rights reserved.
-            </div>
-
-            <a href="index.html">
-                techmitra.co.in
-            </a>
-
-        </div>
-
-    </footer>
-
-
-    <script src="js/careers.js"></script>
-
+  <script src="js/careers.js"></script>
+  <script src="js/glass-fx.js"></script>
 </body>
-
 </html>
